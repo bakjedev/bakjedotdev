@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "bakjedev",
+  "version": "${version}",
+  "name": "Bakjedev",
+  "description": "this is dangerous",
+  "authors": [
+    "bakje"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "me.bakje.bakjedev.bakjedev.client.BakjedevClient"
+    ],
+    "main": [
+      "me.bakje.bakjedev.bakjedev.Bakjedev"
+    ]
+  },
+  "mixins": [
+    "bakjedev.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}

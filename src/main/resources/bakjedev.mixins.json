@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.bakje.bakjedev.bakjedev.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+    "MixinMinecraft",
+    "KeyboardMixin",
+    "InGameHudMixin",
+    "LivingEntityMixin",
+    "ClientPlayerEntityMixin",
+    "BlockMixin",
+    "AbstractBlockStateMixin",
+    "BlockOcclusionCacheMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
