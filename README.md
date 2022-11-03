@@ -1,3 +1,6 @@
+hiii meow, code hacker man here i made client!!!! it worky!!!! it gui!!!! it module!!! it larp!!
+here some features i geuss
+
 ### Combat
 ```
 Aura: just simple kill aura, has range and rotation setting
@@ -19,11 +22,11 @@ Xray: "baritone is for zoomers" agreed, works with sodium btw
 ```
 WGbypass: bypasses worldguard entry flag, liveoverflow larp
 ```
-# World
+### World
 ```
 i got nun for this yet
 ```
-# Misc
+### Misc
 ```
 LOHarvest: this just replants wheat seeds, liveoverflow larp
 look: i was testing getting rotation between two coordinates, looks server side at 0 0 0
