@@ -2,6 +2,7 @@
 ### bakje.dev
 hiiii meow, minecraft client with things (fr this time)
 <details>
+  <summary>Features</summary>
   <summary>Combat</summary>
   - Aura: `just simple kill aura, has range and rotation setting`
   <summary>Movement</summary>
