@@ -9,8 +9,7 @@ here some features i geuss
 
 * Boatfly:      really bad boatfly, just normal boat riding but when press jump key it go up
 * Flight:       has a creative fly mode and an antikick toggle, noevent mode doesnt work
-* Speed:        i dont know how to make speed so this is just multiplying your velocity with a tiny bit every tick.
-              causes infinite acceleration lol
+* Speed:        i dont know how to make speed so this is just multiplying your velocity with a tiny bit every tick. causes infinite acceleration lol
 * Sprint:       sprinting yeah
 
 ### Render
