@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Xray extends Mod {
     public static ArrayList<Block> blocks = new ArrayList<>();
-    public BooleanSetting bedrock = new BooleanSetting("Bedrock", false);
+    public BooleanSetting bedrock = new BooleanSetting("Bedrock", true);
     public Xray() {
         super("Xray", "look through the world... and beyond", Category.RENDER);
         addSetting(bedrock);
@@ -27,7 +27,7 @@ public class Xray extends Mod {
         if (bedrock.isEnabled()) {
             c1 = block == Blocks.LAVA || block == Blocks.CHEST || block == Blocks.FURNACE || block == Blocks.END_GATEWAY || block == Blocks.COMMAND_BLOCK || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_PORTAL || block == Blocks.BEDROCK;
         } else {
-            c1 = block == Blocks.LAVA || block == Blocks.CHEST || block == Blocks.FURNACE || block == Blocks.END_GATEWAY || block == Blocks.COMMAND_BLOCK || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_PORTAL || bedrock.isEnabled();
+            c1 = block == Blocks.LAVA || block == Blocks.CHEST || block == Blocks.FURNACE || block == Blocks.END_GATEWAY || block == Blocks.COMMAND_BLOCK || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_PORTAL;
         }
         boolean c2 = block instanceof OreBlock || block instanceof RedstoneOreBlock;
         return c1 || c2;
