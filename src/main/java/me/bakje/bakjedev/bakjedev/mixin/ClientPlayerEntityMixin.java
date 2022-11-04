@@ -45,9 +45,9 @@ public class ClientPlayerEntityMixin {
     @Inject(at = @At("HEAD"), method = "sendChatMessage", cancellable = true)
     public void onChatMessage(String message, Text preview, CallbackInfo ci) {
         if (message.startsWith("$")
-        && !message.contains("help")
-        && !message.contains("vclip")
-        && !message.contains("hclip")) {
+        && !message.startsWith("$help")
+        && !message.startsWith("$vclip")
+        && !message.startsWith("$hclip")) {
             MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
             mc.player.sendMessage(prefixString.append(Text.literal("Unknown or incomplete command, try $help for the list of commands.").formatted(Formatting.GRAY)), false);
             ci.cancel();
