@@ -2,10 +2,7 @@ package me.bakje.bakjedev.bakjedev.module;
 
 import me.bakje.bakjedev.bakjedev.module.Combat.Aura;
 import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
-import me.bakje.bakjedev.bakjedev.module.Misc.LOHarvest;
-import me.bakje.bakjedev.bakjedev.module.Misc.PortalGUI;
-import me.bakje.bakjedev.bakjedev.module.Misc.Spin;
-import me.bakje.bakjedev.bakjedev.module.Misc.look;
+import me.bakje.bakjedev.bakjedev.module.Misc.*;
 import me.bakje.bakjedev.bakjedev.module.Movement.*;
 import me.bakje.bakjedev.bakjedev.module.Render.Fullbright;
 import me.bakje.bakjedev.bakjedev.module.Render.Xray;
@@ -59,6 +56,7 @@ public class ModuleManager {
         modules.add(new Sprint());
         modules.add(new Speed());
         modules.add(new BoatFly());
+        modules.add(new Nofall());
 
         modules.add(new Fullbright());
         modules.add(new Xray());
