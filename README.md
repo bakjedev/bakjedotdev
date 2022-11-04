@@ -14,7 +14,7 @@ here some features i geuss
 
 * Boatfly:      really bad boatfly, just normal boat riding but when press jump key it go up
 * Flight:       has a creative fly mode and an antikick toggle, noevent mode doesnt work
-* Speed:        i dont know how to make speed so this is just multiplying your velocity with a tiny bit every tick. causes infinite acceleration lol
+* Speed:        has skidded way too fast strafe mode and a boost mode that causes infinite acceleration
 * Sprint:       sprinting yeah
 
 ### Render
@@ -37,4 +37,4 @@ i got nun for this yet
 * PortalGUI:    allows opening GUI's in portals
 * Spin:         shitty anti afk spin thing
 
-
+it doesn't have a config btw, so all settings and binds get reset every restart.
