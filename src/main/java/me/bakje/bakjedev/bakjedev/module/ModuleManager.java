@@ -5,6 +5,7 @@ import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
 import me.bakje.bakjedev.bakjedev.module.Misc.*;
 import me.bakje.bakjedev.bakjedev.module.Movement.*;
 import me.bakje.bakjedev.bakjedev.module.Render.Fullbright;
+import me.bakje.bakjedev.bakjedev.module.Render.NoFog;
 import me.bakje.bakjedev.bakjedev.module.Render.Xray;
 
 
@@ -57,9 +58,11 @@ public class ModuleManager {
         modules.add(new Speed());
         modules.add(new BoatFly());
         modules.add(new Nofall());
+        modules.add(new FakeSneak());
 
         modules.add(new Fullbright());
         modules.add(new Xray());
+        modules.add(new NoFog());
 
         modules.add(new Spin());
         modules.add(new LOHarvest());

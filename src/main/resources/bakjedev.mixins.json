@@ -14,7 +14,10 @@
     "InGameHudMixin",
     "KeyboardMixin",
     "LivingEntityMixin",
-    "MixinMinecraft"
+    "MixinMinecraft",
+    "PlayerEntityMixin",
+    "BackgroundRendererMixin",
+    "DimensionEffectsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
