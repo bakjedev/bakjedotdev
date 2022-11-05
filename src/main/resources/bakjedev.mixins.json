@@ -6,14 +6,15 @@
   "mixins": [
   ],
   "client": [
-    "MixinMinecraft",
-    "KeyboardMixin",
-    "InGameHudMixin",
-    "LivingEntityMixin",
-    "ClientPlayerEntityMixin",
-    "BlockMixin",
     "AbstractBlockStateMixin",
-    "BlockOcclusionCacheMixin"
+    "BlockMixin",
+    "BlockOcclusionCacheMixin",
+    "ChatHudMixin",
+    "ClientPlayerEntityMixin",
+    "InGameHudMixin",
+    "KeyboardMixin",
+    "LivingEntityMixin",
+    "MixinMinecraft"
   ],
   "injectors": {
     "defaultRequire": 1

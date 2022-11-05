@@ -1,4 +1,4 @@
-package me.bakje.bakjedev.bakjedev.client;
+package me.bakje.bakjedev.bakjedev;
 
 
 import net.fabricmc.api.ClientModInitializer;

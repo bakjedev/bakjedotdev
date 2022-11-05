@@ -20,7 +20,6 @@ public class Bakjedev implements ModInitializer {
     public void onInitialize() {
         System.out.println("joe biden");
     }
-
     public void onKeyPress(int key, int action) {
         if (action == GLFW.GLFW_PRESS && mc.currentScreen==null) {
             for (Mod module : ModuleManager.INSTANCE.getModules()) {

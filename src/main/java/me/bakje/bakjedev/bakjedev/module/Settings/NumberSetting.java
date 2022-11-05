@@ -21,7 +21,7 @@ public class NumberSetting extends Setting{
         return value;
     }
 
-    public double getValueFloat() {
+    public float getValueFloat() {
         return (float)value;
     }
 

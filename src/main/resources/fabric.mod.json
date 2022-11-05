@@ -12,7 +12,7 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "me.bakje.bakjedev.bakjedev.client.BakjedevClient"
+      "me.bakje.bakjedev.bakjedev.BakjedevClient"
     ],
     "main": [
       "me.bakje.bakjedev.bakjedev.Bakjedev"
