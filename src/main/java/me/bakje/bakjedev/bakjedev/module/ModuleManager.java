@@ -6,6 +6,7 @@ import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
 import me.bakje.bakjedev.bakjedev.module.Misc.*;
 import me.bakje.bakjedev.bakjedev.module.Movement.*;
 import me.bakje.bakjedev.bakjedev.module.Render.*;
+import me.bakje.bakjedev.bakjedev.module.World.Scaffold;
 
 
 import java.util.ArrayList;
@@ -76,6 +77,8 @@ public class ModuleManager {
         modules.add(new Surround());
 
         modules.add(new WGBypass());
+
+        modules.add(new Scaffold());
     }
 
 
