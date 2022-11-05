@@ -17,7 +17,8 @@
     "MixinMinecraft",
     "PlayerEntityMixin",
     "BackgroundRendererMixin",
-    "DimensionEffectsMixin"
+    "DimensionEffectsMixin",
+    "BossBarHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

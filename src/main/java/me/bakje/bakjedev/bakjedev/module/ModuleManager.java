@@ -4,9 +4,7 @@ import me.bakje.bakjedev.bakjedev.module.Combat.Aura;
 import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
 import me.bakje.bakjedev.bakjedev.module.Misc.*;
 import me.bakje.bakjedev.bakjedev.module.Movement.*;
-import me.bakje.bakjedev.bakjedev.module.Render.Fullbright;
-import me.bakje.bakjedev.bakjedev.module.Render.NoFog;
-import me.bakje.bakjedev.bakjedev.module.Render.Xray;
+import me.bakje.bakjedev.bakjedev.module.Render.*;
 
 
 import java.util.ArrayList;
@@ -63,11 +61,14 @@ public class ModuleManager {
         modules.add(new Fullbright());
         modules.add(new Xray());
         modules.add(new NoFog());
+        modules.add(new NoVanillaEffectHUD());
+        modules.add(new NoBossbar());
+        modules.add(new CleanView());
 
-        modules.add(new Spin());
         modules.add(new LOHarvest());
         modules.add(new PortalGUI());
-        modules.add(new look());
+        modules.add(new HoldAttack());
+        modules.add(new HoldUse());
         modules.add(new ChatTimestamps());
 
         modules.add(new Aura());
