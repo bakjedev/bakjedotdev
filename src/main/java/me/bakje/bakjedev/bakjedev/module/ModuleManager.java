@@ -65,7 +65,7 @@ public class ModuleManager {
         modules.add(new LOHarvest());
         modules.add(new PortalGUI());
         modules.add(new look());
-        modules.add(new chatTimestamps());
+        modules.add(new ChatTimestamps());
 
         modules.add(new Aura());
 
