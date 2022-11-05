@@ -1,6 +1,7 @@
 package me.bakje.bakjedev.bakjedev.module;
 
 import me.bakje.bakjedev.bakjedev.module.Combat.Aura;
+import me.bakje.bakjedev.bakjedev.module.Combat.Surround;
 import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
 import me.bakje.bakjedev.bakjedev.module.Misc.*;
 import me.bakje.bakjedev.bakjedev.module.Movement.*;
@@ -72,6 +73,7 @@ public class ModuleManager {
         modules.add(new ChatTimestamps());
 
         modules.add(new Aura());
+        modules.add(new Surround());
 
         modules.add(new WGBypass());
     }
