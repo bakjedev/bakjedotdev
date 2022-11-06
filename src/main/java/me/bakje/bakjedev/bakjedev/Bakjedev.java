@@ -4,6 +4,7 @@ package me.bakje.bakjedev.bakjedev;
 import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.ClickGui;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.module.Render.HudModule;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +20,7 @@ public class Bakjedev implements ModInitializer {
     @Override
     public void onInitialize() {
         System.out.println("joe biden");
+        ModuleManager.INSTANCE.getModule(HudModule.class).toggle(); //default toggled module
     }
     public void onKeyPress(int key, int action) {
         if (action == GLFW.GLFW_PRESS && mc.currentScreen==null) {

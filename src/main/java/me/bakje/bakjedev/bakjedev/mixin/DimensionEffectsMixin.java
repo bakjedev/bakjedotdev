@@ -17,7 +17,6 @@ public abstract class DimensionEffectsMixin extends DimensionEffects{
     @Inject(method = "useThickFog", at = @At("HEAD"), cancellable = true)
     private void disableNetherFog(int x, int z, CallbackInfoReturnable<Boolean> cir)
     {
-//        if (ModuleManager.INSTANCE.isModEnabled("NoFog").isEnabled())
         if (ModuleManager.INSTANCE.getModule(NoFog.class).isEnabled())
         {
             cir.setReturnValue(false);

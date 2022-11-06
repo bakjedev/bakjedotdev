@@ -14,7 +14,6 @@ public class BossBarHudMixin {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void tweakeroo_disableBossBarRendering(MatrixStack matrices, CallbackInfo ci)
     {
-//        if (ModuleManager.INSTANCE.isModEnabled("NoBossBar").isEnabled())
         if (ModuleManager.INSTANCE.getModule(NoBossbar.class).isEnabled())
         {
             ci.cancel();

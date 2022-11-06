@@ -22,7 +22,6 @@ public class ClientPlayerEntityMixin {
     Screen tempCurrentScreen;
     @Inject(at = @At(value = "FIELD", target = "Lnet/minecraft/client/MinecraftClient;currentScreen:Lnet/minecraft/client/gui/screen/Screen;", opcode = Opcodes.GETFIELD, ordinal = 0), method = {"updateNausea()V"})
     public void beforeUpdateNausea(CallbackInfo ci) {
-//        if (ModuleManager.INSTANCE.isModEnabled("PortalGUI").isEnabled()) {
         if (ModuleManager.INSTANCE.getModule(PortalGUI.class).isEnabled()) {
             tempCurrentScreen = mc.currentScreen;
             mc.currentScreen = null;

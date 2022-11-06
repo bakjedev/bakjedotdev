@@ -23,7 +23,6 @@ public abstract class BackgroundRendererMixin {
             BackgroundRenderer.FogType fogType,
             float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci)
     {
-//        if (ModuleManager.INSTANCE.isModEnabled("NoFog").isEnabled())
         if (ModuleManager.INSTANCE.getModule(NoFog.class).isEnabled())
         {
             if (!thickFog)

@@ -32,8 +32,6 @@ public class LivingEntityMixin {
     {
         MinecraftClient mc = MinecraftClient.getInstance();
 
-//        if (ModuleManager.INSTANCE.isModEnabled("CleanView").isEnabled() &&
-//                ((Object) this) == mc.player && mc.options.getPerspective() == Perspective.FIRST_PERSON)
         if (ModuleManager.INSTANCE.getModule(CleanView.class).isEnabled() && ((Object)this) == mc.player && mc.options.getPerspective()==Perspective.FIRST_PERSON)
         {
             ci.cancel();

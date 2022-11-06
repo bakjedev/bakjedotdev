@@ -25,7 +25,6 @@ public abstract class PlayerEntityMixin  extends LivingEntity {
             target = "Lnet/minecraft/entity/player/PlayerEntity;clipAtLedge()Z", ordinal = 0))
     private boolean fakeSneaking(PlayerEntity entity)
     {
-//        if (ModuleManager.INSTANCE.isModEnabled("FakeSneak").isEnabled() || ModuleManager.INSTANCE.isModEnabled("Scaffold").isEnabled() && ((Object) this) instanceof ClientPlayerEntity)
        if (ModuleManager.INSTANCE.getModule(FakeSneak.class).isEnabled() || ModuleManager.INSTANCE.getModule(Scaffold.class).isEnabled() && ((Object) this) instanceof ClientPlayerEntity)
         {
             return true;

@@ -17,7 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class BlockOcclusionCacheMixin {
     @Inject(at = @At("HEAD"), method = "shouldDrawSide", cancellable = true, remap = false)
     private boolean xray(BlockState state, BlockView world, BlockPos pos, Direction side, CallbackInfoReturnable<Boolean> cir) {
-//        if (ModuleManager.INSTANCE.isModEnabled("Xray").isEnabled()) {
         if (ModuleManager.INSTANCE.getModule(Xray.class).isEnabled()) {
             boolean blockVisible = Xray.blocks.contains(state.getBlock());
             cir.setReturnValue(blockVisible);

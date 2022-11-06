@@ -20,7 +20,6 @@ public class InGameHudMixin {
 
     @Inject(method = "renderStatusEffectOverlay", at = @At("HEAD"), cancellable = true)
     private void disableStatusEffectHUD(CallbackInfo ci) {
-//        if (ModuleManager.INSTANCE.isModEnabled("NoEffectHud").isEnabled()) {
         if (ModuleManager.INSTANCE.getModule(NoVanillaEffectHUD.class).isEnabled()) {
             ci.cancel();
         }

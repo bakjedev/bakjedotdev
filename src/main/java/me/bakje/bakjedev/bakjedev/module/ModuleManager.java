@@ -49,15 +49,7 @@ public class ModuleManager {
         return categoryModules;
     }
 
-    /*public Mod isModEnabled(String s) {
-        for(Mod m : modules) {
-            if(m.getName().equalsIgnoreCase(s))
-                return m;
-        }
-        return null;
-    }*/
-
-    @SuppressWarnings("unchecked")
+      @SuppressWarnings("unchecked")
     public <T extends Mod> T getModule(Class<T> clazz) {
         return (T) modules.stream().filter(mod -> mod.getClass() == clazz).findFirst().orElse(null);
     }
