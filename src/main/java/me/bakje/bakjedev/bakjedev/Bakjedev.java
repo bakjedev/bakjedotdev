@@ -1,7 +1,6 @@
 package me.bakje.bakjedev.bakjedev;
 
 
-import com.google.common.eventbus.EventBus;
 import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.ClickGui;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeEventBus;
 import me.bakje.bakjedev.bakjedev.eventbus.handler.InexactEventHandler;

@@ -47,16 +47,16 @@ public class Velocity extends Mod {
                 packet.velocityX = (int) (pvelX * 8000 + mc.player.getVelocity().x * 8000);
                 packet.velocityY = (int) (pvelY * 8000 + mc.player.getVelocity().y * 8000);
                 packet.velocityZ = (int) (pvelZ * 8000 + mc.player.getVelocity().z * 8000);
-            } else if (event.getPacket() instanceof ExplosionS2CPacket) {
-                ExplosionS2CPacket packet2 = (ExplosionS2CPacket) event.getPacket();
-
-                double velXZ =0;
-                double velY = 0;
-
-                packet2.playerVelocityX = (float) (packet2.getPlayerVelocityX() * velXZ);
-                packet2.playerVelocityY = (float) (packet2.getPlayerVelocityY() * velY);
-                packet2.playerVelocityZ = (float) (packet2.getPlayerVelocityZ() * velXZ);
             }
+        } else if (event.getPacket() instanceof ExplosionS2CPacket) {
+            ExplosionS2CPacket packet = (ExplosionS2CPacket) event.getPacket();
+
+            double velXZ =0;
+            double velY = 0;
+
+            packet.playerVelocityX = (float) (packet.getPlayerVelocityX() * velXZ);
+            packet.playerVelocityY = (float) (packet.getPlayerVelocityY() * velY);
+            packet.playerVelocityZ = (float) (packet.getPlayerVelocityZ() * velXZ);
         }
     }
 }
