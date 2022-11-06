@@ -1,9 +1,6 @@
 package me.bakje.bakjedev.bakjedev.module;
 
-import me.bakje.bakjedev.bakjedev.module.Combat.Aura;
-import me.bakje.bakjedev.bakjedev.module.Combat.RussianSurround;
-import me.bakje.bakjedev.bakjedev.module.Combat.Surround;
-import me.bakje.bakjedev.bakjedev.module.Combat.Velocity;
+import me.bakje.bakjedev.bakjedev.module.Combat.*;
 import me.bakje.bakjedev.bakjedev.module.Misc.LOHarvest;
 import me.bakje.bakjedev.bakjedev.module.Misc.PortalGUI;
 import me.bakje.bakjedev.bakjedev.module.Movement.*;
@@ -81,6 +78,7 @@ public class ModuleManager {
         modules.add(new Surround());
         modules.add(new RussianSurround());
         modules.add(new Velocity());
+        modules.add(new AutoTotem());
 
         modules.add(new WGBypass());
 

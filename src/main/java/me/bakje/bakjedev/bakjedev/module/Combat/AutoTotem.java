@@ -21,6 +21,7 @@ public class AutoTotem extends Mod {
 
     public AutoTotem() {
         super("AutoTotem", "offhand replenish totem", Category.COMBAT);
+        addSettings(delaySetting, Override);
     }
 
     @Override
