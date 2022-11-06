@@ -18,7 +18,8 @@
     "PlayerEntityMixin",
     "BackgroundRendererMixin",
     "DimensionEffectsMixin",
-    "BossBarHudMixin"
+    "BossBarHudMixin",
+    "ClientConnectionMixin"
   ],
   "injectors": {
     "defaultRequire": 1
