@@ -3,6 +3,7 @@ package me.bakje.bakjedev.bakjedev.mixin;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.Render.Xray;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -19,8 +20,15 @@ public class BlockOcclusionCacheMixin {
     private boolean xray(BlockState state, BlockView world, BlockPos pos, Direction side, CallbackInfoReturnable<Boolean> cir) {
         if (ModuleManager.INSTANCE.getModule(Xray.class).isEnabled()) {
             boolean blockVisible = Xray.blocks.contains(state.getBlock());
-            cir.setReturnValue(blockVisible);
-            return blockVisible;
+            if (state.isOf(Blocks.BEDROCK)) {
+                if (ModuleManager.INSTANCE.getModule(Xray.class).bedrock.isEnabled()) {
+                    blockVisible=true;
+                } else
+                    blockVisible=false;
+            } else {
+                cir.setReturnValue(blockVisible);
+                return blockVisible;
+            }
         }
         return true;
     }

@@ -1,6 +1,7 @@
 package me.bakje.bakjedev.bakjedev.module;
 
 import me.bakje.bakjedev.bakjedev.module.Combat.Aura;
+import me.bakje.bakjedev.bakjedev.module.Combat.RussianSurround;
 import me.bakje.bakjedev.bakjedev.module.Combat.Surround;
 import me.bakje.bakjedev.bakjedev.module.Misc.LOHarvest;
 import me.bakje.bakjedev.bakjedev.module.Misc.PortalGUI;
@@ -77,6 +78,7 @@ public class ModuleManager {
 
         modules.add(new Aura());
         modules.add(new Surround());
+        modules.add(new RussianSurround());
 
         modules.add(new WGBypass());
 
