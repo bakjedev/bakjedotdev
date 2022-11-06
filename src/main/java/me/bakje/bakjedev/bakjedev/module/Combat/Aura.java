@@ -11,6 +11,7 @@ import net.minecraft.block.FarmlandBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -54,6 +55,9 @@ public class Aura extends Mod {
         Entity closestEntity = null;
         for (Entity entity : mc.world.getEntities()) {
             Vec3d entityPos = entity.getPos();
+            if (entity instanceof ItemEntity) {
+                return;
+            }
             if (attackEverything.isEnabled()) {
                 rotateCondition = entityPos.distanceTo(mc.player.getPos())<range.getValue() && entity!=mc.player;
                 attackCondition = entityPos.distanceTo(mc.player.getPos())<closestDistance && entityPos.distanceTo(playerPos)<range.getValue() && entity!=mc.player;
