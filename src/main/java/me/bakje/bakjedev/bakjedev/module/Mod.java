@@ -1,6 +1,8 @@
 package me.bakje.bakjedev.bakjedev.module;
 
 
+import me.bakje.bakjedev.bakjedev.Bakjedev;
+import me.bakje.bakjedev.bakjedev.eventbus.BakjeEventBus;
 import me.bakje.bakjedev.bakjedev.module.Settings.Setting;
 import me.bakje.bakjedev.bakjedev.module.Settings.KeyBindSetting;
 import net.minecraft.client.MinecraftClient;
@@ -50,11 +52,11 @@ public abstract class Mod {
     }
 
     public void onEnable() {
-
+        Bakjedev.INSTANCE.eventBus.subscribe(this);
     }
 
     public void onDisable() {
-
+        Bakjedev.INSTANCE.eventBus.unsubscribe(this);
     }
 
     public void onTick() {

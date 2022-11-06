@@ -1,7 +1,10 @@
 package me.bakje.bakjedev.bakjedev;
 
 
+import com.google.common.eventbus.EventBus;
 import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.ClickGui;
+import me.bakje.bakjedev.bakjedev.eventbus.BakjeEventBus;
+import me.bakje.bakjedev.bakjedev.eventbus.handler.InexactEventHandler;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.Render.HudModule;
@@ -14,8 +17,9 @@ import org.lwjgl.glfw.GLFW;
 public class Bakjedev implements ModInitializer {
 
     public static final Bakjedev INSTANCE = new Bakjedev();
-    public Logger logger = LogManager.getLogger(Bakjedev.class);
+    public static Logger logger = LogManager.getLogger(Bakjedev.class);
     private MinecraftClient mc = MinecraftClient.getInstance();
+    public BakjeEventBus eventBus = new BakjeEventBus(new InexactEventHandler("bakjedev"), Bakjedev.logger);
 
     @Override
     public void onInitialize() {

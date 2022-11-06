@@ -32,66 +32,68 @@ public class RussianSurround extends Mod {
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
                     place(mc.player.getBlockPos(), Direction.NORTH);
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
+                }//1
                 if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.EAST)).isOf(Blocks.AIR)) {
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
                     place(mc.player.getBlockPos(), Direction.EAST);
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
+                }//2
                 if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.SOUTH)).isOf(Blocks.AIR)) {
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
                     place(mc.player.getBlockPos(), Direction.SOUTH);
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
+                }//3
                 if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.WEST)).isOf(Blocks.AIR)) {
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
                     place(mc.player.getBlockPos(), Direction.WEST);
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
+                }//4
 
-                //RUSSIAN DIAGONAL BLOCKS
-                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.NORTH).offset(Direction.WEST)).isOf(Blocks.AIR)) {
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
-                    place(mc.player.getBlockPos().offset(Direction.WEST), Direction.NORTH);
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
-                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.NORTH).offset(Direction.EAST)).isOf(Blocks.AIR)) {
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
-                    place(mc.player.getBlockPos().offset(Direction.EAST), Direction.NORTH);
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
-                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.EAST).offset(Direction.SOUTH)).isOf(Blocks.AIR)) {
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
-                    place(mc.player.getBlockPos().offset(Direction.SOUTH), Direction.EAST);
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
-                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.SOUTH).offset(Direction.WEST)).isOf(Blocks.AIR)) {
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
-                    place(mc.player.getBlockPos().offset(Direction.WEST), Direction.SOUTH);
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
-
-                //RUSSIAN STRAIGHT BLOCKS
+                //RUSSIAN BLOCKS
                 if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.NORTH).offset(Direction.NORTH)).isOf(Blocks.AIR)) {
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
                     place(mc.player.getBlockPos().offset(Direction.NORTH), Direction.NORTH);
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
-                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.EAST).offset(Direction.EAST)).isOf(Blocks.AIR)) {
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
-                    place(mc.player.getBlockPos().offset(Direction.EAST), Direction.EAST);
-                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
+                }//9
                 if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.SOUTH).offset(Direction.SOUTH)).isOf(Blocks.AIR)) {
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
                     place(mc.player.getBlockPos().offset(Direction.SOUTH), Direction.SOUTH);
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
-            if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.WEST).offset(Direction.WEST)).isOf(Blocks.AIR)) {
+                }//11
+                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.EAST).offset(Direction.EAST)).isOf(Blocks.AIR)) {
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
+                    place(mc.player.getBlockPos().offset(Direction.EAST), Direction.EAST);
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
+                }//10
+                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.WEST).offset(Direction.WEST)).isOf(Blocks.AIR)) {
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
                     place(mc.player.getBlockPos().offset(Direction.WEST), Direction.WEST);
                     mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
-                }
+                }//12
+                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.NORTH).offset(Direction.WEST)).isOf(Blocks.AIR)) {
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
+                    place(mc.player.getBlockPos().offset(Direction.WEST), Direction.NORTH);
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
+                }//5
+                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.EAST).offset(Direction.SOUTH)).isOf(Blocks.AIR)) {
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
+                    place(mc.player.getBlockPos().offset(Direction.SOUTH), Direction.EAST);
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
+                }//7
+                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.NORTH).offset(Direction.EAST)).isOf(Blocks.AIR)) {
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
+                    place(mc.player.getBlockPos().offset(Direction.EAST), Direction.NORTH);
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
+                }//6
+                if (mc.world.getBlockState(mc.player.getBlockPos().offset(Direction.SOUTH).offset(Direction.WEST)).isOf(Blocks.AIR)) {
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(obiSlot));
+                    place(mc.player.getBlockPos().offset(Direction.WEST), Direction.SOUTH);
+                    mc.player.networkHandler.sendPacket(new UpdateSelectedSlotC2SPacket(currentSlot));
+                }//8
+
+
+
+
             }
         }
         if (mc.currentScreen==null && mc.options.jumpKey.isPressed()) {
