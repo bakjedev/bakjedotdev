@@ -30,10 +30,12 @@ import java.util.Arrays;
 public class Aura extends Mod {
     public NumberSetting range = new NumberSetting("Range", 1, 10, 5.5, 0.1);
     public BooleanSetting rotate = new BooleanSetting("Rotate", false);
-    public TimeUtil timer = new TimeUtil();
+    public BooleanSetting attackEverything = new BooleanSetting("atackAll", false);
+    boolean rotateCondition;
+    boolean attackCondition;
     public Aura() {
         super("Aura", "kill", Category.COMBAT);
-        addSettings(rotate, range);
+        addSettings(rotate, range, attackEverything);
     }
 
     @Override
@@ -43,13 +45,23 @@ public class Aura extends Mod {
 
     @Override
     public void onTick() {
-        ClientPlayerEntity player = mc.player;
+        if (!mc.player.isAlive()) {
+            return;
+        }
+            ClientPlayerEntity player = mc.player;
         Vec3d playerPos = player.getPos();
         double closestDistance = Double.POSITIVE_INFINITY;
         Entity closestEntity = null;
         for (Entity entity : mc.world.getEntities()) {
             Vec3d entityPos = entity.getPos();
-            if (entityPos.distanceTo(mc.player.getPos())<range.getValue() && entity instanceof PlayerEntity && entity.getPos()!=mc.player.getPos()) {
+            if (attackEverything.isEnabled()) {
+                rotateCondition = entityPos.distanceTo(mc.player.getPos())<range.getValue() && entity!=mc.player;
+                attackCondition = entityPos.distanceTo(mc.player.getPos())<closestDistance && entityPos.distanceTo(playerPos)<range.getValue() && entity!=mc.player;
+            } else {
+                rotateCondition = entityPos.distanceTo(mc.player.getPos())<range.getValue() && entity instanceof PlayerEntity && entity!=mc.player;
+                attackCondition = entity instanceof PlayerEntity && entityPos.distanceTo(mc.player.getPos())<closestDistance && entityPos.distanceTo(playerPos)<range.getValue() && entity!=mc.player;
+            }
+            if (rotateCondition) {
                 if (rotate.isEnabled()) {
                     double dX = mc.player.getX() - entity.getX();
                     double dY = mc.player.getY() - entity.getY();
@@ -67,12 +79,13 @@ public class Aura extends Mod {
                     mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.Full(mc.player.getX(), mc.player.getY(), mc.player.getZ(), (float) newYaw, (float) newPitch, mc.player.isOnGround()));
                 }
             }
-            if (entity instanceof PlayerEntity && entityPos.distanceTo(mc.player.getPos())<closestDistance && entityPos.distanceTo(playerPos)<range.getValue() && entity.getPos()!=mc.player.getPos()) {
+            if (attackCondition) {
                 closestDistance=entityPos.distanceTo(playerPos);
                 closestEntity=entity;
                 float cooldown = mc.player.getAttackCooldownProgress(mc.getTickDelta());
                 if (cooldown==1) {
                     mc.interactionManager.attackEntity(mc.player, closestEntity);
+                    mc.player.swingHand(Hand.MAIN_HAND);
                 }
             }
         }
