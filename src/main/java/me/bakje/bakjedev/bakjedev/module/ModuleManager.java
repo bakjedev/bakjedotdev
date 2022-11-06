@@ -2,11 +2,17 @@ package me.bakje.bakjedev.bakjedev.module;
 
 import me.bakje.bakjedev.bakjedev.module.Combat.Aura;
 import me.bakje.bakjedev.bakjedev.module.Combat.Surround;
-import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
-import me.bakje.bakjedev.bakjedev.module.Misc.*;
+import me.bakje.bakjedev.bakjedev.module.Misc.LOHarvest;
+import me.bakje.bakjedev.bakjedev.module.Misc.PortalGUI;
 import me.bakje.bakjedev.bakjedev.module.Movement.*;
 import me.bakje.bakjedev.bakjedev.module.Render.*;
 import me.bakje.bakjedev.bakjedev.module.World.Scaffold;
+import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
+//import me.bakje.bakjedev.bakjedev.module.Misc.*;
+//import me.bakje.bakjedev.bakjedev.module.Movement.*;
+//import me.bakje.bakjedev.bakjedev.module.Render.*;
+import me.bakje.bakjedev.bakjedev.module.Misc.ChatTimestamps;
+import me.bakje.bakjedev.bakjedev.module.Misc.HoldAction;
 
 
 import java.util.ArrayList;
@@ -43,14 +49,18 @@ public class ModuleManager {
         return categoryModules;
     }
 
-    public Mod isModEnabled(String s) {
+    /*public Mod isModEnabled(String s) {
         for(Mod m : modules) {
             if(m.getName().equalsIgnoreCase(s))
                 return m;
         }
         return null;
-    }
+    }*/
 
+    @SuppressWarnings("unchecked")
+    public <T extends Mod> T getModule(Class<T> clazz) {
+        return (T) modules.stream().filter(mod -> mod.getClass() == clazz).findFirst().orElse(null);
+    }
 
     private void addModules() {
         modules.add(new Flight());
@@ -69,8 +79,7 @@ public class ModuleManager {
 
         modules.add(new LOHarvest());
         modules.add(new PortalGUI());
-        modules.add(new HoldAttack());
-        modules.add(new HoldUse());
+        modules.add(new HoldAction());
         modules.add(new ChatTimestamps());
 
         modules.add(new Aura());

@@ -3,7 +3,6 @@ package me.bakje.bakjedev.bakjedev.module.Combat;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.item.ElytraItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.c2s.play.UpdateSelectedSlotC2SPacket;

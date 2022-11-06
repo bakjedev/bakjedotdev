@@ -1,7 +1,6 @@
 package me.bakje.bakjedev.bakjedev.module.Misc;
 
 import me.bakje.bakjedev.bakjedev.module.Mod;
-import me.bakje.bakjedev.bakjedev.module.Settings.NumberSetting;
 import net.minecraft.block.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;

@@ -2,6 +2,7 @@ package me.bakje.bakjedev.bakjedev.mixin;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.module.Render.NoFog;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
@@ -22,7 +23,8 @@ public abstract class BackgroundRendererMixin {
             BackgroundRenderer.FogType fogType,
             float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci)
     {
-        if (ModuleManager.INSTANCE.isModEnabled("NoFog").isEnabled())
+//        if (ModuleManager.INSTANCE.isModEnabled("NoFog").isEnabled())
+        if (ModuleManager.INSTANCE.getModule(NoFog.class).isEnabled())
         {
             if (!thickFog)
             {

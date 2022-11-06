@@ -1,7 +1,9 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
 
+import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.module.Render.CleanView;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.Perspective;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +17,8 @@ public class LivingEntityMixin {
     // Disable regular movement when WorldGuard Bypass is enabled
     @Redirect(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isImmobile()Z"))
     private boolean isImmobile(net.minecraft.entity.LivingEntity livingEntity) {
-        if (ModuleManager.INSTANCE.isModEnabled("WGbypass").isEnabled()) {
+//        if (ModuleManager.INSTANCE.isModEnabled("WGbypass").isEnabled()) {
+        if (ModuleManager.INSTANCE.getModule(WGBypass.class).isEnabled()) {
             return true;
         }
         return false;
@@ -29,8 +32,9 @@ public class LivingEntityMixin {
     {
         MinecraftClient mc = MinecraftClient.getInstance();
 
-        if (ModuleManager.INSTANCE.isModEnabled("CleanView").isEnabled() &&
-                ((Object) this) == mc.player && mc.options.getPerspective() == Perspective.FIRST_PERSON)
+//        if (ModuleManager.INSTANCE.isModEnabled("CleanView").isEnabled() &&
+//                ((Object) this) == mc.player && mc.options.getPerspective() == Perspective.FIRST_PERSON)
+        if (ModuleManager.INSTANCE.getModule(CleanView.class).isEnabled() && ((Object)this) == mc.player && mc.options.getPerspective()==Perspective.FIRST_PERSON)
         {
             ci.cancel();
         }

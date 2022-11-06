@@ -2,10 +2,8 @@ package me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.setting;
 
 import java.awt.Color;
 
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
 import me.bakje.bakjedev.bakjedev.module.Settings.KeyBindSetting;
 import me.bakje.bakjedev.bakjedev.module.Settings.Setting;
 import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.ModuleButton;

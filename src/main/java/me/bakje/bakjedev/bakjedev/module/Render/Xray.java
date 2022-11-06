@@ -1,8 +1,7 @@
 package me.bakje.bakjedev.bakjedev.module.Render;
 
-import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
-import me.bakje.bakjedev.bakjedev.module.Settings.ModeSetting;
+import me.bakje.bakjedev.bakjedev.module.Mod;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.OreBlock;

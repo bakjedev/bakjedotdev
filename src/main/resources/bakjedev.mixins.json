@@ -14,7 +14,7 @@
     "InGameHudMixin",
     "KeyboardMixin",
     "LivingEntityMixin",
-    "MixinMinecraft",
+    "MinecraftClientMixin",
     "PlayerEntityMixin",
     "BackgroundRendererMixin",
     "DimensionEffectsMixin",

@@ -1,13 +1,9 @@
 package me.bakje.bakjedev.bakjedev.module.Movement;
 
 import me.bakje.bakjedev.bakjedev.module.Mod;
-import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
-import me.bakje.bakjedev.bakjedev.module.Settings.ModeSetting;
 import me.bakje.bakjedev.bakjedev.module.Settings.NumberSetting;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
-import org.lwjgl.glfw.GLFW;
 
 public class BoatFly extends Mod {
     public NumberSetting speed = new NumberSetting("Speed", 0, 10, 1, 0.1);

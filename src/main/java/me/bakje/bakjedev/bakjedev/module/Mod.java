@@ -1,13 +1,12 @@
 package me.bakje.bakjedev.bakjedev.module;
 
 
-import me.bakje.bakjedev.bakjedev.module.Settings.KeyBindSetting;
 import me.bakje.bakjedev.bakjedev.module.Settings.Setting;
+import me.bakje.bakjedev.bakjedev.module.Settings.KeyBindSetting;
 import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public abstract class Mod {
 

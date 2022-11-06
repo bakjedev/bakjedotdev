@@ -1,7 +1,6 @@
 package me.bakje.bakjedev.bakjedev.module.Movement;
 
 import me.bakje.bakjedev.bakjedev.module.Mod;
-import net.minecraft.block.Blocks;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 public class Nofall extends Mod {

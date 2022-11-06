@@ -2,9 +2,8 @@ package me.bakje.bakjedev.bakjedev.UI.Screens.clickgui;
 
 import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.setting.KeyBind;
 import me.bakje.bakjedev.bakjedev.module.Mod;
-import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Settings.*;
 import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.setting.Component;
+import me.bakje.bakjedev.bakjedev.module.Settings.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;

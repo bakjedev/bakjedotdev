@@ -1,12 +1,10 @@
 package me.bakje.bakjedev.bakjedev.UI.Screens.clickgui;
 
-import com.sun.jna.platform.linux.Udev;
 import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.setting.Component;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.Mod.Category;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 

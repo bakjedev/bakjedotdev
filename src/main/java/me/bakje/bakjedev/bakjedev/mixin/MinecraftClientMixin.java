@@ -2,6 +2,7 @@ package me.bakje.bakjedev.bakjedev.mixin;
 
 
 import me.bakje.bakjedev.bakjedev.Bakjedev;
+import me.bakje.bakjedev.bakjedev.module.Misc.HoldAction;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -19,34 +20,37 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
 @Mixin(MinecraftClient.class)
-public class MixinMinecraft {
+public abstract class MinecraftClientMixin {
     @Shadow
-    @Nullable public ClientPlayerEntity player;
-    @Shadow @Nullable public Screen currentScreen;
-    @Shadow @Final public GameOptions options;
-    @Shadow protected int attackCooldown;
-    @Inject(at=@At("HEAD"), method="tick")
+    @Nullable
+    public ClientPlayerEntity player;
+    @Shadow
+    @Nullable
+    public Screen currentScreen;
+    @Shadow
+    @Final
+    public GameOptions options;
+    @Shadow
+    protected int attackCooldown;
+
+    @Inject(at = @At("HEAD"), method = "tick")
     public void onTick(CallbackInfo ci) {
         Bakjedev.INSTANCE.onTick();
     }
 
     @Inject(method = "handleInputEvents", at = @At("HEAD"))
     private void onProcessKeybindsPre(CallbackInfo ci) {
-        if (this.currentScreen == null)
-        {
-            if (ModuleManager.INSTANCE.isModEnabled("HoldAttack").isEnabled())
-            {
-                if (this.attackCooldown >= 10000)
-                {
-                    this.attackCooldown = 0;
+        if (this.currentScreen == null) {
+            if (ModuleManager.INSTANCE.getModule(HoldAction.class).isEnabled()) {
+                if(ModuleManager.INSTANCE.getModule(HoldAction.class).actionMode.isMode("Attack")) {
+                    if (this.attackCooldown >= 10000) {
+                        this.attackCooldown = 0;
+                    }
+
+                    KeyBinding.setKeyPressed(InputUtil.fromTranslationKey(this.options.attackKey.getBoundKeyTranslationKey()), true);
+                } else {
+                    KeyBinding.setKeyPressed(InputUtil.fromTranslationKey(this.options.useKey.getBoundKeyTranslationKey()), true);
                 }
-
-                KeyBinding.setKeyPressed(InputUtil.fromTranslationKey(this.options.attackKey.getBoundKeyTranslationKey()), true);
-            }
-
-            if (ModuleManager.INSTANCE.isModEnabled("HoldUse").isEnabled())
-            {
-                KeyBinding.setKeyPressed(InputUtil.fromTranslationKey(this.options.useKey.getBoundKeyTranslationKey()), true);
             }
         }
     }

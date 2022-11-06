@@ -1,12 +1,11 @@
 package me.bakje.bakjedev.bakjedev.module.Movement;
 
+import me.bakje.bakjedev.bakjedev.module.Settings.NumberSetting;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
 import me.bakje.bakjedev.bakjedev.module.Settings.ModeSetting;
-import me.bakje.bakjedev.bakjedev.module.Settings.NumberSetting;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 import net.minecraft.util.math.Vec3d;
-import org.lwjgl.glfw.GLFW;
 
 public class Speed extends Mod {
 

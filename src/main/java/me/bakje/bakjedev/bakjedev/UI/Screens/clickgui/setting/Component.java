@@ -5,8 +5,6 @@ import me.bakje.bakjedev.bakjedev.module.Settings.Setting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 
-import java.awt.*;
-
 public class Component {
 
     public Setting setting;
