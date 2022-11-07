@@ -19,7 +19,8 @@
     "BackgroundRendererMixin",
     "DimensionEffectsMixin",
     "BossBarHudMixin",
-    "ClientConnectionMixin"
+    "ClientConnectionMixin",
+    "CameraMixin"
   ],
   "injectors": {
     "defaultRequire": 1

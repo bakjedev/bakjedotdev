@@ -57,6 +57,8 @@ public class ModuleManager {
         modules.add(new BoatFly());
         modules.add(new Nofall());
         modules.add(new FakeSneak());
+        modules.add(new NoSlow());
+        modules.add(new GUIMove());
 
         modules.add(new Fullbright());
         modules.add(new Xray());
@@ -65,6 +67,7 @@ public class ModuleManager {
         modules.add(new NoVanillaEffectHUD());
         modules.add(new NoBossbar());
         modules.add(new CleanView());
+        modules.add(new ViewClip());
 
         modules.add(new LOHarvest());
         modules.add(new PortalGUI());

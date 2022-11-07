@@ -1,25 +1,37 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
+import com.mojang.authlib.GameProfile;
 import me.bakje.bakjedev.bakjedev.module.Misc.PortalGUI;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.module.Movement.NoSlow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.network.encryption.PlayerPublicKey;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayerEntity.class)
 
-public class ClientPlayerEntityMixin {
+public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
     MinecraftClient mc = MinecraftClient.getInstance();
     Screen tempCurrentScreen;
+
+    public ClientPlayerEntityMixin(ClientWorld world, GameProfile profile, @Nullable PlayerPublicKey publicKey) {
+        super(world, profile, publicKey);
+    }
+
     @Inject(at = @At(value = "FIELD", target = "Lnet/minecraft/client/MinecraftClient;currentScreen:Lnet/minecraft/client/gui/screen/Screen;", opcode = Opcodes.GETFIELD, ordinal = 0), method = {"updateNausea()V"})
     public void beforeUpdateNausea(CallbackInfo ci) {
         if (ModuleManager.INSTANCE.getModule(PortalGUI.class).isEnabled()) {
@@ -38,6 +50,16 @@ public class ClientPlayerEntityMixin {
 
         mc.currentScreen = tempCurrentScreen;
         tempCurrentScreen = null;
+    }
+
+
+
+    @Redirect(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingItem()Z"), require = 0)
+    private boolean tickMovement_isUsingItem(ClientPlayerEntity player) {
+        if (ModuleManager.INSTANCE.getModule(NoSlow.class).isEnabled()) {
+            return false;
+        }
+        return player.isUsingItem();
     }
 
     @Inject(at = @At("HEAD"), method = "sendChatMessage", cancellable = true)
