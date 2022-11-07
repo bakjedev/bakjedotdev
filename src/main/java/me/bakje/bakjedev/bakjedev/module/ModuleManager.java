@@ -1,8 +1,7 @@
 package me.bakje.bakjedev.bakjedev.module;
 
 import me.bakje.bakjedev.bakjedev.module.Combat.*;
-import me.bakje.bakjedev.bakjedev.module.Misc.LOHarvest;
-import me.bakje.bakjedev.bakjedev.module.Misc.PortalGUI;
+import me.bakje.bakjedev.bakjedev.module.Misc.*;
 import me.bakje.bakjedev.bakjedev.module.Movement.*;
 import me.bakje.bakjedev.bakjedev.module.Render.*;
 import me.bakje.bakjedev.bakjedev.module.World.Scaffold;
@@ -10,8 +9,6 @@ import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
 //import me.bakje.bakjedev.bakjedev.module.Misc.*;
 //import me.bakje.bakjedev.bakjedev.module.Movement.*;
 //import me.bakje.bakjedev.bakjedev.module.Render.*;
-import me.bakje.bakjedev.bakjedev.module.Misc.ChatTimestamps;
-import me.bakje.bakjedev.bakjedev.module.Misc.HoldAction;
 
 
 import java.util.ArrayList;
@@ -73,6 +70,8 @@ public class ModuleManager {
         modules.add(new PortalGUI());
         modules.add(new HoldAction());
         modules.add(new ChatTimestamps());
+        modules.add(new ChestSwap());
+        modules.add(new config());
 
         modules.add(new Aura());
         modules.add(new Surround());
