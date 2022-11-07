@@ -11,6 +11,7 @@ public class ViewClip extends Mod {
     public ViewClip() {
         super("ViewClip", "clip walls with cam in f5", Category.RENDER);
         addSettings(CameraClip, Distance, DistanceToggle);
+        //2
     }
 
     //see mixin
