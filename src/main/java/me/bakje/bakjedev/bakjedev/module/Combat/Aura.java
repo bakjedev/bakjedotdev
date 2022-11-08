@@ -10,6 +10,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.thrown.EggEntity;
 import net.minecraft.entity.projectile.thrown.ExperienceBottleEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
@@ -48,12 +49,7 @@ public class Aura extends Mod {
             Vec3d entityPos = entity.getPos();
             if (entity instanceof ItemEntity
                     || entity instanceof ExperienceOrbEntity
-                    || entity instanceof ExperienceBottleEntity
-                    || entity instanceof PotionEntity
-                    || entity instanceof SnowballEntity
-                    || entity instanceof EggEntity
-                    || entity instanceof ArrowEntity
-                    || entity instanceof FireworkRocketEntity
+                    || entity instanceof PersistentProjectileEntity
                     || !entity.isAlive()) {
                 return;
             }
