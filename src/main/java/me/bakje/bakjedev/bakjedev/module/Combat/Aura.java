@@ -5,8 +5,15 @@ import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.FireworkRocketEntity;
+import net.minecraft.entity.projectile.thrown.EggEntity;
+import net.minecraft.entity.projectile.thrown.ExperienceBottleEntity;
+import net.minecraft.entity.projectile.thrown.PotionEntity;
+import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
@@ -39,7 +46,14 @@ public class Aura extends Mod {
         Entity closestEntity = null;
         for (Entity entity : mc.world.getEntities()) {
             Vec3d entityPos = entity.getPos();
-            if (entity instanceof ItemEntity) {
+            if (entity instanceof ItemEntity
+                    || entity instanceof ExperienceOrbEntity
+                    || entity instanceof ExperienceBottleEntity
+                    || entity instanceof PotionEntity
+                    || entity instanceof SnowballEntity
+                    || entity instanceof EggEntity
+                    || entity instanceof ArrowEntity
+                    || entity instanceof FireworkRocketEntity) {
                 return;
             }
             if (attackEverything.isEnabled()) {
