@@ -53,7 +53,8 @@ public class Aura extends Mod {
                     || entity instanceof SnowballEntity
                     || entity instanceof EggEntity
                     || entity instanceof ArrowEntity
-                    || entity instanceof FireworkRocketEntity) {
+                    || entity instanceof FireworkRocketEntity
+                    || !entity.isAlive()) {
                 return;
             }
             if (attackEverything.isEnabled()) {
