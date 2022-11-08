@@ -14,7 +14,7 @@ public class Speed extends Mod {
     public BooleanSetting strafeJumping = new BooleanSetting("StrafeJump", true);
 
     public Speed() {
-        super("Speed", "fast fast", Category.MOVEMENT);
+        super("Speed", "fast fast", Category.MOVEMENT, true);
         addSettings(speedMode, speed, strafeJumping);
     }
 

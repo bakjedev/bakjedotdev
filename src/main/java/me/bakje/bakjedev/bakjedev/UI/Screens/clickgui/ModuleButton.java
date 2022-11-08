@@ -67,6 +67,8 @@ public class ModuleButton{
             } else if (button == 1) {
                 extended = !extended;
                 parent.updateButtons();
+            } else if (button == 2) {
+                module.setVisible(!module.isVisible());
             }
         }
 

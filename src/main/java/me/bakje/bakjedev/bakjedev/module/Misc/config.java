@@ -12,7 +12,7 @@ import me.bakje.bakjedev.bakjedev.module.Render.*;
 
 public class config extends Mod {
     public config() {
-        super("config", "bakje config", Category.MISC);
+        super("config", "bakje config", Category.MISC, true);
     }
     @Override
     public void onEnable() {

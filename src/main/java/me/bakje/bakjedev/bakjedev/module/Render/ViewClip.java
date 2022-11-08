@@ -9,7 +9,7 @@ public class ViewClip extends Mod {
     public BooleanSetting DistanceToggle = new BooleanSetting("CustomDistance", true);
     public NumberSetting Distance = new NumberSetting("Distance", 0.5, 15, 4, 1);
     public ViewClip() {
-        super("ViewClip", "clip walls with cam in f5", Category.RENDER);
+        super("ViewClip", "clip walls with cam in f5", Category.RENDER, true);
         addSettings(CameraClip, Distance, DistanceToggle);
     }
 

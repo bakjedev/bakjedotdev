@@ -16,7 +16,7 @@ import net.minecraft.util.math.Direction;
 
 public class ChestSwap extends Mod {
     public ChestSwap() {
-        super("ChestSwap", "swaps chestplate with elytra or vice versa", Category.MISC);
+        super("ChestSwap", "swaps chestplate with elytra or vice versa", Category.MISC, true);
     }
     @Override
     public void onEnable() {

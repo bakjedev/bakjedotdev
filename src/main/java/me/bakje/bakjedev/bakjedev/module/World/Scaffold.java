@@ -16,7 +16,7 @@ import net.minecraft.util.math.Vec3i;
 public class Scaffold extends Mod {
 
     public Scaffold() {
-        super("Scaffold", "places blocks below you", Category.WORLD);
+        super("Scaffold", "places blocks below you", Category.WORLD, true);
     }
 
     @Override

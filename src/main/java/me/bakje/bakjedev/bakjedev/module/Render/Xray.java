@@ -14,7 +14,7 @@ public class Xray extends Mod {
     public static ArrayList<Block> blocks = new ArrayList<>();
     public BooleanSetting bedrock = new BooleanSetting("Bedrock", false);
     public Xray() {
-        super("Xray", "look through the world... and beyond", Category.RENDER);
+        super("Xray", "look through the world... and beyond", Category.RENDER, true);
         addSetting(bedrock);
         Registry.BLOCK.forEach(block -> {
             if (isGoodBlock(block)) blocks.add(block);

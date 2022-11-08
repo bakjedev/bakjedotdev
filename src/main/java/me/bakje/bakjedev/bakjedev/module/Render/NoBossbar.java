@@ -5,7 +5,7 @@ import me.bakje.bakjedev.bakjedev.module.Mod;
 public class NoBossbar extends Mod {
 
     public NoBossbar() {
-        super("NoBossBar", "removes bossbars", Category.RENDER);
+        super("NoBossBar", "removes bossbars", Category.RENDER, true);
     }
 
     //see mixin

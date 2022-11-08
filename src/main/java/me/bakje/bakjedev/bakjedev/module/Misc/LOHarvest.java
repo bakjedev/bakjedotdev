@@ -14,7 +14,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class LOHarvest extends Mod {
     public LOHarvest() {
-        super("LOharvest", "harvest thing from liveoverflow video", Category.MISC);
+        super("LOharvest", "harvest thing from liveoverflow video", Category.MISC, true);
     }
 
     @Override

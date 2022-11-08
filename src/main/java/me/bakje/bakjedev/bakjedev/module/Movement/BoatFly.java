@@ -8,7 +8,7 @@ import net.minecraft.util.math.Vec3d;
 public class BoatFly extends Mod {
     public NumberSetting speed = new NumberSetting("Speed", 0, 10, 1, 0.1);
     public BoatFly() {
-        super("Boatfly", "boat flying like bruh", Category.MOVEMENT);
+        super("Boatfly", "boat flying like bruh", Category.MOVEMENT, true);
         addSetting(speed);
     }
 

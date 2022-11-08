@@ -16,7 +16,7 @@ public class Flight extends Mod {
     int antiKickCounter = 0;
 
     public Flight() {
-        super("Flight", "flying like bruh", Category.MOVEMENT);
+        super("Flight", "flying like bruh", Category.MOVEMENT, true);
         addSettings(flightMode, speed, antiKick);
     }
 

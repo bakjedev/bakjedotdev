@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class NoSlow extends Mod {
     public NoSlow() {
-        super("NoSlow", "no eating slowing", Category.MOVEMENT);
+        super("NoSlow", "no eating slowing", Category.MOVEMENT, true);
     }
 
 

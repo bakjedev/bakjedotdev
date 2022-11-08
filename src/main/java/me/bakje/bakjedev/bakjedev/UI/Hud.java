@@ -2,7 +2,11 @@ package me.bakje.bakjedev.bakjedev.UI;
 
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.module.Movement.Flight;
+import me.bakje.bakjedev.bakjedev.module.Movement.Sprint;
 import me.bakje.bakjedev.bakjedev.module.Render.HudModule;
+import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
+import me.bakje.bakjedev.bakjedev.module.Settings.KeyBindSetting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
@@ -84,9 +88,10 @@ public class Hud {
             enabled.sort(Comparator.comparingInt(m -> (int)mc.textRenderer.getWidth(((Mod)m).getDisplayName())).reversed());
 
             for(Mod mod : enabled) {
-
-                mc.textRenderer.drawWithShadow(matrices, mod.getDisplayName(), (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
-                index++;
+                if (ModuleManager.INSTANCE.getModule(mod.getClass()).isVisible()) {
+                    mc.textRenderer.drawWithShadow(matrices, mod.getDisplayName(), (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
+                    index++;
+                }
             }
         }
     }

@@ -19,7 +19,7 @@ public class Aura extends Mod {
     boolean rotateCondition;
     boolean attackCondition;
     public Aura() {
-        super("Aura", "kill", Category.COMBAT);
+        super("Aura", "kill", Category.COMBAT, true);
         addSettings(rotate, range, attackEverything);
     }
 

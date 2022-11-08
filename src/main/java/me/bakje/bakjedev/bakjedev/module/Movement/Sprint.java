@@ -4,7 +4,7 @@ import me.bakje.bakjedev.bakjedev.module.Mod;
 
 public class Sprint extends Mod {
     public Sprint() {
-        super("Sprint", "run run run", Category.MOVEMENT);
+        super("Sprint", "run run run", Category.MOVEMENT, true);
     }
 
     @Override

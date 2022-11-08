@@ -18,7 +18,7 @@ import org.lwjgl.glfw.GLFW;
 public class GUIMove extends Mod {
     private long lastTime;
     public GUIMove() {
-        super("GUIMove", "move in gui's", Category.MOVEMENT);
+        super("GUIMove", "move in gui's", Category.MOVEMENT, true);
     }
 
     @Override

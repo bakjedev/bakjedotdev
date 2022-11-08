@@ -5,7 +5,7 @@ import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 public class Nofall extends Mod {
     public Nofall() {
-        super("Nofall", "no more fall damage", Category.MOVEMENT);
+        super("Nofall", "no more fall damage", Category.MOVEMENT, true);
     }
 
     @Override

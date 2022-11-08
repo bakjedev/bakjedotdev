@@ -15,7 +15,7 @@ import net.minecraft.util.math.Vec3i;
 
 public class RussianSurround extends Mod {
     public RussianSurround() {
-        super("RussianSurround", "obi but gay", Category.COMBAT);
+        super("RussianSurround", "obi but gay", Category.COMBAT, true);
     }
     @Override
     public void onEnable() {

@@ -4,8 +4,10 @@ package me.bakje.bakjedev.bakjedev.mixin;
 import me.bakje.bakjedev.bakjedev.Bakjedev;
 import me.bakje.bakjedev.bakjedev.module.Misc.HoldAction;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.util.GuiBlocker;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.KeyBinding;
@@ -53,5 +55,11 @@ public abstract class MinecraftClientMixin {
                 }
             }
         }
+    }
+
+    @Inject(method = "setScreen", at = @At("HEAD"), cancellable = true)
+    public void onOpenScreen(Screen screen, CallbackInfo ci) {
+        if (!GuiBlocker.onOpenGui(screen))
+            ci.cancel();
     }
 }

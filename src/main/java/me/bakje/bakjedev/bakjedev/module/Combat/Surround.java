@@ -15,7 +15,7 @@ import net.minecraft.util.math.Vec3i;
 
 public class Surround extends Mod {
     public Surround() {
-        super("Surround", "obi", Category.COMBAT);
+        super("Surround", "obi", Category.COMBAT, true);
     }
     @Override
     public void onEnable() {

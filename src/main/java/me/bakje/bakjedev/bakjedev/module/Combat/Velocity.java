@@ -19,7 +19,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class Velocity extends Mod {
     public Velocity() {
-        super("Velocity", "no knockback", Category.COMBAT);
+        super("Velocity", "no knockback", Category.COMBAT, true);
     }
 
     @BakjeSubscribe

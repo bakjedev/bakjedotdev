@@ -20,7 +20,7 @@ public class AutoTotem extends Mod {
     public BooleanSetting Override = new BooleanSetting("Override", true);
 
     public AutoTotem() {
-        super("AutoTotem", "offhand replenish totem", Category.COMBAT);
+        super("AutoTotem", "offhand replenish totem", Category.COMBAT, true);
         addSettings(delaySetting, Override);
     }
 

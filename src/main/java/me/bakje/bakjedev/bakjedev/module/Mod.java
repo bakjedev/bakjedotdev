@@ -3,6 +3,7 @@ package me.bakje.bakjedev.bakjedev.module;
 
 import me.bakje.bakjedev.bakjedev.Bakjedev;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeEventBus;
+import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
 import me.bakje.bakjedev.bakjedev.module.Settings.Setting;
 import me.bakje.bakjedev.bakjedev.module.Settings.KeyBindSetting;
 import net.minecraft.client.MinecraftClient;
@@ -18,19 +19,19 @@ public abstract class Mod {
     private Category category;
     private int key;
     private boolean enabled;
-    private boolean visible=true;
+    private boolean visible;
 
     private List<Setting> settings = new ArrayList<>();
 
     protected MinecraftClient mc = MinecraftClient.getInstance();
 
-    public Mod(String name, String description, Category category) {
+    public Mod(String name, String description, Category category, boolean visible) {
         this.name = name;
         this.displayName = name;
         this.description = description;
         this.category = category;
-
-        addSetting(new KeyBindSetting("Key", 0));
+        this.visible =visible;
+        addSettings(new KeyBindSetting("Key", 0));
     }
 
     public List<Setting> getSettings() {
@@ -95,9 +96,6 @@ public abstract class Mod {
         this.key = key;
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
 
     public String getDisplayName() {
         return displayName;
@@ -110,8 +108,14 @@ public abstract class Mod {
     public boolean isEnabled() {
         return enabled;
     }
+
+
     public boolean isVisible() {
         return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public void setEnabled(boolean enabled) {

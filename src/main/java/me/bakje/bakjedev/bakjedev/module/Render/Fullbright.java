@@ -5,7 +5,7 @@ import me.bakje.bakjedev.bakjedev.module.Mod;
 public class Fullbright extends Mod {
 
     public Fullbright() {
-        super("Fullbright", "bright up your world", Category.RENDER);
+        super("Fullbright", "bright up your world", Category.RENDER, true);
     }
 
     @Override
