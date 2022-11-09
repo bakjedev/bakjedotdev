@@ -18,6 +18,7 @@ public class Bakjedev implements ModInitializer {
     public static final Bakjedev INSTANCE = new Bakjedev();
     public static Logger logger = LogManager.getLogger(Bakjedev.class);
     private MinecraftClient mc = MinecraftClient.getInstance();
+    public static final String VERSION = "1.1";
     public BakjeEventBus eventBus = new BakjeEventBus(new InexactEventHandler("bakjedev"), Bakjedev.logger);
 
     @Override
