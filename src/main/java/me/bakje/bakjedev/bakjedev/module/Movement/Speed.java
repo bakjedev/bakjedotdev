@@ -9,7 +9,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class Speed extends Mod {
 
-    public ModeSetting speedMode = new ModeSetting("Mode","Speed", "Boost", "Strafe");
+    public ModeSetting speedMode = new ModeSetting("Mode","Strafe", "Boost", "Strafe");
     public NumberSetting speedSetting = new NumberSetting("Speed", 0.15, 0.55, 0.31, 0.01);
     public BooleanSetting strafeJumping = new BooleanSetting("StrafeJump", true);
 
