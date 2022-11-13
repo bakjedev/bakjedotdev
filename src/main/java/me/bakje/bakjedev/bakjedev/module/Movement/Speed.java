@@ -9,7 +9,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class Speed extends Mod {
 
-    public ModeSetting speedMode = new ModeSetting("Mode","Speed", "Boost", "Speed", "Strafe");
+    public ModeSetting speedMode = new ModeSetting("Mode","Speed", "Boost", "Strafe");
     public NumberSetting speedSetting = new NumberSetting("Speed", 0.15, 0.55, 0.31, 0.01);
     public BooleanSetting strafeJumping = new BooleanSetting("StrafeJump", true);
 
@@ -25,7 +25,7 @@ public class Speed extends Mod {
         }
 
 
-        if (speedMode.getMode().equalsIgnoreCase("Speed")) {
+        if (speedMode.getMode().equalsIgnoreCase("Strafe")) {
             if ((mc.player.forwardSpeed != 0 || mc.player.sidewaysSpeed != 0)) {
                 if (!mc.player.isSprinting()) {
                     mc.player.networkHandler.sendPacket(new ClientCommandC2SPacket(mc.player, ClientCommandC2SPacket.Mode.START_SPRINTING));
