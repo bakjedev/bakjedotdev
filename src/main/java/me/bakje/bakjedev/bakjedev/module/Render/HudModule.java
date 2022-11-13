@@ -11,8 +11,8 @@ import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.util.math.MathHelper;
 
 public class HudModule extends Mod {
-    public long lastPacket = 0;
-    private long prevTime = 0;
+    public double lastPacket = 0;
+    private double prevTime = 0;
     public double tps = 0;
     public BooleanSetting info = new BooleanSetting("Info", true);
     public BooleanSetting arraylist = new BooleanSetting("Arraylist", true);
@@ -28,8 +28,8 @@ public class HudModule extends Mod {
         lastPacket= System.currentTimeMillis();
 
         if (event.getPacket() instanceof WorldTimeUpdateS2CPacket) {
-            long time = System.currentTimeMillis();
-            long timeOffset = Math.abs(1000-(time-prevTime)) +1000;
+            double time = System.currentTimeMillis();
+            double timeOffset = Math.abs(1000-(time-prevTime)) +1000;
             tps = (MathHelper.clamp(20 / (timeOffset /1000d), 0, 20) * 100d)/100d;
             prevTime = time;
         }

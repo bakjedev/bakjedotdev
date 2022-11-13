@@ -94,9 +94,9 @@ public class Hud {
             Text TPSText = Text.literal(String.valueOf(roundToPlace(TPS, 2))).formatted(TPSColor);
 
             //TIME SINCE LAST TICK
-            long sinceTick = ModuleManager.INSTANCE.getModule(HudModule.class).lastPacket;
-            long time = System.currentTimeMillis();
-            Text TSLTText = Text.literal(String.valueOf(roundToPlace((time - sinceTick)/1000, 1)));
+            double sinceTick = ModuleManager.INSTANCE.getModule(HudModule.class).lastPacket;
+            double time = System.currentTimeMillis();
+            Text TSLTText = Text.literal(Double.toString(roundToPlace((time - sinceTick)/1000, 1)));
             Text TSLTName = Text.literal(" Sec").formatted(Formatting.GRAY);
 
             //FPS
