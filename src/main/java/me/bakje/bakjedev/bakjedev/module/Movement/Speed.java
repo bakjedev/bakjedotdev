@@ -9,13 +9,13 @@ import net.minecraft.util.math.Vec3d;
 
 public class Speed extends Mod {
 
-    public ModeSetting speedMode = new ModeSetting("Mode","Speed", "Boost", "Speed");
-    public NumberSetting speed = new NumberSetting("Speed", 1, 10, 1, 1);
+    public ModeSetting speedMode = new ModeSetting("Mode","Speed", "Boost", "Speed", "Strafe");
+    public NumberSetting speedSetting = new NumberSetting("Speed", 0.15, 0.55, 0.31, 0.01);
     public BooleanSetting strafeJumping = new BooleanSetting("StrafeJump", true);
 
     public Speed() {
         super("Speed", "fast fast", Category.MOVEMENT, true);
-        addSettings(speedMode, speed, strafeJumping);
+        addSettings(speedMode, speedSetting, strafeJumping);
     }
 
     @Override
@@ -32,17 +32,17 @@ public class Speed extends Mod {
                 }
 
                 mc.player.setVelocity(new Vec3d(0, mc.player.getVelocity().y, 0));
-                mc.player.updateVelocity(speed.getValueInt(), new Vec3d(mc.player.sidewaysSpeed, 0, mc.player.forwardSpeed));
+                mc.player.updateVelocity(speedSetting.getValueFloat(),
+                        new Vec3d(mc.player.sidewaysSpeed, 0, mc.player.forwardSpeed));
 
                 double vel = Math.abs(mc.player.getVelocity().getX()) + Math.abs(mc.player.getVelocity().getZ());
 
-                if (vel >= 0.12 && mc.player.isOnGround() && strafeJumping.isEnabled()) {
+                if (strafeJumping.isEnabled() && vel >= 0.12 && mc.player.isOnGround()) {
                     mc.player.updateVelocity(vel >= 0.3 ? 0.0f : 0.15f, new Vec3d(mc.player.sidewaysSpeed, 0, mc.player.forwardSpeed));
                     mc.player.jump();
                 }
             }
         }
-
-            super.onTick();
+        super.onTick();
     }
 }

@@ -66,11 +66,12 @@ public class ModuleManager {
         modules.add(new CleanView());
         modules.add(new ViewClip());
 
-        modules.add(new LOHarvest());
-        modules.add(new PortalGUI());
         modules.add(new HoldAction());
         modules.add(new ChatTimestamps());
         modules.add(new ChestSwap());
+        modules.add(new PortalGUI());
+        modules.add(new AutoFish());
+        modules.add(new LOHarvest());
         modules.add(new config());
 
         modules.add(new Aura());

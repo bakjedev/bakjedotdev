@@ -38,7 +38,7 @@ public class Frame {
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        DrawableHelper.fill(matrices, x, y, x +width, y+height, Color.RED.getRGB());
+        DrawableHelper.fill(matrices, x, y, x +width, y+height, new Color(36,33,36,160).getRGB());
 
         int offset =((height / 2) - mc.textRenderer.fontHeight / 2);
 

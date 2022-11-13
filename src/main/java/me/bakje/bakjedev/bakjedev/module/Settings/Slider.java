@@ -21,12 +21,12 @@ public class Slider extends Component {
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        DrawableHelper.fill(matrices, parent.parent.x, parent.parent.y+ parent.offset + offset, parent.parent.x + parent.parent.width, parent.parent.y+parent.offset+offset+parent.parent.height, new Color(0,0,0,160).getRGB());
+        DrawableHelper.fill(matrices, parent.parent.x, parent.parent.y+ parent.offset + offset, parent.parent.x + parent.parent.width, parent.parent.y+parent.offset+offset+parent.parent.height, new Color(128,128,128,160).getRGB());
 
         double diff = Math.min(parent.parent.width, Math.max(0, mouseX - parent.parent.x));
         int renderWidth = (int)(parent.parent.width*(numSet.getValue() - numSet.getMin()) /numSet.getMax() - numSet.getMin());
 
-        DrawableHelper.fill(matrices, parent.parent.x, parent.parent.y+ parent.offset + offset, parent.parent.x + renderWidth, parent.parent.y+parent.offset+offset+parent.parent.height, Color.red.getRGB());
+        DrawableHelper.fill(matrices, parent.parent.x, parent.parent.y+ parent.offset + offset, parent.parent.x + renderWidth, parent.parent.y+parent.offset+offset+parent.parent.height, new Color(166, 160, 255).getRGB());
 
         if (sliding) {
             if (diff == 0) {

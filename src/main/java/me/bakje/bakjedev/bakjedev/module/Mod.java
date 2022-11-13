@@ -23,7 +23,7 @@ public abstract class Mod {
 
     private List<Setting> settings = new ArrayList<>();
 
-    protected MinecraftClient mc = MinecraftClient.getInstance();
+    protected static MinecraftClient mc = MinecraftClient.getInstance();
 
     public Mod(String name, String description, Category category, boolean visible) {
         this.name = name;
