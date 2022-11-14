@@ -20,7 +20,8 @@
     "DimensionEffectsMixin",
     "BossBarHudMixin",
     "ClientConnectionMixin",
-    "CameraMixin"
+    "CameraMixin",
+    "PlayerMoveC2SPacketAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -9,6 +9,9 @@ import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.Render.HudModule;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
@@ -20,11 +23,16 @@ public class Bakjedev implements ModInitializer {
     private MinecraftClient mc = MinecraftClient.getInstance();
     public static final String VERSION = "1.1";
     public BakjeEventBus eventBus = new BakjeEventBus(new InexactEventHandler("bakjedev"), Bakjedev.logger);
-
+    public static final Identifier soundID = new Identifier("bakjedev:darkfantasy");
+    public static SoundEvent soundEvent = new SoundEvent(soundID);
     @Override
     public void onInitialize() {
         System.out.println("joe biden");
         ModuleManager.INSTANCE.getModule(HudModule.class).toggle(); //default toggled module
+
+
+
+        Registry.register(Registry.SOUND_EVENT, Bakjedev.soundID, soundEvent);
     }
     public void onKeyPress(int key, int action) {
         if (action == GLFW.GLFW_PRESS && mc.currentScreen==null) {

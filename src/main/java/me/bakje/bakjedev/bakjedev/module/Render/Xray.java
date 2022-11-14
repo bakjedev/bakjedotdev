@@ -22,7 +22,7 @@ public class Xray extends Mod {
     }
 
     boolean isGoodBlock(Block block) {
-        boolean c1 = block == Blocks.LAVA || block == Blocks.CHEST || block == Blocks.FURNACE || block == Blocks.END_GATEWAY || block == Blocks.COMMAND_BLOCK || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_PORTAL || block == Blocks.BEDROCK;
+        boolean c1 = block == Blocks.LAVA || block == Blocks.CHEST || block == Blocks.FURNACE || block == Blocks.END_GATEWAY || block == Blocks.COMMAND_BLOCK || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_PORTAL || block == Blocks.BEDROCK ||block == Blocks.SPAWNER;
         boolean c2 = block instanceof OreBlock || block instanceof RedstoneOreBlock;
         return c1 || c2;
     }

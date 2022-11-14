@@ -6,6 +6,7 @@ import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.Render.HudModule;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.text.Text;
@@ -13,6 +14,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 import java.awt.*;
 import java.math.BigDecimal;
@@ -25,15 +27,17 @@ import static java.lang.Math.round;
 
 public class Hud {
     private static MinecraftClient mc = MinecraftClient.getInstance();
+    public static double x1 = 0, z1 = 0, velocityXZ = 0;
     public static void Render(MatrixStack matrices, float tickDelta) {
         if (ModuleManager.INSTANCE.getModule(HudModule.class).isEnabled()) {
+            int screenMiddle = (mc.getWindow().getHeight()/4)-30;
 
 
             //WATERMARK
             Text watermarkText = Text.literal("bakje.dev ");
             Text watermarkVersion = Text.literal(Bakjedev.VERSION).formatted(Formatting.GRAY);
 
-            //COORD HUD
+            // COORD HUD
             boolean nether = mc.world.getRegistryKey().getValue().getPath().contains("nether");
             BlockPos pos = mc.player.getBlockPos();
             BlockPos oppositePos = nether ? new BlockPos(mc.player.getPos().multiply(8, 1, 8))
@@ -76,7 +80,13 @@ public class Hud {
             Text YawPitchText = Text.literal(String.valueOf(yaw) + " " + String.valueOf(pitch)).formatted(Formatting.WHITE);
             Text DirText = (YawPitchText).copy().append(" ").append(openBrackets).append(xzdir).append(closingBrackets).append(" ").append(textDir);
 
-            //TPS
+
+            // FPS
+            Text FPSText = Text.literal(String.valueOf(MinecraftClient.currentFps));
+            Text FPSName = Text.literal(" FPS").formatted(Formatting.GRAY);
+
+
+            // TPS
             Text TPSName = Text.literal(" TPS").formatted(Formatting.GRAY);
             Formatting TPSColor;
             double TPS = ModuleManager.INSTANCE.getModule(HudModule.class).tps;
@@ -93,22 +103,39 @@ public class Hud {
             }
             Text TPSText = Text.literal(String.valueOf(roundToPlace(TPS, 2))).formatted(TPSColor);
 
-            //TIME SINCE LAST TICK
+            // TIME SINCE LAST TICK
             double sinceTick = ModuleManager.INSTANCE.getModule(HudModule.class).lastPacket;
             double time = System.currentTimeMillis();
             Text TSLTText = Text.literal(Double.toString(roundToPlace((time - sinceTick)/1000, 1)));
             Text TSLTName = Text.literal(" Sec").formatted(Formatting.GRAY);
 
-            //FPS
-            Text FPSText = Text.literal(String.valueOf(MinecraftClient.currentFps));
-            Text FPSName = Text.literal(" FPS").formatted(Formatting.GRAY);
+            //Ping
+            PlayerListEntry player = mc.player.networkHandler.getPlayerListEntry(mc.player.getGameProfile().getId());
+            int latency = player == null ? 0 : player.getLatency();
+            Text latencyText = Text.literal(Integer.toString(latency));
+            Text latencyName = Text.literal(" MS").formatted(Formatting.GRAY);
+
+            // PLAYERS
+            int playerCount = mc.getNetworkHandler().getPlayerList().size();
+            Text playerText = Text.literal(Integer.toString(playerCount));
+            Text playerName = Text.literal(playerCount > 1 ? " Players" : " Player").formatted(Formatting.GRAY);
+
+            // SPEED
+            Vec3d vec = new Vec3d(mc.player.getX() - mc.player.prevX, 0, mc.player.getZ() - mc.player.prevZ).multiply(20);
+            final double speed = roundToPlace((Math.abs(vec.length())) * 3.6, 2);
+            Text speedText = Text.literal(Double.toString(speed));
+            Text speedName = Text.literal(" Km/h").formatted(Formatting.GRAY);
+
 
 
             if (ModuleManager.INSTANCE.getModule(HudModule.class).info.isEnabled()) {
-                mc.textRenderer.drawWithShadow(matrices, watermarkText.copy().append(watermarkVersion), 1, (mc.getWindow().getHeight() / 4) + mc.textRenderer.fontHeight, -1);
-                mc.textRenderer.drawWithShadow(matrices, TPSText.copy().append(TPSName), 1, (mc.getWindow().getHeight() / 4) + mc.textRenderer.fontHeight * 2 + 2, -1);
-                mc.textRenderer.drawWithShadow(matrices, TSLTText.copy().append(TSLTName), 1, (mc.getWindow().getHeight() / 4) + mc.textRenderer.fontHeight * 3 + 4, -1);
-                mc.textRenderer.drawWithShadow(matrices, FPSText.copy().append(FPSName), 1, (mc.getWindow().getHeight() / 4) + mc.textRenderer.fontHeight * 4 + 6, -1);
+                mc.textRenderer.drawWithShadow(matrices, watermarkText.copy().append(watermarkVersion), 1, screenMiddle + mc.textRenderer.fontHeight, -1);
+                mc.textRenderer.drawWithShadow(matrices, FPSText.copy().append(FPSName), 1, screenMiddle + mc.textRenderer.fontHeight * 2 + 2, -1);
+                mc.textRenderer.drawWithShadow(matrices, TPSText.copy().append(TPSName), 1, screenMiddle + mc.textRenderer.fontHeight * 3 + 4, -1);
+                mc.textRenderer.drawWithShadow(matrices, TSLTText.copy().append(TSLTName), 1, screenMiddle + mc.textRenderer.fontHeight * 4 + 6, -1);
+                mc.textRenderer.drawWithShadow(matrices, latencyText.copy().append(latencyName), 1, screenMiddle + mc.textRenderer.fontHeight * 5 + 8, -1);
+                mc.textRenderer.drawWithShadow(matrices, playerText.copy().append(playerName), 1, screenMiddle + mc.textRenderer.fontHeight * 6 + 10, -1);
+                mc.textRenderer.drawWithShadow(matrices, speedText.copy().append(speedName), 1, screenMiddle + mc.textRenderer.fontHeight * 7 + 12, -1);
             }
             if (ModuleManager.INSTANCE.getModule(HudModule.class).dir.isEnabled())
                 mc.textRenderer.drawWithShadow(matrices, Dir.copy().append(" ").append(DirText), 1, (mc.getWindow().getHeight() / 2) - 1 - (mc.textRenderer.fontHeight * 2), -1);
@@ -154,4 +181,6 @@ public class Hud {
         String formattedValue = df.format(value);
         return formattedValue;
     }
+
+
 }

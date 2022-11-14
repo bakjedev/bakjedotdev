@@ -51,6 +51,7 @@ public class ModuleManager {
         modules.add(new Flight());
         modules.add(new Sprint());
         modules.add(new Speed());
+        modules.add(new AntiHunger());
         modules.add(new BoatFly());
         modules.add(new Nofall());
         modules.add(new FakeSneak());
@@ -71,8 +72,10 @@ public class ModuleManager {
         modules.add(new ChestSwap());
         modules.add(new PortalGUI());
         modules.add(new AutoFish());
+        modules.add(new PartyChat());
         modules.add(new LOHarvest());
         modules.add(new config());
+        modules.add(new Radio());
 
         modules.add(new Aura());
         modules.add(new Surround());
