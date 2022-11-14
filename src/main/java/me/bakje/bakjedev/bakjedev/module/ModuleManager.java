@@ -75,7 +75,6 @@ public class ModuleManager {
         modules.add(new PartyChat());
         modules.add(new LOHarvest());
         modules.add(new config());
-        modules.add(new Radio());
 
         modules.add(new Aura());
         modules.add(new Surround());
