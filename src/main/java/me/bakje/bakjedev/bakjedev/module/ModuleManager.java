@@ -66,6 +66,7 @@ public class ModuleManager {
         modules.add(new NoBossbar());
         modules.add(new CleanView());
         modules.add(new ViewClip());
+        modules.add(new Peek());
 
         modules.add(new HoldAction());
         modules.add(new ChatTimestamps());

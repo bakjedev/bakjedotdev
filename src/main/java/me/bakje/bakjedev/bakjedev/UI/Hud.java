@@ -106,10 +106,15 @@ public class Hud {
             // TIME SINCE LAST TICK
             double sinceTick = ModuleManager.INSTANCE.getModule(HudModule.class).lastPacket;
             double time = System.currentTimeMillis();
-            Text TSLTText = Text.literal(Double.toString(roundToPlace((time - sinceTick)/1000, 1)));
+            Text TSLTText;
+            if (((time - sinceTick)/1000) < 0.2) {
+                TSLTText = Text.literal("0.0");
+            } else {
+                TSLTText = Text.literal(Double.toString(roundToPlace((time - sinceTick) / 1000, 1)));
+            }
             Text TSLTName = Text.literal(" Sec").formatted(Formatting.GRAY);
 
-            //Ping
+            //PING
             PlayerListEntry player = mc.player.networkHandler.getPlayerListEntry(mc.player.getGameProfile().getId());
             int latency = player == null ? 0 : player.getLatency();
             Text latencyText = Text.literal(Integer.toString(latency));

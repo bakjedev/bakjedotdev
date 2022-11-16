@@ -38,6 +38,7 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(Xray.class).setKey(88);
         ModuleManager.INSTANCE.getModule(ChestSwap.class).setKey(90);
         ModuleManager.INSTANCE.getModule(PartyChat.class).setKey(89);
+        ModuleManager.INSTANCE.getModule(Peek.class).setKey(76);
 
         ModuleManager.INSTANCE.getModule(Aura.class).rotate.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Aura.class).attackEverything.setEnabled(true);
