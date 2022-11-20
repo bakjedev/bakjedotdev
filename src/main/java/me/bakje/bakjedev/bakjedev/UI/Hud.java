@@ -1,13 +1,16 @@
 package me.bakje.bakjedev.bakjedev.UI;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import me.bakje.bakjedev.bakjedev.Bakjedev;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.Render.HudModule;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -28,9 +31,10 @@ import static java.lang.Math.round;
 public class Hud {
     private static MinecraftClient mc = MinecraftClient.getInstance();
     public static double x1 = 0, z1 = 0, velocityXZ = 0;
+
     public static void Render(MatrixStack matrices, float tickDelta) {
         if (ModuleManager.INSTANCE.getModule(HudModule.class).isEnabled()) {
-            int screenMiddle = (mc.getWindow().getHeight()/4)-30;
+            int screenMiddle = (mc.getWindow().getHeight() / 4) - 30;
 
 
             //WATERMARK
@@ -46,13 +50,13 @@ public class Hud {
             double pitch = roundToPlace(MathHelper.wrapDegrees(mc.player.getPitch()), 1);
             Text xzdir;
             Text textDir;
-            if (mc.player.getMovementDirection()== Direction.NORTH) {
+            if (mc.player.getMovementDirection() == Direction.NORTH) {
                 xzdir = Text.literal("-Z").formatted(Formatting.WHITE);
                 textDir = Text.literal("north").formatted(Formatting.WHITE);
-            } else if (mc.player.getMovementDirection()==Direction.EAST) {
+            } else if (mc.player.getMovementDirection() == Direction.EAST) {
                 xzdir = Text.literal("+X").formatted(Formatting.WHITE);
                 textDir = Text.literal("east").formatted(Formatting.WHITE);
-            } else if (mc.player.getMovementDirection()==Direction.SOUTH) {
+            } else if (mc.player.getMovementDirection() == Direction.SOUTH) {
                 xzdir = Text.literal("+Z").formatted(Formatting.WHITE);
                 textDir = Text.literal("south").formatted(Formatting.WHITE);
             } else {
@@ -90,13 +94,13 @@ public class Hud {
             Text TPSName = Text.literal(" TPS").formatted(Formatting.GRAY);
             Formatting TPSColor;
             double TPS = ModuleManager.INSTANCE.getModule(HudModule.class).tps;
-            if (TPS>15 && TPS<=20) {
+            if (TPS > 15 && TPS <= 20) {
                 TPSColor = Formatting.WHITE;
-            } else if (TPS > 10 && TPS<=15) {
+            } else if (TPS > 10 && TPS <= 15) {
                 TPSColor = Formatting.YELLOW;
-            }else if (TPS >5 && TPS<=10) {
+            } else if (TPS > 5 && TPS <= 10) {
                 TPSColor = Formatting.GOLD;
-            } else if (TPS<5) {
+            } else if (TPS < 5) {
                 TPSColor = Formatting.RED;
             } else {
                 TPSColor = Formatting.LIGHT_PURPLE;
@@ -107,7 +111,7 @@ public class Hud {
             double sinceTick = ModuleManager.INSTANCE.getModule(HudModule.class).lastPacket;
             double time = System.currentTimeMillis();
             Text TSLTText;
-            if (((time - sinceTick)/1000) < 0.2) {
+            if (((time - sinceTick) / 1000) < 0.2) {
                 TSLTText = Text.literal("0.0");
             } else {
                 TSLTText = Text.literal(Double.toString(roundToPlace((time - sinceTick) / 1000, 1)));
@@ -132,7 +136,6 @@ public class Hud {
             Text speedName = Text.literal(" Km/h").formatted(Formatting.GRAY);
 
 
-
             if (ModuleManager.INSTANCE.getModule(HudModule.class).info.isEnabled()) {
                 mc.textRenderer.drawWithShadow(matrices, watermarkText.copy().append(watermarkVersion), 1, screenMiddle + mc.textRenderer.fontHeight, -1);
                 mc.textRenderer.drawWithShadow(matrices, FPSText.copy().append(FPSName), 1, screenMiddle + mc.textRenderer.fontHeight * 2 + 2, -1);
@@ -148,11 +151,14 @@ public class Hud {
                 mc.textRenderer.drawWithShadow(matrices, XYZ.copy().append(" ").append(coordsText), 1, (mc.getWindow().getHeight() / 2) - 1 - mc.textRenderer.fontHeight, -1);
             if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylist.isEnabled())
                 renderArrayList(matrices);
+            if (ModuleManager.INSTANCE.getModule(HudModule.class).armor.isEnabled()) {
+                drawArmor(matrices, 493, 485);
+            }
         }
     }
 
     public static void renderArrayList(MatrixStack matrices) {
-        if (mc.currentScreen==null) {
+        if (mc.currentScreen == null) {
             int index = 0;//        }
 
             int sWidth = mc.getWindow().getScaledWidth();
@@ -160,9 +166,9 @@ public class Hud {
 
             List<Mod> enabled = ModuleManager.INSTANCE.getEnabledModules();
 
-            enabled.sort(Comparator.comparingInt(m -> (int)mc.textRenderer.getWidth(((Mod)m).getDisplayName())).reversed());
+            enabled.sort(Comparator.comparingInt(m -> (int) mc.textRenderer.getWidth(((Mod) m).getDisplayName())).reversed());
 
-            for(Mod mod : enabled) {
+            for (Mod mod : enabled) {
                 if (ModuleManager.INSTANCE.getModule(mod.getClass()).isVisible()) {
                     mc.textRenderer.drawWithShadow(matrices, mod.getDisplayName(), (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
                     index++;
@@ -187,5 +193,38 @@ public class Hud {
         return formattedValue;
     }
 
+    private static void drawArmor(MatrixStack matrices, int x, int y) {
+        for (int count = 0; count < mc.player.getInventory().armor.size(); count++) {
+            ItemStack is = mc.player.getInventory().armor.get(3-count);
+            if (is.isEmpty())
+                continue;
 
+            int curX = x + count * 19;
+            int curY = y;
+            RenderSystem.enableDepthTest();
+            mc.getItemRenderer().renderGuiItemIcon(is, curX, curY);
+
+            int durcolor = is.isDamageable() ? 0xff000000 | MathHelper.hsvToRgb((float) (is.getMaxDamage() - is.getDamage()) / is.getMaxDamage() / 3.0F, 1.0F, 1.0F) : 0;
+
+            matrices.push();
+            matrices.translate(0, 0, mc.getItemRenderer().zOffset + 200);
+
+            if (is.getCount() > 1) {
+                matrices.push();
+                String s = Integer.toString(is.getCount());
+
+                matrices.translate(curX + 19 - mc.textRenderer.getWidth(s), curY + 9, 0);
+                matrices.scale(0.85f, 0.85f, 1f);
+
+                mc.textRenderer.drawWithShadow(matrices, s, 0, 0, 0xffffff);
+                matrices.pop();
+            }
+            if (is.isDamageable() && is.getMaxDamage()-is.getDamage()!=is.getMaxDamage()) {
+                int barLength = Math.round(13.0F - is.getDamage() * 13.0F / is.getMaxDamage());
+                DrawableHelper.fill(matrices, curX + 2, curY + 13, curX + 15, curY + 15, 0xff000000);
+                DrawableHelper.fill(matrices, curX + 2, curY + 13, curX + 2 + barLength, curY + 14, durcolor);
+            }
+            matrices.pop();
+        }
+    }
 }

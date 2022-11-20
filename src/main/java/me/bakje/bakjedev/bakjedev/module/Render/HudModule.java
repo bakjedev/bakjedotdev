@@ -4,6 +4,7 @@ import me.bakje.bakjedev.bakjedev.event.events.PacketEvent;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
+import me.bakje.bakjedev.bakjedev.module.Settings.NumberSetting;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.s2c.play.WorldTimeUpdateS2CPacket;
 import net.minecraft.screen.Generic3x3ContainerScreenHandler;
@@ -18,6 +19,7 @@ public class HudModule extends Mod {
     public BooleanSetting arraylist = new BooleanSetting("Arraylist", true);
     public BooleanSetting coords = new BooleanSetting("Coords", true);
     public BooleanSetting dir = new BooleanSetting("Direction", true);
+    public BooleanSetting armor = new BooleanSetting("Armor", true);
     public HudModule() {
         super("Hud", "shows info", Category.RENDER, true);
         addSettings(info, arraylist, coords, dir);
