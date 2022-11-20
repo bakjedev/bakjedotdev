@@ -3,7 +3,7 @@ package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.CleanView;
+import me.bakje.bakjedev.bakjedev.module.Render.NoRender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.Perspective;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,7 +32,7 @@ public class LivingEntityMixin {
     {
         MinecraftClient mc = MinecraftClient.getInstance();
 
-        if (ModuleManager.INSTANCE.getModule(CleanView.class).isEnabled() && ((Object)this) == mc.player && mc.options.getPerspective()==Perspective.FIRST_PERSON)
+        if (ModuleManager.INSTANCE.getModule(NoRender.class).isEnabled() && ModuleManager.INSTANCE.getModule(NoRender.class).particles.isEnabled() && ((Object)this) == mc.player && mc.options.getPerspective()==Perspective.FIRST_PERSON)
         {
             ci.cancel();
         }

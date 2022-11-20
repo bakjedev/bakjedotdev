@@ -2,7 +2,7 @@ package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.UI.Hud;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.NoVanillaEffectHUD;
+import me.bakje.bakjedev.bakjedev.module.Render.NoRender;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public class InGameHudMixin {
 
     @Inject(method = "renderStatusEffectOverlay", at = @At("HEAD"), cancellable = true)
     private void disableStatusEffectHUD(CallbackInfo ci) {
-        if (ModuleManager.INSTANCE.getModule(NoVanillaEffectHUD.class).isEnabled()) {
+        if (ModuleManager.INSTANCE.getModule(NoRender.class).isEnabled() && ModuleManager.INSTANCE.getModule(NoRender.class).effecthud.isEnabled()) {
             ci.cancel();
         }
     }

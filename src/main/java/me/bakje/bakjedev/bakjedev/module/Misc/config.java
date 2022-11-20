@@ -16,12 +16,9 @@ public class config extends Mod {
     }
     @Override
     public void onEnable() {
-        ModuleManager.INSTANCE.getModule(CleanView.class).toggle();
         ModuleManager.INSTANCE.getModule(Fullbright.class).toggle();
-        ModuleManager.INSTANCE.getModule(NoBossbar.class).toggle();
-        ModuleManager.INSTANCE.getModule(NoFog.class).toggle();
         ModuleManager.INSTANCE.getModule(ViewClip.class).toggle();
-        ModuleManager.INSTANCE.getModule(NoVanillaEffectHUD.class).toggle();
+        ModuleManager.INSTANCE.getModule(NoRender.class).toggle();
         ModuleManager.INSTANCE.getModule(ChatTimestamps.class).toggle();
         ModuleManager.INSTANCE.getModule(PortalGUI.class).toggle();
         ModuleManager.INSTANCE.getModule(AutoTotem.class).toggle();

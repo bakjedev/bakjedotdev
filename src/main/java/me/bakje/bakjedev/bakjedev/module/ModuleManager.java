@@ -59,13 +59,10 @@ public class ModuleManager {
         modules.add(new GUIMove());
 
         modules.add(new Nametags());
+        modules.add(new NoRender());
         modules.add(new Fullbright());
         modules.add(new Xray());
         modules.add(new HudModule());
-        modules.add(new NoFog());
-        modules.add(new NoVanillaEffectHUD());
-        modules.add(new NoBossbar());
-        modules.add(new CleanView());
         modules.add(new ViewClip());
 
         modules.add(new HoldAction());

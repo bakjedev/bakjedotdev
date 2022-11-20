@@ -1,7 +1,7 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.NoFog;
+import me.bakje.bakjedev.bakjedev.module.Render.NoRender;
 import net.minecraft.client.render.DimensionEffects;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,7 +17,7 @@ public abstract class DimensionEffectsMixin extends DimensionEffects{
     @Inject(method = "useThickFog", at = @At("HEAD"), cancellable = true)
     private void disableNetherFog(int x, int z, CallbackInfoReturnable<Boolean> cir)
     {
-        if (ModuleManager.INSTANCE.getModule(NoFog.class).isEnabled())
+        if (ModuleManager.INSTANCE.getModule(NoRender.class).isEnabled() && ModuleManager.INSTANCE.getModule(NoRender.class).fog.isEnabled())
         {
             cir.setReturnValue(false);
         }

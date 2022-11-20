@@ -25,7 +25,9 @@
     "AccessorFrustum",
     "AccessorWorldRenderer",
     "WorldRendererMixin",
-    "EntityRendererMixin"
+    "EntityRendererMixin",
+    "GameRendererMixin",
+    "ParticleManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
