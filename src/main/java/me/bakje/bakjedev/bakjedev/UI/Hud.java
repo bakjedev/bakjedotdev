@@ -2,6 +2,7 @@ package me.bakje.bakjedev.bakjedev.UI;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.bakje.bakjedev.bakjedev.Bakjedev;
+import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.ClickGui;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
@@ -159,7 +160,7 @@ public class Hud {
     }
 
     public static void renderArrayList(MatrixStack matrices) {
-        if (mc.currentScreen == null) {
+        if (!(mc.currentScreen instanceof ClickGui)) {
             int index = 0;//        }
 
             int sWidth = mc.getWindow().getScaledWidth();
