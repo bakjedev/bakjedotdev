@@ -54,7 +54,7 @@ public class Nametags extends Mod {
         super("Nametags", "custom nametags", Category.RENDER, true);
         addSetting(size);
     }
-
+    //ok so this module basically steals your future account and gives me all the revenue! learned how to do it from bleach
     @Override
     public void onDisable() {
         uuidQueue.clear();

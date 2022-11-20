@@ -16,7 +16,7 @@ import java.awt.*;
 
 public class Tracers extends Mod {
     public NumberSetting width = new NumberSetting("Width", 0.1, 5, 1.5, 0.1);
-    public NumberSetting opacity = new NumberSetting("Opacity", 0, 1, 0.30, 0.01);
+    public NumberSetting opacity = new NumberSetting("Opacity", 0, 1, 0.40, 0.01);
     private Color distanceColor = new Color(255, 255, 255);
 
     public Tracers() {
