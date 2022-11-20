@@ -12,6 +12,7 @@ import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.integrated.IntegratedServer;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +31,7 @@ import static java.lang.Math.round;
 
 public class Hud {
     private static MinecraftClient mc = MinecraftClient.getInstance();
-    public static double x1 = 0, z1 = 0, velocityXZ = 0;
+    static float hue = 0;
 
     public static void Render(MatrixStack matrices, float tickDelta) {
         if (ModuleManager.INSTANCE.getModule(HudModule.class).isEnabled()) {
@@ -170,12 +171,25 @@ public class Hud {
 
             for (Mod mod : enabled) {
                 if (ModuleManager.INSTANCE.getModule(mod.getClass()).isVisible()) {
-                    mc.textRenderer.drawWithShadow(matrices, mod.getDisplayName(), (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
+
+                    String drawString = mod.getDisplayName();
+                    MutableText drawText = Text.literal("");
+                    int hue = MathHelper.floor((System.currentTimeMillis() % 5000L) / 5000.0F * 360.0F);
+
+                    for (char c : drawString.toCharArray()) {
+                        int finalHue = hue;
+                        drawText.append(Text.literal(Character.toString(c)).styled(s -> s.withColor(MathHelper.hsvToRgb(finalHue/360.0F, 1.0F, 1.0F))));
+                        hue += 100/drawString.length();
+                        if (hue >= 360) hue %= 360;
+                    }
+                    System.out.println(hue);
+                    mc.textRenderer.drawWithShadow(matrices, drawText, (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
                     index++;
                 }
             }
         }
     }
+
 
     private static double roundToPlace(double value, int place) {
         if (place < 0) {
