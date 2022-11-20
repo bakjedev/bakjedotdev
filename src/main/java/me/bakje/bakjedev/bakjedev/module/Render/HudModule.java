@@ -22,7 +22,7 @@ public class HudModule extends Mod {
     public BooleanSetting armor = new BooleanSetting("Armor", true);
     public HudModule() {
         super("Hud", "shows info", Category.RENDER, true);
-        addSettings(info, arraylist, coords, dir);
+        addSettings(info, arraylist, coords, dir, armor);
     }
 
     @BakjeSubscribe
