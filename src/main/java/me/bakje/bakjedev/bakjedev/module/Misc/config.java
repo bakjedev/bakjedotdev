@@ -2,7 +2,7 @@ package me.bakje.bakjedev.bakjedev.module.Misc;
 
 import me.bakje.bakjedev.bakjedev.module.Combat.Aura;
 import me.bakje.bakjedev.bakjedev.module.Combat.AutoTotem;
-import me.bakje.bakjedev.bakjedev.module.Combat.RussianSurround;
+import me.bakje.bakjedev.bakjedev.module.Combat.Surround;
 import me.bakje.bakjedev.bakjedev.module.Combat.Velocity;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
@@ -12,7 +12,7 @@ import me.bakje.bakjedev.bakjedev.module.Render.*;
 
 public class config extends Mod {
     public config() {
-        super("config", "bakje config", Category.MISC, true);
+        super("Config", "bakje config", Category.MISC, true);
     }
     @Override
     public void onEnable() {
@@ -29,10 +29,11 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(NoSlow.class).toggle();
         ModuleManager.INSTANCE.getModule(GUIMove.class).toggle();
         ModuleManager.INSTANCE.getModule(AntiHunger.class).toggle();
+        ModuleManager.INSTANCE.getModule(Nametags.class).toggle();
 
 
         ModuleManager.INSTANCE.getModule(Aura.class).setKey(71);
-        ModuleManager.INSTANCE.getModule(RussianSurround.class).setKey(70);
+        ModuleManager.INSTANCE.getModule(Surround.class).setKey(70);
         ModuleManager.INSTANCE.getModule(Flight.class).setKey(86);
         ModuleManager.INSTANCE.getModule(Speed.class).setKey(96);
         ModuleManager.INSTANCE.getModule(Xray.class).setKey(88);

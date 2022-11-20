@@ -1,4 +1,4 @@
-package me.bakje.bakjedev.bakjedev.module.Render;
+package me.bakje.bakjedev.bakjedev.module.Misc;
 
 import com.google.common.collect.Maps;
 import me.bakje.bakjedev.bakjedev.module.Mod;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class Peek extends Mod {
 
     public Peek() {
-        super("Peek", "look inside shulker", Category.RENDER, true);
+        super("Peek", "look inside shulker", Category.MISC, true);
     }
     private ShulkerBoxScreen shulkerBoxScreen;
     int counter;
@@ -49,6 +49,7 @@ public class Peek extends Mod {
         } else {
             if (mc.currentScreen==null && openShulker) {
                 mc.setScreen(shulkerBoxScreen);
+                //fun feature! if you press q on the shulker while peeked it crashes your game!
             }
             this.toggle();
         }

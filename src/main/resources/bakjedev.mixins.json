@@ -21,7 +21,9 @@
     "BossBarHudMixin",
     "ClientConnectionMixin",
     "CameraMixin",
-    "PlayerMoveC2SPacketAccessor"
+    "PlayerMoveC2SPacketAccessor",
+    "AccessorFrustum",
+    "AccessorWorldRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

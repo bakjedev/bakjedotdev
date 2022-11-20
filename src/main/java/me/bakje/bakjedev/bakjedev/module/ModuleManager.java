@@ -58,6 +58,7 @@ public class ModuleManager {
         modules.add(new NoSlow());
         modules.add(new GUIMove());
 
+        modules.add(new Nametags());
         modules.add(new Fullbright());
         modules.add(new Xray());
         modules.add(new HudModule());
@@ -66,11 +67,11 @@ public class ModuleManager {
         modules.add(new NoBossbar());
         modules.add(new CleanView());
         modules.add(new ViewClip());
-        modules.add(new Peek());
 
         modules.add(new HoldAction());
         modules.add(new ChatTimestamps());
         modules.add(new ChestSwap());
+        modules.add(new Peek());
         modules.add(new PortalGUI());
         modules.add(new AutoFish());
         modules.add(new PartyChat());
@@ -79,7 +80,6 @@ public class ModuleManager {
 
         modules.add(new Aura());
         modules.add(new Surround());
-        modules.add(new RussianSurround());
         modules.add(new Velocity());
         modules.add(new AutoTotem());
         modules.add(new Auto32K());

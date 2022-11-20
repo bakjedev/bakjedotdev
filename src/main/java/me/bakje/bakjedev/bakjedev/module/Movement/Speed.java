@@ -1,5 +1,7 @@
 package me.bakje.bakjedev.bakjedev.module.Movement;
 
+import me.bakje.bakjedev.bakjedev.event.events.ClientMoveEvent;
+import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
 import me.bakje.bakjedev.bakjedev.module.Settings.NumberSetting;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
@@ -44,5 +46,12 @@ public class Speed extends Mod {
             }
         }
         super.onTick();
+    }
+
+    @BakjeSubscribe
+    public void onMove(ClientMoveEvent event) {
+        if (mc.player.forwardSpeed==0 && mc.player.sidewaysSpeed == 0) {
+            event.setVec(new Vec3d(0, event.getVec().y, 0));
+        }
     }
 }
