@@ -81,8 +81,6 @@ public class ModuleManager {
         modules.add(new Surround());
         modules.add(new Velocity());
         modules.add(new AutoTotem());
-        modules.add(new Auto32K());
-        modules.add(new Grab32k());
 
         modules.add(new WGBypass());
 
