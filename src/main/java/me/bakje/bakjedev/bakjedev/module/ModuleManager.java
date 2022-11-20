@@ -58,6 +58,7 @@ public class ModuleManager {
         modules.add(new FakeSneak());
         modules.add(new NoSlow());
         modules.add(new GUIMove());
+        modules.add(new Timer());
 
         modules.add(new Nametags());
         modules.add(new Tracers());
