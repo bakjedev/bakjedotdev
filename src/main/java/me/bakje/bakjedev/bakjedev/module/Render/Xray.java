@@ -29,7 +29,6 @@ public class Xray extends Mod {
     }
     @Override
     public void onEnable() {
-        mc.options.getGamma().setValue(10d);
         mc.worldRenderer.reload();
         mc.chunkCullingEnabled = false;
         super.onEnable();
@@ -49,13 +48,8 @@ public class Xray extends Mod {
 
     @Override
     public void onDisable() {
-        mc.options.getGamma().setValue(1d);
         mc.worldRenderer.reload();
         mc.chunkCullingEnabled = true;
-
-        //lol this is the worst way to fix this issue, but I guess it works...
-        ModuleManager.INSTANCE.getModule(Fullbright.class).toggle();
-        ModuleManager.INSTANCE.getModule(Fullbright.class).toggle();
 
         super.onDisable();
     }
