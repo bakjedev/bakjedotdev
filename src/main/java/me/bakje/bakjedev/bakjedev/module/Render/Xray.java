@@ -1,5 +1,6 @@
 package me.bakje.bakjedev.bakjedev.module.Render;
 
+import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import net.minecraft.block.Block;
@@ -51,6 +52,11 @@ public class Xray extends Mod {
         mc.options.getGamma().setValue(1d);
         mc.worldRenderer.reload();
         mc.chunkCullingEnabled = true;
+
+        //lol this is the worst way to fix this issue, but I guess it works...
+        ModuleManager.INSTANCE.getModule(Fullbright.class).toggle();
+        ModuleManager.INSTANCE.getModule(Fullbright.class).toggle();
+
         super.onDisable();
     }
 }

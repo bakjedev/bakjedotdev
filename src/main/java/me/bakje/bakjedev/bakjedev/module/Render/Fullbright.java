@@ -10,12 +10,12 @@ public class Fullbright extends Mod {
 
     @Override
     public void onEnable() {
-        mc.worldRenderer.reload();
+        mc.options.getGamma().setValue(100.0);
         super.onEnable();
     }
     @Override
     public void onDisable() {
-        mc.worldRenderer.reload();
+        mc.options.getGamma().setValue(1.0);
         super.onDisable();
     }
 }

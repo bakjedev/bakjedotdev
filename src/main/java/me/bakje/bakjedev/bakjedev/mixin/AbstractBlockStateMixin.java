@@ -14,7 +14,7 @@ public abstract class AbstractBlockStateMixin {
 
     @Inject(method = "getLuminance", at = @At("HEAD"), cancellable = true)
     public void getLuminance(CallbackInfoReturnable<Integer> cir) {
-        if (ModuleManager.INSTANCE.getModule(Xray.class).isEnabled() || ModuleManager.INSTANCE.getModule(Fullbright.class).isEnabled()) {
+        if (ModuleManager.INSTANCE.getModule(Xray.class).isEnabled()) {
             cir.setReturnValue(15);
         }
     }

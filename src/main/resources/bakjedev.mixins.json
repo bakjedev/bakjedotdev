@@ -28,7 +28,8 @@
     "EntityRendererMixin",
     "GameRendererMixin",
     "ParticleManagerMixin",
-    "EntityMixin"
+    "EntityMixin",
+    "SimpleOptionMixin"
   ],
   "injectors": {
     "defaultRequire": 1
