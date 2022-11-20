@@ -23,7 +23,9 @@
     "CameraMixin",
     "PlayerMoveC2SPacketAccessor",
     "AccessorFrustum",
-    "AccessorWorldRenderer"
+    "AccessorWorldRenderer",
+    "WorldRendererMixin",
+    "EntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
