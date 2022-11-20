@@ -185,7 +185,7 @@ public class Nametags extends Mod {
         }
 
 
-        mainText.add(((MutableText) player.getName()).formatted(Formatting.AQUA));
+        mainText.add(((MutableText) player.getName()).formatted(Formatting.WHITE));
 
         mainText.add(getHealthText(player));
 
