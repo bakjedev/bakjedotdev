@@ -26,7 +26,7 @@ public class CheckBox extends Component {
 
     @Override
     public void mouseClicked(double mouseX, double mouseY, int button) {
-        if (isHovered(mouseX, mouseY) && button==0) {
+        if (isHovered(mouseX, mouseY) && button==0 && parent.extended) {
             boolSet.toggle();
         }
         super.mouseClicked(mouseX, mouseY, button);
