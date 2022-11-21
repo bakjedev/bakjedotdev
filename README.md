@@ -9,7 +9,7 @@ here some features i geuss (last updated 21-11-22)
 ### Combat
 
 * Aura:         just simple kill aura, has range and rotation setting
-* Surround:     it works i guess, theres also russian gay surround but we dont talk about it
+* Surround:     it works i guess
 * Velocity:     no knockback
 * AutoTotem:    i dont want to die
 
