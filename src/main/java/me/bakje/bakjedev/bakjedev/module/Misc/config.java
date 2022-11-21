@@ -33,7 +33,8 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(Surround.class).setKey(70);
         ModuleManager.INSTANCE.getModule(Flight.class).setKey(86);
         ModuleManager.INSTANCE.getModule(Speed.class).setKey(96);
-        ModuleManager.INSTANCE.getModule(Xray.class).setKey(88);
+        ModuleManager.INSTANCE.getModule(Freecam.class).setKey(88);
+        ModuleManager.INSTANCE.getModule(Xray.class).setKey(74);
         ModuleManager.INSTANCE.getModule(ChestSwap.class).setKey(90);
         ModuleManager.INSTANCE.getModule(PartyChat.class).setKey(89);
         ModuleManager.INSTANCE.getModule(Peek.class).setKey(76);
@@ -43,6 +44,7 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(Flight.class).antiKick.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Flight.class).speed.setValue(0.1);
         ModuleManager.INSTANCE.getModule(Speed.class).strafeJumping.setEnabled(true);
+        ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.setMode("Vertical");
         this.toggle();
         super.onEnable();
     }

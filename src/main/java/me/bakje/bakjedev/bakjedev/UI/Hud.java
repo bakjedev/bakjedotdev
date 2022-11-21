@@ -172,20 +172,24 @@ public class Hud {
 
             for (Mod mod : enabled) {
                 if (ModuleManager.INSTANCE.getModule(mod.getClass()).isVisible()) {
+                    if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.isMode("Horizontal")) {
+                        String drawString = mod.getDisplayName();
+                        MutableText drawText = Text.literal("");
+                        int hue = MathHelper.floor((System.currentTimeMillis() % 5000L) / 5000.0F * 360.0F);
 
-                    String drawString = mod.getDisplayName();
-                    MutableText drawText = Text.literal("");
-                    int hue = MathHelper.floor((System.currentTimeMillis() % 5000L) / 5000.0F * 360.0F);
+                        for (char c : drawString.toCharArray()) {
+                            int finalHue = hue;
+                            drawText.append(Text.literal(Character.toString(c)).styled(s -> s.withColor(MathHelper.hsvToRgb(finalHue / 360.0F, 1.0F, 1.0F))));
+                            hue += 100 / drawString.length();
+                            if (hue >= 360) hue %= 360;
+                        }
+                        mc.textRenderer.drawWithShadow(matrices, drawText, (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
+                        index++;
+                    } else if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.isMode("Vertical")) {
 
-                    for (char c : drawString.toCharArray()) {
-                        int finalHue = hue;
-                        drawText.append(Text.literal(Character.toString(c)).styled(s -> s.withColor(MathHelper.hsvToRgb(finalHue/360.0F, 1.0F, 1.0F))));
-                        hue += 100/drawString.length();
-                        if (hue >= 360) hue %= 360;
+                        mc.textRenderer.drawWithShadow(matrices, mod.getDisplayName(), (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), getRainbow(1,1,20, index*150));
+                        index++;
                     }
-                    System.out.println(hue);
-                    mc.textRenderer.drawWithShadow(matrices, drawText, (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
-                    index++;
                 }
             }
         }
@@ -241,5 +245,9 @@ public class Hud {
             }
             matrices.pop();
         }
+    }
+    public static int getRainbow(float sat, float bri, double speed, int offset) {
+        double rainbowState = Math.ceil((System.currentTimeMillis() + offset) / speed) % 360;
+        return 0xff000000 | MathHelper.hsvToRgb((float) (rainbowState / 360.0), sat, bri);
     }
 }

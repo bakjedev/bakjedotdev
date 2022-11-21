@@ -2,6 +2,7 @@ package me.bakje.bakjedev.bakjedev.mixin;
 
 
 import me.bakje.bakjedev.bakjedev.Bakjedev;
+import me.bakje.bakjedev.bakjedev.event.events.OpenScreenEvent;
 import me.bakje.bakjedev.bakjedev.module.Misc.HoldAction;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import net.minecraft.client.MinecraftClient;
@@ -52,6 +53,16 @@ public abstract class MinecraftClientMixin {
                     KeyBinding.setKeyPressed(InputUtil.fromTranslationKey(this.options.useKey.getBoundKeyTranslationKey()), true);
                 }
             }
+        }
+    }
+
+    @Inject(method = "setScreen", at = @At("HEAD"), cancellable = true)
+    public void setScreen(Screen screen, CallbackInfo ci) {
+        OpenScreenEvent event = new OpenScreenEvent(screen);
+        Bakjedev.INSTANCE.eventBus.post(event);
+
+        if  (event.isCancelled()) {
+            ci.cancel();
         }
     }
 }
