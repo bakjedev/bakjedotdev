@@ -76,11 +76,7 @@ public class Freecam extends Mod {
 
     @Override
     public void onTick() {
-        if (mc.interactionManager.isBreakingBlock()) {
-            mc.player.setOnGround(true);
-        } else {
-            mc.player.setOnGround(false);
-        }
+        mc.player.setOnGround(mc.interactionManager.isBreakingBlock());
         mc.player.getAbilities().setFlySpeed((float) (this.speed.getValue() / 5));
         mc.player.getAbilities().flying=true;
         mc.player.setPose(EntityPose.STANDING);
