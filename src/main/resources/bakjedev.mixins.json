@@ -30,7 +30,8 @@
     "ParticleManagerMixin",
     "EntityMixin",
     "SimpleOptionMixin",
-    "RenderTickCounterMixin"
+    "RenderTickCounterMixin",
+    "GameOverlayRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

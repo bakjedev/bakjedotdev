@@ -68,6 +68,7 @@ public class ModuleManager {
         modules.add(new Xray());
         modules.add(new HudModule());
         modules.add(new ViewClip());
+        modules.add(new FishESP());
 
         modules.add(new HoldAction());
         modules.add(new ChatTimestamps());

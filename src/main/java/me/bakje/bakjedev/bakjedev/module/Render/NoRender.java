@@ -17,12 +17,13 @@ public class NoRender extends Mod {
     public BooleanSetting fog = new BooleanSetting("Fog", true);
     public BooleanSetting effecthud = new BooleanSetting("EffectHud", true);
     public BooleanSetting hurtcam = new BooleanSetting("Hurtcam", true);
+    public BooleanSetting overlay = new BooleanSetting("Overlay", true);
 
 
 
     public NoRender() {
         super("NoRender", "removes bunch of things", Category.RENDER, true);
-        addSettings(fog,particles,bossbar,effecthud,hurtcam);
+        addSettings(fog,particles,bossbar,effecthud,hurtcam, overlay);
     }
 
     @BakjeSubscribe
