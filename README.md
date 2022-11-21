@@ -4,7 +4,7 @@ hiii meow, code hacker man here i made client!!!! it worky!!!! it gui!!!! it mod
 <img src="minecraft-cat.gif" height="256">
 
 
-here some features i geuss
+here some features i geuss (last updated 21-11-22)
 
 ### Combat
 
@@ -12,12 +12,12 @@ here some features i geuss
 * Surround:     it works i guess, theres also russian gay surround but we dont talk about it
 * Velocity:     no knockback
 * AutoTotem:    i dont want to die
-* Auto32k:      dont take this seriously, it works like once.
 
 ### Movement
 
 * Boatfly:      fly the entity
 * Flight:       has a creative fly mode and an antikick toggle, noevent mode doesnt work
+* ElytraBoost:  future factorize
 * Speed:        bad strafe and boost mode
 * Sprint:       sprinting yeah
 * AntiHunger:   food is no more
@@ -25,16 +25,16 @@ here some features i geuss
 * FakeSneak:    doesnt allow you to walk of blocks
 * NoSlow:       no slow down when eating
 * GUIMove:      allows you to move in guis
+* Timer:        time travel in minecraft
 
 ### Render
 
-* Fullbright:   this fucks your world in singleplayer. works fine
+* Nametags:     basic nametags, salvaged from bleachhack
+* Fullbright:   makes everything bright
 * Xray:         "baritone is for zoomers" agreed, works with sodium btw
-* Nofog:        removes render distance and nether fog
-* NoEffectHud:  removes the vanilla potion effect hud
-* NoBossBar:    removes boss bars rendering on screen
-* CleanView:    gets rid of potion particles when in first person
+* Tracers:      little silly lines to silly little people
 * ViewClip:     third person camera clips through blocks and custom range
+* Hud:          adds things to hud. info like fps, tps, etc. fancy rainbow module list. coord hud 
 
 ### Exploit
 
@@ -42,13 +42,14 @@ here some features i geuss
 
 ### World
 
-* Scaffold:     really shitty scaffold
+* Scaffold:     really shitty scaffold, dont use it
 
 ### Misc
 
 * HoldAction:   continuous breaking or using
 * Timestamps:   shows timestamp for chat messages
 * ChestSwap:    swaps chestplate with elytra and vice versa
+* Peek:         shows inside shulker, this should really be a command but im lazy
 * PortalGUI:    allows opening GUI's in portals
 * AutoFish:     automatically fishes for you
 * PartyChat:    simple module that turns party chat on and off for constantiam
