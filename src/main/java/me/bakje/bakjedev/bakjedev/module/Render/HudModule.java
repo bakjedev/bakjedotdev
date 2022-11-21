@@ -17,6 +17,7 @@ public class HudModule extends Mod {
     private double prevTime = 0;
     public double tps = 0;
     public BooleanSetting info = new BooleanSetting("Info", true);
+    public ModeSetting theme = new ModeSetting("Theme","bakje.dev", "bakje.dev", "BSB", "Mahan");
     public BooleanSetting arraylist = new BooleanSetting("Arraylist", true);
     public ModeSetting arraylistRainbow = new ModeSetting("Rainbow", "Horizontal", "Vertical", "Horizontal");
     public BooleanSetting coords = new BooleanSetting("Coords", true);
@@ -24,7 +25,7 @@ public class HudModule extends Mod {
     public BooleanSetting armor = new BooleanSetting("Armor", true);
     public HudModule() {
         super("Hud", "shows info", Category.RENDER, true);
-        addSettings(info, arraylist,arraylistRainbow, coords, dir, armor);
+        addSettings(theme, info, arraylist,arraylistRainbow, coords, dir, armor);
     }
 
     @BakjeSubscribe

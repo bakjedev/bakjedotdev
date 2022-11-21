@@ -12,6 +12,7 @@ import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.command.SetBlockCommand;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -33,15 +34,34 @@ import static java.lang.Math.round;
 public class Hud {
     private static MinecraftClient mc = MinecraftClient.getInstance();
     static float hue = 0;
+    static int mainColor;
+    static int accentColor;
 
     public static void Render(MatrixStack matrices, float tickDelta) {
         if (ModuleManager.INSTANCE.getModule(HudModule.class).isEnabled()) {
             int screenMiddle = (mc.getWindow().getHeight() / 4) - 30;
 
+            String theme = ModuleManager.INSTANCE.getModule(HudModule.class).theme.getMode();
+            if (theme=="Mahan") {
+                accentColor = 0x00AAAA;
+                mainColor = 0x55FFFF;
+            } else {
+                accentColor = 0xAAAAAA;
+                mainColor = 0xFFFFFF;
+            }
 
             //WATERMARK
-            Text watermarkText = Text.literal("bakje.dev ");
-            Text watermarkVersion = Text.literal(Bakjedev.VERSION).formatted(Formatting.GRAY);
+
+            Text watermarkText;
+            Text watermarkVersion = Text.literal(Bakjedev.VERSION).styled(style -> style.withColor(accentColor));
+            if (theme=="bakje.dev" || theme=="Mahan") {
+                Text watermarkName = Text.literal("bakje.dev ").styled(style -> style.withColor(mainColor));
+                watermarkText = watermarkName.copy().append(watermarkVersion);
+            } else if (theme=="BSB") {
+                watermarkText = fancyRainbow("BSB Hack");
+            } else {
+                watermarkText = Text.literal("hi");
+            }
 
             // COORD HUD
             boolean nether = mc.world.getRegistryKey().getValue().getPath().contains("nether");
@@ -88,58 +108,58 @@ public class Hud {
 
 
             // FPS
-            Text FPSText = Text.literal(String.valueOf(MinecraftClient.currentFps));
-            Text FPSName = Text.literal(" FPS").formatted(Formatting.GRAY);
+            Text FPSText = Text.literal(String.valueOf(MinecraftClient.currentFps)).styled(style -> style.withColor(mainColor));
+            Text FPSName = Text.literal(" FPS").styled(style -> style.withColor(accentColor));
 
 
             // TPS
-            Text TPSName = Text.literal(" TPS").formatted(Formatting.GRAY);
-            Formatting TPSColor;
+            Text TPSName = Text.literal(" TPS").styled(style -> style.withColor(accentColor));
+            int TPSColor;
             double TPS = ModuleManager.INSTANCE.getModule(HudModule.class).tps;
             if (TPS > 15 && TPS <= 20) {
-                TPSColor = Formatting.WHITE;
+                TPSColor = theme=="Mahan" ? 0x55FFFF : 0xFFFFFF;
             } else if (TPS > 10 && TPS <= 15) {
-                TPSColor = Formatting.YELLOW;
+                TPSColor = 0xFFFF55;
             } else if (TPS > 5 && TPS <= 10) {
-                TPSColor = Formatting.GOLD;
+                TPSColor = 0xFFAA00;
             } else if (TPS < 5) {
-                TPSColor = Formatting.RED;
+                TPSColor = 0xFF5555;
             } else {
-                TPSColor = Formatting.LIGHT_PURPLE;
+                TPSColor = 0xFF55FF;
             }
-            Text TPSText = Text.literal(String.valueOf(roundToPlace(TPS, 2))).formatted(TPSColor);
+            Text TPSText = Text.literal(String.valueOf(roundToPlace(TPS, 2))).styled(style -> style.withColor(TPSColor));
 
             // TIME SINCE LAST TICK
             double sinceTick = ModuleManager.INSTANCE.getModule(HudModule.class).lastPacket;
             double time = System.currentTimeMillis();
             Text TSLTText;
             if (((time - sinceTick) / 1000) < 0.2) {
-                TSLTText = Text.literal("0.0");
+                TSLTText = Text.literal("0.0").styled(style -> style.withColor(mainColor));
             } else {
-                TSLTText = Text.literal(Double.toString(roundToPlace((time - sinceTick) / 1000, 1)));
+                TSLTText = Text.literal(Double.toString(roundToPlace((time - sinceTick) / 1000, 1))).styled(style -> style.withColor(mainColor));
             }
-            Text TSLTName = Text.literal(" Sec").formatted(Formatting.GRAY);
+            Text TSLTName = Text.literal(" Sec").styled(style -> style.withColor(accentColor));
 
             //PING
             PlayerListEntry player = mc.player.networkHandler.getPlayerListEntry(mc.player.getGameProfile().getId());
             int latency = player == null ? 0 : player.getLatency();
-            Text latencyText = Text.literal(Integer.toString(latency));
-            Text latencyName = Text.literal(" MS").formatted(Formatting.GRAY);
+            Text latencyText = Text.literal(Integer.toString(latency)).styled(style -> style.withColor(mainColor));
+            Text latencyName = Text.literal(" MS").styled(style -> style.withColor(accentColor));
 
             // PLAYERS
             int playerCount = mc.getNetworkHandler().getPlayerList().size();
-            Text playerText = Text.literal(Integer.toString(playerCount));
-            Text playerName = Text.literal(playerCount > 1 ? " Players" : " Player").formatted(Formatting.GRAY);
+            Text playerText = Text.literal(Integer.toString(playerCount)).styled(style -> style.withColor(mainColor));
+            Text playerName = Text.literal(playerCount > 1 ? " Players" : " Player").styled(style -> style.withColor(accentColor));
 
             // SPEED
             Vec3d vec = new Vec3d(mc.player.getX() - mc.player.prevX, 0, mc.player.getZ() - mc.player.prevZ).multiply(20);
             final double speed = roundToPlace((Math.abs(vec.length())) * 3.6, 2);
-            Text speedText = Text.literal(Double.toString(speed));
-            Text speedName = Text.literal(" Km/h").formatted(Formatting.GRAY);
+            Text speedText = Text.literal(Double.toString(speed)).styled(style -> style.withColor(mainColor));
+            Text speedName = Text.literal(" Km/h").styled(style -> style.withColor(accentColor));
 
 
             if (ModuleManager.INSTANCE.getModule(HudModule.class).info.isEnabled()) {
-                mc.textRenderer.drawWithShadow(matrices, watermarkText.copy().append(watermarkVersion), 1, screenMiddle + mc.textRenderer.fontHeight, -1);
+                mc.textRenderer.drawWithShadow(matrices, watermarkText, 1, screenMiddle + mc.textRenderer.fontHeight, -1);
                 mc.textRenderer.drawWithShadow(matrices, FPSText.copy().append(FPSName), 1, screenMiddle + mc.textRenderer.fontHeight * 2 + 2, -1);
                 mc.textRenderer.drawWithShadow(matrices, TPSText.copy().append(TPSName), 1, screenMiddle + mc.textRenderer.fontHeight * 3 + 4, -1);
                 mc.textRenderer.drawWithShadow(matrices, TSLTText.copy().append(TSLTName), 1, screenMiddle + mc.textRenderer.fontHeight * 4 + 6, -1);
@@ -173,20 +193,9 @@ public class Hud {
             for (Mod mod : enabled) {
                 if (ModuleManager.INSTANCE.getModule(mod.getClass()).isVisible()) {
                     if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.isMode("Horizontal")) {
-                        String drawString = mod.getDisplayName();
-                        MutableText drawText = Text.literal("");
-                        int hue = MathHelper.floor((System.currentTimeMillis() % 5000L) / 5000.0F * 360.0F);
-
-                        for (char c : drawString.toCharArray()) {
-                            int finalHue = hue;
-                            drawText.append(Text.literal(Character.toString(c)).styled(s -> s.withColor(MathHelper.hsvToRgb(finalHue / 360.0F, 1.0F, 1.0F))));
-                            hue += 100 / drawString.length();
-                            if (hue >= 360) hue %= 360;
-                        }
-                        mc.textRenderer.drawWithShadow(matrices, drawText, (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
+                        mc.textRenderer.drawWithShadow(matrices, fancyRainbow(mod.getDisplayName()), (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
                         index++;
                     } else if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.isMode("Vertical")) {
-
                         mc.textRenderer.drawWithShadow(matrices, mod.getDisplayName(), (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), getRainbow(1,1,20, index*150));
                         index++;
                     }
@@ -249,5 +258,19 @@ public class Hud {
     public static int getRainbow(float sat, float bri, double speed, int offset) {
         double rainbowState = Math.ceil((System.currentTimeMillis() + offset) / speed) % 360;
         return 0xff000000 | MathHelper.hsvToRgb((float) (rainbowState / 360.0), sat, bri);
+    }
+
+    public static MutableText fancyRainbow(String text) {
+        String drawString = text;
+        MutableText drawText = Text.literal("");
+        int hue = MathHelper.floor((System.currentTimeMillis() % 5000L) / 5000.0F * 360.0F);
+
+        for (char c : drawString.toCharArray()) {
+            int finalHue = hue;
+            drawText.append(Text.literal(Character.toString(c)).styled(s -> s.withColor(MathHelper.hsvToRgb(finalHue / 360.0F, 1.0F, 1.0F))));
+            hue += 100 / drawString.length();
+            if (hue >= 360) hue %= 360;
+        }
+        return drawText;
     }
 }
