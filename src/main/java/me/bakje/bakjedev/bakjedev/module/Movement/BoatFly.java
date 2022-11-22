@@ -11,7 +11,7 @@ import net.minecraft.network.packet.s2c.play.PlayerPositionLookS2CPacket;
 import net.minecraft.util.math.Vec3d;
 
 public class BoatFly extends Mod {
-    public NumberSetting speed = new NumberSetting("Speed", 0, 5, 2, 1.2);
+    public NumberSetting speed = new NumberSetting("Speed", 0, 5, 2, 0.1);
     public NumberSetting ascend = new NumberSetting("Ascend", 0, 2, 2, 0.3);
     public NumberSetting descend = new NumberSetting("Descend", 0, 2, 0.1, 0.1);
     public BoatFly() {

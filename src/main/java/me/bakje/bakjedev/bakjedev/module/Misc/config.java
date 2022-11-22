@@ -44,7 +44,7 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(Flight.class).antiKick.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Flight.class).speed.setValue(0.1);
         ModuleManager.INSTANCE.getModule(Speed.class).strafeJumping.setEnabled(true);
-        ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.setMode("Vertical");
+        ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.setMode("V");
         this.toggle();
         super.onEnable();
     }

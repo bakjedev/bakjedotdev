@@ -59,7 +59,12 @@ public class Hud {
                 watermarkText = watermarkName.copy().append(watermarkVersion);
             } else if (theme=="BSB") {
                 watermarkText = fancyRainbow("BSB Hack");
-            } else {
+            } else if (theme=="bakje.dev2") {
+                watermarkText = fancyRainbow("bakje.dev");
+            } else if(theme=="Ruhama") {
+                Text watermarkName = Text.literal("Ruhama Client ").styled(style -> style.withColor(mainColor));
+                watermarkText = watermarkName.copy().append(watermarkVersion);
+            }else {
                 watermarkText = Text.literal("hi");
             }
 
@@ -192,10 +197,10 @@ public class Hud {
 
             for (Mod mod : enabled) {
                 if (ModuleManager.INSTANCE.getModule(mod.getClass()).isVisible()) {
-                    if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.isMode("Horizontal")) {
+                    if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.isMode("H")) {
                         mc.textRenderer.drawWithShadow(matrices, fancyRainbow(mod.getDisplayName()), (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), -1);
                         index++;
-                    } else if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.isMode("Vertical")) {
+                    } else if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.isMode("V")) {
                         mc.textRenderer.drawWithShadow(matrices, mod.getDisplayName(), (sWidth - 4) - mc.textRenderer.getWidth(mod.getDisplayName()), 10 + (index * mc.textRenderer.fontHeight), getRainbow(1,1,20, index*150));
                         index++;
                     }
