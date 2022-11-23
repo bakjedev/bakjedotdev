@@ -1,13 +1,11 @@
 package me.bakje.bakjedev.bakjedev.module.Misc;
 
-import me.bakje.bakjedev.bakjedev.module.Combat.Aura;
-import me.bakje.bakjedev.bakjedev.module.Combat.AutoTotem;
-import me.bakje.bakjedev.bakjedev.module.Combat.Surround;
-import me.bakje.bakjedev.bakjedev.module.Combat.Velocity;
+import me.bakje.bakjedev.bakjedev.module.Combat.*;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.Movement.*;
 import me.bakje.bakjedev.bakjedev.module.Render.*;
+import me.bakje.bakjedev.bakjedev.module.World.Scaffold;
 
 
 public class config extends Mod {
@@ -27,7 +25,8 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(GUIMove.class).toggle();
         ModuleManager.INSTANCE.getModule(AntiHunger.class).toggle();
         ModuleManager.INSTANCE.getModule(Nametags.class).toggle();
-
+        ModuleManager.INSTANCE.getModule(ElytraBoost.class).toggle();
+        ModuleManager.INSTANCE.getModule(Criticals.class).toggle();
 
         ModuleManager.INSTANCE.getModule(Aura.class).setKey(71);
         ModuleManager.INSTANCE.getModule(Surround.class).setKey(70);
@@ -38,6 +37,7 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(ChestSwap.class).setKey(90);
         ModuleManager.INSTANCE.getModule(PartyChat.class).setKey(89);
         ModuleManager.INSTANCE.getModule(Peek.class).setKey(76);
+        ModuleManager.INSTANCE.getModule(Scaffold.class).setKey(85);
 
         ModuleManager.INSTANCE.getModule(Aura.class).rotate.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Aura.class).attackEverything.setEnabled(true);
@@ -45,6 +45,8 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(Flight.class).speed.setValue(0.1);
         ModuleManager.INSTANCE.getModule(Speed.class).strafeJumping.setEnabled(true);
         ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.setMode("V");
+        ModuleManager.INSTANCE.getModule(Timer.class).speed.setValue(1.1);
+        ModuleManager.INSTANCE.getModule(HudModule.class).theme.setMode("bakje.dev2");
         this.toggle();
         super.onEnable();
     }

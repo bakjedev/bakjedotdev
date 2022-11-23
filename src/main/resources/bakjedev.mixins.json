@@ -31,7 +31,8 @@
     "EntityMixin",
     "SimpleOptionMixin",
     "RenderTickCounterMixin",
-    "GameOverlayRenderer"
+    "GameOverlayRenderer",
+    "SoundSystemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

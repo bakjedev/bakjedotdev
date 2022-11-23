@@ -79,11 +79,14 @@ public class ModuleManager {
         modules.add(new PartyChat());
         modules.add(new LOHarvest());
         modules.add(new config());
+        modules.add(new PopIdentifier());
 
         modules.add(new Aura());
         modules.add(new Surround());
         modules.add(new Velocity());
         modules.add(new AutoTotem());
+        modules.add(new Criticals());
+        modules.add(new Criticals());
 
         modules.add(new WGBypass());
 
