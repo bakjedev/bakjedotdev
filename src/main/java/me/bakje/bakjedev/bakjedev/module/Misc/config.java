@@ -27,6 +27,7 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(Nametags.class).toggle();
         ModuleManager.INSTANCE.getModule(ElytraBoost.class).toggle();
         ModuleManager.INSTANCE.getModule(Criticals.class).toggle();
+        ModuleManager.INSTANCE.getModule(PopIdentifier.class).toggle();
 
         ModuleManager.INSTANCE.getModule(Aura.class).setKey(71);
         ModuleManager.INSTANCE.getModule(Surround.class).setKey(70);

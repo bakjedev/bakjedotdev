@@ -1,4 +1,4 @@
-package me.bakje.bakjedev.bakjedev.module.Misc;
+package me.bakje.bakjedev.bakjedev.module.Combat;
 
 import me.bakje.bakjedev.bakjedev.event.events.SoundPlayEvent;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
@@ -13,7 +13,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class PopIdentifier extends Mod {
     public PopIdentifier() {
-        super("PopIdentifier", "who popped", Category.MISC, true);
+        super("PopIdentifier", "identify player who pops a totem", Category.COMBAT, true);
     }
     @BakjeSubscribe
     public void onSoundPlay(SoundPlayEvent.Normal event) {
