@@ -4,7 +4,7 @@ hiii meow, code hacker man here i made client!!!! it worky!!!! it gui!!!! it mod
 <img src="minecraft-cat.gif" height="256">
 
 
-here some features i geuss (last updated 21-11-22)
+here some features i geuss (last updated 25-11-22)
 
 ### Combat
 
@@ -12,10 +12,13 @@ here some features i geuss (last updated 21-11-22)
 * Surround:     it works i guess
 * Velocity:     no knockback
 * AutoTotem:    i dont want to die
+* Criticals:    stronk
+* PopIdentifier: identify player who pops a totem
 
 ### Movement
 
 * Boatfly:      fly the entity
+* Freecam:      spectator mode bypass
 * Flight:       has a creative fly mode and an antikick toggle, noevent mode doesnt work
 * ElytraBoost:  future factorize
 * Speed:        bad strafe and boost mode
