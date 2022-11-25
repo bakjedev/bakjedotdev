@@ -85,7 +85,6 @@ public class ModuleManager {
         modules.add(new Velocity());
         modules.add(new AutoTotem());
         modules.add(new Criticals());
-        modules.add(new Criticals());
         modules.add(new PopIdentifier());
 
         modules.add(new WGBypass());
