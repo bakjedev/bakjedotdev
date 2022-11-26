@@ -66,6 +66,7 @@ public class ModuleManager {
         modules.add(new Tracers());
         modules.add(new NoRender());
         modules.add(new Fullbright());
+        modules.add(new Shader());
         modules.add(new Xray());
         modules.add(new HudModule());
         modules.add(new ViewClip());
