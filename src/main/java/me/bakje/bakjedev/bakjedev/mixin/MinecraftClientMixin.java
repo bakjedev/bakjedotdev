@@ -20,6 +20,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
+
+
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
     @Shadow
@@ -33,12 +35,14 @@ public abstract class MinecraftClientMixin {
     public GameOptions options;
     @Shadow
     protected int attackCooldown;
-
+    //onTick
     @Inject(at = @At("HEAD"), method = "tick")
     public void onTick(CallbackInfo ci) {
         Bakjedev.INSTANCE.onTick();
     }
 
+
+    //HoldAction
     @Inject(method = "handleInputEvents", at = @At("HEAD"))
     private void onProcessKeybindsPre(CallbackInfo ci) {
         if (this.currentScreen == null) {
@@ -56,6 +60,8 @@ public abstract class MinecraftClientMixin {
         }
     }
 
+
+    //Set Screen
     @Inject(method = "setScreen", at = @At("HEAD"), cancellable = true)
     public void setScreen(Screen screen, CallbackInfo ci) {
         OpenScreenEvent event = new OpenScreenEvent(screen);
@@ -65,4 +71,6 @@ public abstract class MinecraftClientMixin {
             ci.cancel();
         }
     }
+
 }
+

@@ -39,5 +39,4 @@ public class HudModule extends Mod {
             prevTime = time;
         }
     }
-
 }

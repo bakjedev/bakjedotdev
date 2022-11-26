@@ -32,7 +32,8 @@
     "SimpleOptionMixin",
     "RenderTickCounterMixin",
     "GameOverlayRenderer",
-    "SoundSystemMixin"
+    "SoundSystemMixin",
+    "TitleScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

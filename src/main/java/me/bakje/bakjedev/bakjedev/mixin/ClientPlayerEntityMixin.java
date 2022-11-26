@@ -117,6 +117,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
             mc.player.sendMessage(prefixString.append(Text.literal("Unknown or incomplete command, try $help for the list of commands.").formatted(Formatting.GRAY)), false);
             ci.cancel();
         }
+
         if (message.equalsIgnoreCase("$help")) {
             MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
             mc.player.sendMessage(prefixString.append(Text.literal("List of all commands:").formatted(Formatting.GRAY)), false);
@@ -128,101 +129,69 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
             ci.cancel();
         }
 
-
-
-
-        int number;
         if (message.startsWith("$vclip")) {
+            int value=0;
             MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
             try {
-                if (message.length() == 8) {
-                    number = Integer.parseInt(message.substring(message.length() - 1));
-                } else if (message.length() == 9) {
-                    number = Integer.parseInt(message.substring(message.length() - 2));
-                } else {
-                    number = Integer.parseInt(message.substring(message.length() - 3));
-                }
-                mc.player.updatePosition(mc.player.getX(), mc.player.getY()+number, mc.player.getZ());
+                String[] arguments = message.split(" ");
+                if (arguments.length>0) value = Integer.parseInt(arguments[1]);
+
+                mc.player.updatePosition(mc.player.getX(), mc.player.getY()+value, mc.player.getZ());
                 mc.player.sendMessage(prefixString.append(Text.literal("Teleported").formatted(Formatting.GRAY)), false);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
             }
             ci.cancel();
         }
-        int number2;
+
         if (message.startsWith("$hclip")) {
+            int value=0;
             MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
             try {
-                if (message.length() == 8) {
-                    number2 = Integer.parseInt(message.substring(message.length() - 1));
-                } else if (message.length() == 9) {
-                    number2 = Integer.parseInt(message.substring(message.length() - 2));
-                } else {
-                    number2 = Integer.parseInt(message.substring(message.length() - 3));
-                }
+                String[] arguments = message.split(" ");
+                if (arguments.length>0) value = Integer.parseInt(arguments[1]);
+
                 if (mc.player.getMovementDirection() == Direction.SOUTH){
-                    mc.player.updatePosition(mc.player.getX(), mc.player.getY(), mc.player.getZ()+number2);
+                    mc.player.updatePosition(mc.player.getX(), mc.player.getY(), mc.player.getZ()+value);
                 } else if (mc.player.getMovementDirection() == Direction.WEST) {
-                    mc.player.updatePosition(mc.player.getX()-number2, mc.player.getY(), mc.player.getZ());
+                    mc.player.updatePosition(mc.player.getX()-value, mc.player.getY(), mc.player.getZ());
                 } else if (mc.player.getMovementDirection() == Direction.NORTH) {
-                    mc.player.updatePosition(mc.player.getX(), mc.player.getY(), mc.player.getZ()-number2);
+                    mc.player.updatePosition(mc.player.getX(), mc.player.getY(), mc.player.getZ()-value);
                 } else  if (mc.player.getMovementDirection() == Direction.EAST){
-                    mc.player.updatePosition(mc.player.getX()+number2, mc.player.getY(), mc.player.getZ());
+                    mc.player.updatePosition(mc.player.getX()+value, mc.player.getY(), mc.player.getZ());
                 }
                 mc.player.sendMessage(prefixString.append(Text.literal("Teleported").formatted(Formatting.GRAY)), false);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
             }
             ci.cancel();
         }
 
-        double number3;
         if (message.startsWith("$setyaw")) {
+            double value=0;
             MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
             try {
-                if (message.length() == 9) {
-                    number3 = Double.parseDouble(message.substring(message.length() - 1));
-                } else if (message.length() == 10) {
-                    number3 = Double.parseDouble(message.substring(message.length() - 2));
-                } else if(message.length() == 11) {
-                    number3 = Double.parseDouble(message.substring(message.length() - 3));
-                } else if(message.length() == 12) {
-                    number3 = Double.parseDouble(message.substring(message.length() - 4));
-                } else if(message.length() == 13) {
-                    number3 = Double.parseDouble(message.substring(message.length() - 5));
-                } else {
-                    number3 = Double.parseDouble(message.substring(message.length() - 6));
-                }
-                mc.player.setYaw((float) number3);
-                mc.player.sendMessage(prefixString.append(Text.literal("Set yaw to " + number3).formatted(Formatting.GRAY)), false);
-            }
-            catch (Exception e) {
+                String[] arguments = message.split(" ");
+                if (arguments.length>0) value = Integer.parseInt(arguments[1]);
+
+                mc.player.setYaw((float) value);
+                mc.player.sendMessage(prefixString.append(Text.literal("Set yaw to " + value).formatted(Formatting.GRAY)), false);
+            } catch (Exception e) {
                 mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
             }
             ci.cancel();
         }
 
-        double number4;
         if (message.startsWith("$setpitch")) {
+            double value=0;
             MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
             try {
-                if (message.length() == 11) {
-                    number4 = Double.parseDouble(message.substring(message.length() - 1));
-                } else if (message.length() == 12) {
-                    number4 = Double.parseDouble(message.substring(message.length() - 2));
-                } else if (message.length() == 13) {
-                    number4 = Double.parseDouble(message.substring(message.length() - 3));
-                } else if (message.length() == 14) {
-                    number4 = Double.parseDouble(message.substring(message.length() - 4));
-                } else {
-                    number4 = Double.parseDouble(message.substring(message.length() - 5));
-                }
-                mc.player.setPitch((float) number4);
-                mc.player.sendMessage(prefixString.append(Text.literal("Set pitch to " + number4).formatted(Formatting.GRAY)), false);
-            }
-            catch (Exception e) {
+                String[] arguments = message.split(" ");
+                if (arguments.length>0) value = Integer.parseInt(arguments[1]);
+
+                mc.player.setPitch((float) value);
+                mc.player.sendMessage(prefixString.append(Text.literal("Set pitch to " + value).formatted(Formatting.GRAY)), false);
+            } catch (Exception e) {
                 mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
             }
             ci.cancel();

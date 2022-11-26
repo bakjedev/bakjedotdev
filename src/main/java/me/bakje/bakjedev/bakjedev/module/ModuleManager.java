@@ -50,6 +50,7 @@ public class ModuleManager {
     private void addModules() {
         modules.add(new Flight());
         modules.add(new ElytraBoost());
+        modules.add(new ElytraControl());
         modules.add(new Freecam());
         modules.add(new Sprint());
         modules.add(new Speed());
