@@ -35,8 +35,10 @@
     "SoundSystemMixin",
     "TitleScreenMixin",
     "ShaderMixin",
-    "MixinJsonEffectGlShaderMixin"
+    "MixinJsonEffectGlShaderMixin",
+    "BufferBuilderMixin"
   ],
+  "mixinPriority" : 899,
   "injectors": {
     "defaultRequire": 1
   }
