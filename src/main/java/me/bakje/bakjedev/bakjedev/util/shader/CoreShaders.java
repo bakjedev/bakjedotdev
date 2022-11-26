@@ -15,7 +15,7 @@ public class CoreShaders {
 
     static {
         try {
-            COLOR_OVERLAY_SHADER = ShaderLoader.load(VertexFormats.POSITION_COLOR_TEXTURE, new Identifier("bleachhack", "color_overlay"));
+            COLOR_OVERLAY_SHADER = ShaderLoader.load(VertexFormats.POSITION_COLOR_TEXTURE, new Identifier("bakje", "color_overlay.json"));
         } catch (IOException e) {
             throw new RuntimeException("Failed to initilize BleachHack core shaders", e);
         }

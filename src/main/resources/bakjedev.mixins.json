@@ -34,7 +34,8 @@
     "GameOverlayRenderer",
     "SoundSystemMixin",
     "TitleScreenMixin",
-    "ShaderMixin"
+    "ShaderMixin",
+    "MixinJsonEffectGlShaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

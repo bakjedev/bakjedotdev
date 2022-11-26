@@ -56,7 +56,7 @@ public class ColorVertexConsumerProvider {
 
     public void setFramebuffer(Framebuffer framebuffer) {
         layerCreator = memoizeTexture(texture -> new RenderLayer(
-                "bleachhack_outline", VertexFormats.POSITION_COLOR_TEXTURE, VertexFormat.DrawMode.QUADS, 256, false, false,
+                "bakje_outline", VertexFormats.POSITION_COLOR_TEXTURE, VertexFormat.DrawMode.QUADS, 256, false, false,
                 () -> {
                     texture.startDrawing();
                     RenderSystem.setShader(shader);
