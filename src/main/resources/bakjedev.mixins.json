@@ -33,10 +33,7 @@
     "RenderTickCounterMixin",
     "GameOverlayRenderer",
     "SoundSystemMixin",
-    "TitleScreenMixin",
-    "ShaderMixin",
-    "MixinJsonEffectGlShaderMixin",
-    "BufferBuilderMixin"
+    "TitleScreenMixin"
   ],
   "mixinPriority" : 899,
   "injectors": {
