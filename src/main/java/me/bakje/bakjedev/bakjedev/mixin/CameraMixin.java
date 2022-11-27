@@ -1,7 +1,7 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.ViewClip;
+import me.bakje.bakjedev.bakjedev.module.render.ViewClip;
 import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.client.render.Camera;
 import org.spongepowered.asm.mixin.Shadow;

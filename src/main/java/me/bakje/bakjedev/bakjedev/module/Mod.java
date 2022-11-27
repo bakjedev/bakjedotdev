@@ -2,10 +2,8 @@ package me.bakje.bakjedev.bakjedev.module;
 
 
 import me.bakje.bakjedev.bakjedev.Bakjedev;
-import me.bakje.bakjedev.bakjedev.eventbus.BakjeEventBus;
-import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
-import me.bakje.bakjedev.bakjedev.module.Settings.Setting;
-import me.bakje.bakjedev.bakjedev.module.Settings.KeyBindSetting;
+import me.bakje.bakjedev.bakjedev.module.settings.Setting;
+import me.bakje.bakjedev.bakjedev.module.settings.KeyBindSetting;
 import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;

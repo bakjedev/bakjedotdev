@@ -1,7 +1,7 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Movement.Timer;
+import me.bakje.bakjedev.bakjedev.module.movement.Timer;
 import net.minecraft.client.render.RenderTickCounter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

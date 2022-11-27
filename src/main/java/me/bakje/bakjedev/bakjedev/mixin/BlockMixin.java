@@ -1,7 +1,7 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.Xray;
+import me.bakje.bakjedev.bakjedev.module.render.Xray;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

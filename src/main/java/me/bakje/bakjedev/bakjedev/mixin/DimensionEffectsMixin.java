@@ -1,7 +1,7 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.NoRender;
+import me.bakje.bakjedev.bakjedev.module.render.NoRender;
 import net.minecraft.client.render.DimensionEffects;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

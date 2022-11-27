@@ -1,6 +1,6 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
-import me.bakje.bakjedev.bakjedev.module.Misc.ChatTimestamps;
+import me.bakje.bakjedev.bakjedev.module.misc.ChatTimestamps;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.text.MutableText;

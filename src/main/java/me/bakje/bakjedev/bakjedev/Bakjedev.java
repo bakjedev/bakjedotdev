@@ -1,12 +1,11 @@
 package me.bakje.bakjedev.bakjedev;
 
 
-import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.ClickGui;
+import me.bakje.bakjedev.bakjedev.ui.screens.clickgui.ClickGui;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeEventBus;
 import me.bakje.bakjedev.bakjedev.eventbus.handler.InexactEventHandler;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.HudModule;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundEvent;

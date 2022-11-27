@@ -1,7 +1,7 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.NoRender;
+import me.bakje.bakjedev.bakjedev.module.render.NoRender;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.spongepowered.asm.mixin.Mixin;

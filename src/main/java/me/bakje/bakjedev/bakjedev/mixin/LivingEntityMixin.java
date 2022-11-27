@@ -1,9 +1,9 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
 
-import me.bakje.bakjedev.bakjedev.module.Exploit.WGBypass;
+import me.bakje.bakjedev.bakjedev.module.exploit.WGBypass;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.NoRender;
+import me.bakje.bakjedev.bakjedev.module.render.NoRender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.Perspective;
 import org.spongepowered.asm.mixin.Mixin;

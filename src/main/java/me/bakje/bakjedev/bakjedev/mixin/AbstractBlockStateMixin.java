@@ -1,8 +1,7 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.Fullbright;
-import me.bakje.bakjedev.bakjedev.module.Render.Xray;
+import me.bakje.bakjedev.bakjedev.module.render.Xray;
 import net.minecraft.block.AbstractBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

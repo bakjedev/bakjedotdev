@@ -3,7 +3,7 @@ package me.bakje.bakjedev.bakjedev.mixin;
 
 import me.bakje.bakjedev.bakjedev.Bakjedev;
 import me.bakje.bakjedev.bakjedev.event.events.OpenScreenEvent;
-import me.bakje.bakjedev.bakjedev.module.Misc.HoldAction;
+import me.bakje.bakjedev.bakjedev.module.misc.HoldAction;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.*;
@@ -47,7 +47,7 @@ public abstract class MinecraftClientMixin {
     private void onProcessKeybindsPre(CallbackInfo ci) {
         if (this.currentScreen == null) {
             if (ModuleManager.INSTANCE.getModule(HoldAction.class).isEnabled()) {
-                if(ModuleManager.INSTANCE.getModule(HoldAction.class).actionMode.isMode("Attack")) {
+                if(ModuleManager.INSTANCE.getModule(HoldAction.class).actionMode.getIndex()==1) {
                     if (this.attackCooldown >= 10000) {
                         this.attackCooldown = 0;
                     }

@@ -2,7 +2,7 @@ package me.bakje.bakjedev.bakjedev.mixin;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.NoRender;
+import me.bakje.bakjedev.bakjedev.module.render.NoRender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;

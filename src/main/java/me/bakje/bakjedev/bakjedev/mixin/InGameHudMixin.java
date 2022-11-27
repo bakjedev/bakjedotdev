@@ -1,8 +1,8 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
-import me.bakje.bakjedev.bakjedev.UI.Hud;
+import me.bakje.bakjedev.bakjedev.ui.Hud;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
-import me.bakje.bakjedev.bakjedev.module.Render.NoRender;
+import me.bakje.bakjedev.bakjedev.module.render.NoRender;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.spongepowered.asm.mixin.Mixin;
