@@ -80,6 +80,7 @@ public class ModuleManager {
         modules.add(new LOHarvest());
         modules.add(new PartyChat());
         modules.add(new PortalGUI());
+        modules.add(new SecretClose());
 
         modules.add(new Aura());
         modules.add(new AutoTotem());

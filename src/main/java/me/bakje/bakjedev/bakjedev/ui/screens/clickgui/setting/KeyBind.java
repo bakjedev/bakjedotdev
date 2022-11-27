@@ -28,7 +28,7 @@ public class KeyBind extends Component {
 
     @Override
     public void keyPressed(int key) {
-        if (isBinding == true) {
+        if (isBinding) {
             parent.module.setKey(key);
             binding.setKey(key);
             isBinding = false;
@@ -53,11 +53,11 @@ public class KeyBind extends Component {
 
         int offsetY = ((parent.parent.height / 2) - mc.textRenderer.fontHeight / 2);
         if (binding.getKey()==0) {
-            if (isBinding==false) mc.textRenderer.drawWithShadow(matrices, "Keybind: " + "none", parent.parent.x + offsetY, parent.parent.y + parent.offset + offset + offsetY, -1);
+            if (!isBinding) mc.textRenderer.drawWithShadow(matrices, "Keybind: " + "none", parent.parent.x + offsetY, parent.parent.y + parent.offset + offset + offsetY, -1);
         } else {
-            if (isBinding==false) mc.textRenderer.drawWithShadow(matrices, "Keybind: " + (char)binding.getKey(), parent.parent.x + offsetY, parent.parent.y + parent.offset + offset + offsetY, -1);
+            if (!isBinding) mc.textRenderer.drawWithShadow(matrices, "Keybind: " + (char)binding.getKey(), parent.parent.x + offsetY, parent.parent.y + parent.offset + offset + offsetY, -1);
         }
-        if (isBinding==true) mc.textRenderer.drawWithShadow(matrices, "Binding...", parent.parent.x + offsetY, parent.parent.y + parent.offset + offset + offsetY, -1);
+        if (isBinding) mc.textRenderer.drawWithShadow(matrices, "Binding...", parent.parent.x + offsetY, parent.parent.y + parent.offset + offset + offsetY, -1);
 
 
         super.render(matrices, mouseX, mouseY, delta);
