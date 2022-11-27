@@ -54,6 +54,7 @@ public class ModuleManager {
         modules.add(new ElytraControl());
         modules.add(new EntityControl());
         modules.add(new FakeSneak());
+        modules.add(new FastAccel());
         modules.add(new Flight());
         modules.add(new Freecam());
         modules.add(new GUIMove());
