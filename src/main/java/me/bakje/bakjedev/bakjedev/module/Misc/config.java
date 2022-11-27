@@ -30,7 +30,7 @@ public class config extends Mod {
 
         ModuleManager.INSTANCE.getModule(Aura.class).setKey(71);
         ModuleManager.INSTANCE.getModule(Surround.class).setKey(70);
-        ModuleManager.INSTANCE.getModule(Flight.class).setKey(86);
+        ModuleManager.INSTANCE.getModule(Flight.class).setKey(78);
         ModuleManager.INSTANCE.getModule(Speed.class).setKey(96);
         ModuleManager.INSTANCE.getModule(Freecam.class).setKey(88);
         ModuleManager.INSTANCE.getModule(Xray.class).setKey(74);
@@ -42,7 +42,7 @@ public class config extends Mod {
         ModuleManager.INSTANCE.getModule(Aura.class).rotate.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Aura.class).attackEverything.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Flight.class).antiKick.setEnabled(true);
-        ModuleManager.INSTANCE.getModule(Flight.class).speed.setValue(0.1);
+        ModuleManager.INSTANCE.getModule(Flight.class).flightMode.setMode("Static");
         ModuleManager.INSTANCE.getModule(Speed.class).strafeJumping.setEnabled(true);
         ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.setMode("V");
         ModuleManager.INSTANCE.getModule(Timer.class).speed.setValue(1.1);

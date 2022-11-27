@@ -33,7 +33,8 @@
     "RenderTickCounterMixin",
     "GameOverlayRenderer",
     "SoundSystemMixin",
-    "TitleScreenMixin"
+    "TitleScreenMixin",
+    "LlamaPigStriderEntityMixin"
   ],
   "mixinPriority" : 899,
   "injectors": {

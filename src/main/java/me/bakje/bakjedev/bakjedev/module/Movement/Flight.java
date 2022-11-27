@@ -1,18 +1,23 @@
 package me.bakje.bakjedev.bakjedev.module.Movement;
 
+import me.bakje.bakjedev.bakjedev.event.events.PacketEvent;
+import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
 import me.bakje.bakjedev.bakjedev.module.Settings.ModeSetting;
 import me.bakje.bakjedev.bakjedev.module.Settings.NumberSetting;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 public class Flight extends Mod {
 
-    public ModeSetting flightMode = new ModeSetting("Mode","Vanilla", "Vanilla", "NoEvent");
-    public NumberSetting speed = new NumberSetting("Speed", 0, 1, 0.5, 0.1);
+    public ModeSetting flightMode = new ModeSetting("Mode","Vanilla", "Vanilla", "Static");
+    public NumberSetting speed = new NumberSetting("Speed", 0, 5, 1, 0.1);
     public BooleanSetting antiKick = new BooleanSetting("Anti kick", false);
     public static ClientPlayNetworkHandler networkHandler;
+    private boolean flyTick = false;
     int antiKickCounter = 0;
 
     public Flight() {
@@ -35,6 +40,30 @@ public class Flight extends Mod {
             mc.player.getAbilities().setFlySpeed((float) speed.getValueFloat());
 
         } else if (flightMode.getMode().equalsIgnoreCase("NoEvent")) {
+
+        }
+
+
+        if (this.flightMode.isMode("Static")) {
+            Vec3d antiKickVel = Vec3d.ZERO;
+
+            mc.player.setVelocity(antiKickVel);
+
+            Vec3d forward = new Vec3d(0, 0, this.speed.getValue()).rotateY(-(float) Math.toRadians(mc.player.getYaw()));
+            Vec3d strafe = forward.rotateY((float) Math.toRadians(90));
+
+            if (mc.options.jumpKey.isPressed())
+                mc.player.setVelocity(mc.player.getVelocity().add(0, this.speed.getValue(), 0));
+            if (mc.options.sneakKey.isPressed())
+                mc.player.setVelocity(mc.player.getVelocity().add(0, -this.speed.getValue(), 0));
+            if (mc.options.backKey.isPressed())
+                mc.player.setVelocity(mc.player.getVelocity().add(-forward.x, 0, -forward.z));
+            if (mc.options.forwardKey.isPressed())
+                mc.player.setVelocity(mc.player.getVelocity().add(forward.x, 0, forward.z));
+            if (mc.options.leftKey.isPressed())
+                mc.player.setVelocity(mc.player.getVelocity().add(strafe.x, 0, strafe.z));
+            if (mc.options.rightKey.isPressed())
+                mc.player.setVelocity(mc.player.getVelocity().add(-strafe.x, 0, -strafe.z));
 
         }
         super.onTick();
