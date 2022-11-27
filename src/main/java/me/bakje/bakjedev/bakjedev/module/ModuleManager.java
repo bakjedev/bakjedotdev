@@ -55,6 +55,7 @@ public class ModuleManager {
         modules.add(new Sprint());
         modules.add(new Speed());
         modules.add(new AntiHunger());
+        modules.add(new AutoWalk());
         modules.add(new EntityControl());
         modules.add(new Nofall());
         modules.add(new FakeSneak());
