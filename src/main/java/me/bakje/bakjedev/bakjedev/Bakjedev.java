@@ -28,7 +28,6 @@ public class Bakjedev implements ModInitializer {
     @Override
     public void onInitialize() {
         System.out.println("joe biden");
-        ModuleManager.INSTANCE.getModule(HudModule.class).toggle(); //default toggled module
 
 
 

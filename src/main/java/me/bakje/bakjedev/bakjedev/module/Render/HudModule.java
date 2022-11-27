@@ -23,9 +23,10 @@ public class HudModule extends Mod {
     public BooleanSetting coords = new BooleanSetting("Coords", true);
     public BooleanSetting dir = new BooleanSetting("Direction", true);
     public BooleanSetting armor = new BooleanSetting("Armor", true);
+    public BooleanSetting notifications = new BooleanSetting("Notifications", true);
     public HudModule() {
         super("Hud", "shows info", Category.RENDER, true);
-        addSettings(theme, info, arraylist,arraylistRainbow, coords, dir, armor);
+        addSettings(theme, info, arraylist,arraylistRainbow, coords, dir, armor, notifications);
     }
 
     @BakjeSubscribe

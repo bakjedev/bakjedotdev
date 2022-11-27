@@ -3,40 +3,53 @@ package me.bakje.bakjedev.bakjedev.UI;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.bakje.bakjedev.bakjedev.Bakjedev;
 import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.ClickGui;
+import me.bakje.bakjedev.bakjedev.event.events.PacketEvent;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.Movement.Timer;
 import me.bakje.bakjedev.bakjedev.module.Render.HudModule;
+import me.bakje.bakjedev.bakjedev.util.TimeUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.network.PlayerListEntry;
+import net.minecraft.client.render.item.HeldItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityGroup;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.command.SetBlockCommand;
-import net.minecraft.server.integrated.IntegratedServer;
+import net.minecraft.item.Items;
+import net.minecraft.network.packet.s2c.play.UpdateSelectedSlotS2CPacket;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
-import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
-
-import static java.lang.Math.round;
 
 public class Hud {
     private static MinecraftClient mc = MinecraftClient.getInstance();
     static float hue = 0;
     static int mainColor;
     static int accentColor;
+    static int counter;
+    static int notifX = 0;
+    static Text notifText = Text.literal("");
+    static boolean notif = false;
+    static TimeUtil timer = new TimeUtil();
+    static LinkedHashSet<PlayerEntity> illegalPlayers;
+    static LinkedHashSet<PlayerEntity> illegalPlayers2;
 
     public static void Render(MatrixStack matrices, float tickDelta) {
         if (ModuleManager.INSTANCE.getModule(HudModule.class).isEnabled()) {
@@ -168,6 +181,29 @@ public class Hud {
             Text speedText = Text.literal(Double.toString(speed)).styled(style -> style.withColor(mainColor));
             Text speedName = Text.literal(" Km/h").styled(style -> style.withColor(accentColor));
 
+            //NOTIFICATION
+            if (notif) {
+                System.out.println(counter);
+
+                if (timer.passed(10)) {
+                    counter++;
+                    timer.reset();
+                }
+
+
+                if (counter>160 && notifX< -75) {
+                    notifText= Text.literal("");
+                    notifX = 0;
+                    notif=false;
+                }
+                if (notifX<2 && counter<161) {
+                    notifX++;
+                }
+                if (counter> 160 && notifX>(-notifText.getString().length())*6) {
+                    notifX=notifX-mc.textRenderer.getWidth("A");
+                }
+            }
+
 
             if (ModuleManager.INSTANCE.getModule(HudModule.class).info.isEnabled()) {
                 mc.textRenderer.drawWithShadow(matrices, watermarkText, 1, screenMiddle + mc.textRenderer.fontHeight, -1);
@@ -187,12 +223,15 @@ public class Hud {
             if (ModuleManager.INSTANCE.getModule(HudModule.class).armor.isEnabled()) {
                 drawArmor(matrices, 493, 485);
             }
+            if (ModuleManager.INSTANCE.getModule(HudModule.class).notifications.isEnabled()) {
+                mc.textRenderer.drawWithShadow(matrices, notifText, notifX, 10, 0xFFFFFF);
+            }
         }
     }
 
     public static void renderArrayList(MatrixStack matrices) {
         if (!(mc.currentScreen instanceof ClickGui)) {
-            int index = 0;//        }
+            int index = 0;
 
             int sWidth = mc.getWindow().getScaledWidth();
             int sHeight = mc.getWindow().getScaledHeight();
@@ -283,5 +322,15 @@ public class Hud {
             if (hue >= 360) hue %= 360;
         }
         return drawText;
+    }
+
+
+    public static void notification(Text message) {
+        if (ModuleManager.INSTANCE.getModule(HudModule.class).notifications.isEnabled() && !notif) {
+            notifText = message;
+            counter = 0;
+            notif = true;
+            notifX= -message.getString().length();
+        }
     }
 }

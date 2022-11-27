@@ -14,6 +14,7 @@ public class config extends Mod {
     }
     @Override
     public void onEnable() {
+        ModuleManager.INSTANCE.getModule(HudModule.class).toggle();
         ModuleManager.INSTANCE.getModule(Fullbright.class).toggle();
         ModuleManager.INSTANCE.getModule(ViewClip.class).toggle();
         ModuleManager.INSTANCE.getModule(NoRender.class).toggle();

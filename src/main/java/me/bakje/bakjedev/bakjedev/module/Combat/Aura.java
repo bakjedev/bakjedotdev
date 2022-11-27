@@ -1,5 +1,6 @@
 package me.bakje.bakjedev.bakjedev.module.Combat;
 
+import me.bakje.bakjedev.bakjedev.UI.Hud;
 import me.bakje.bakjedev.bakjedev.module.Settings.NumberSetting;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.Settings.BooleanSetting;
@@ -16,6 +17,7 @@ import net.minecraft.entity.projectile.thrown.ExperienceBottleEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
@@ -29,11 +31,6 @@ public class Aura extends Mod {
     public Aura() {
         super("Aura", "kill", Category.COMBAT, true);
         addSettings(rotate, range, attackEverything);
-    }
-
-    @Override
-    public void onEnable() {
-        super.onEnable();
     }
 
     @Override
