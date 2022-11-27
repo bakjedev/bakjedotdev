@@ -34,7 +34,9 @@
     "GameOverlayRenderer",
     "SoundSystemMixin",
     "TitleScreenMixin",
-    "LlamaPigStriderEntityMixin"
+    "LlamaPigStriderEntityMixin",
+    "ClientWorldMixin",
+    "ScreenMixin"
   ],
   "mixinPriority" : 899,
   "injectors": {

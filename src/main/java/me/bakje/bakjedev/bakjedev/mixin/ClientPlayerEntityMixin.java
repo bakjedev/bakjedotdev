@@ -1,6 +1,5 @@
 package me.bakje.bakjedev.bakjedev.mixin;
 
-import com.google.common.collect.Maps;
 import com.mojang.authlib.GameProfile;
 import me.bakje.bakjedev.bakjedev.Bakjedev;
 import me.bakje.bakjedev.bakjedev.event.events.ClientMoveEvent;
@@ -8,21 +7,24 @@ import me.bakje.bakjedev.bakjedev.module.Misc.PortalGUI;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.Movement.Freecam;
 import me.bakje.bakjedev.bakjedev.module.Movement.NoSlow;
+import me.bakje.bakjedev.bakjedev.util.ItemContentUtil;
+import me.bakje.bakjedev.bakjedev.util.PeekShulkerScreen;
+import me.bakje.bakjedev.bakjedev.util.bakjeQueue;
 import net.minecraft.block.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.ingame.ShulkerBoxScreen;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.MovementType;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BundleItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.encryption.PlayerPublicKey;
 import net.minecraft.screen.ShulkerBoxScreenHandler;
+import net.minecraft.stat.StatHandler;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -30,6 +32,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -37,7 +40,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Mixin(ClientPlayerEntity.class)
@@ -45,6 +47,8 @@ import java.util.List;
 public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
     @Shadow
     private void autoJump(float dx, float dz) {}
+
+    @Shadow @Final private StatHandler statHandler;
     MinecraftClient mc = MinecraftClient.getInstance();
     Screen tempCurrentScreen;
 
@@ -112,6 +116,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
         && !message.startsWith("$vclip")
         && !message.startsWith("$hclip")
         && !message.startsWith("$setyaw")
+        && !message.startsWith("$peek")
         && !message.startsWith("$setpitch")) {
             MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
             mc.player.sendMessage(prefixString.append(Text.literal("Unknown or incomplete command, try $help for the list of commands.").formatted(Formatting.GRAY)), false);
@@ -196,6 +201,42 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
             }
             ci.cancel();
         }
+
+        if (message.equals("$peek")) {
+            System.out.println("worky in the first place");
+            MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
+            ItemStack item = mc.player.getInventory().getMainHandStack();
+
+            if (item.getItem() instanceof BlockItem) {
+                Block block = ((BlockItem) item.getItem()).getBlock();
+                if (!(block instanceof ShulkerBoxBlock
+                        || block instanceof ChestBlock
+                        || block instanceof DispenserBlock
+                        || block instanceof HopperBlock)) {
+                    mc.player.sendMessage(prefixString.append(Text.literal("Must be holding a container to peek").formatted(Formatting.GRAY)), false);
+                    return;
+                }
+            } else if (item.getItem() != Items.BUNDLE) {
+                mc.player.sendMessage(prefixString.append(Text.literal("Must be holding a container to peek").formatted(Formatting.GRAY)), false);
+                return;
+            }
+
+            List<ItemStack> items = ItemContentUtil.getItemsInContainer(item);
+
+            SimpleInventory inv = new SimpleInventory(items.toArray(new ItemStack[27]));
+
+            mc.player.sendMessage(prefixString.append(Text.literal("ok we bout to try open that shit for you").formatted(Formatting.GRAY)), false);
+            bakjeQueue.add(() ->
+                    mc.setScreen(new PeekShulkerScreen(
+                            new ShulkerBoxScreenHandler(420, mc.player.getInventory(), inv),
+                            mc.player.getInventory(),
+                            item.getName())));
+
+
+            ci.cancel();
+        }
     }
 }
+
+
 
