@@ -48,8 +48,6 @@ public class Hud {
     static Text notifText = Text.literal("");
     static boolean notif = false;
     static TimeUtil timer = new TimeUtil();
-    static LinkedHashSet<PlayerEntity> illegalPlayers;
-    static LinkedHashSet<PlayerEntity> illegalPlayers2;
 
     public static void Render(MatrixStack matrices, float tickDelta) {
         if (ModuleManager.INSTANCE.getModule(HudModule.class).isEnabled()) {
