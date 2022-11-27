@@ -181,14 +181,10 @@ public class Hud {
 
             //NOTIFICATION
             if (notif) {
-                System.out.println(counter);
-
                 if (timer.passed(10)) {
                     counter++;
                     timer.reset();
                 }
-
-
                 if (counter>160 && notifX< -75) {
                     notifText= Text.literal("");
                     notifX = 0;
