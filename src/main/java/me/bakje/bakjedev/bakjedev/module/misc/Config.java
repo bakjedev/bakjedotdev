@@ -43,12 +43,12 @@ public class Config extends Mod {
         ModuleManager.INSTANCE.getModule(Aura.class).rotate.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Aura.class).attackEverything.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Flight.class).antiKick.setEnabled(true);
-        ModuleManager.INSTANCE.getModule(Flight.class).flightMode.setMode("Static");
+        ModuleManager.INSTANCE.getModule(Flight.class).flightMode.setIndex(1);
         ModuleManager.INSTANCE.getModule(Peek.class).info.setIndex(1);
         ModuleManager.INSTANCE.getModule(Speed.class).strafeJumping.setEnabled(true);
-        ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.setMode("V");
+        ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.setIndex(0);
         ModuleManager.INSTANCE.getModule(Timer.class).speed.setValue(1.1);
-        ModuleManager.INSTANCE.getModule(HudModule.class).theme.setMode("bakje.dev2");
+        ModuleManager.INSTANCE.getModule(HudModule.class).theme.setIndex(1);
         this.toggle();
         super.onEnable();
     }
