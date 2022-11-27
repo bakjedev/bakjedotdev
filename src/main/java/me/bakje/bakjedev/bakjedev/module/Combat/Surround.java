@@ -41,7 +41,6 @@ public class Surround extends Mod {
     @Override
     public void onTick() {
         playerPos = mc.player.getBlockPos();
-        antiCrystal();
         placeBlock(playerPos);
         if (mc.options.jumpKey.isPressed() && mc.currentScreen==null && jumpDisable.isEnabled()) {
             this.toggle();
@@ -108,25 +107,5 @@ public class Surround extends Mod {
     {
         mc.interactionManager.interactBlock(mc.player, hand, new BlockHitResult(vec, direction, new BlockPos(vec), false));
         mc.player.swingHand(Hand.MAIN_HAND);
-    }
-
-    public static void antiCrystal() {
-        ClientPlayerEntity player = mc.player;
-        Vec3d playerPos = player.getPos();
-        double closestDistance = Double.POSITIVE_INFINITY;
-        Entity closestEntity = null;
-        for (Entity entity : mc.world.getEntities()) {
-            Vec3d entityPos = entity.getPos();
-            if (!(entity instanceof EndCrystalEntity)) {
-                return;
-            }
-            boolean attackCondition = entityPos.distanceTo(mc.player.getPos()) < closestDistance && entityPos.distanceTo(playerPos) < 2;
-            if (attackCondition) {
-                closestDistance=entityPos.distanceTo(playerPos);
-                closestEntity=entity;
-                mc.interactionManager.attackEntity(mc.player, closestEntity);
-                mc.player.swingHand(Hand.MAIN_HAND);
-            }
-        }
     }
 }

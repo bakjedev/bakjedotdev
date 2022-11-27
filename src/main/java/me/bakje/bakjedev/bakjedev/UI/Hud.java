@@ -6,6 +6,7 @@ import me.bakje.bakjedev.bakjedev.UI.Screens.clickgui.ClickGui;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.module.Movement.Timer;
 import me.bakje.bakjedev.bakjedev.module.Render.HudModule;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
@@ -158,7 +159,12 @@ public class Hud {
 
             // SPEED
             Vec3d vec = new Vec3d(mc.player.getX() - mc.player.prevX, 0, mc.player.getZ() - mc.player.prevZ).multiply(20);
-            final double speed = roundToPlace((Math.abs(vec.length())) * 3.6, 2);
+            final double speed;
+            if (ModuleManager.INSTANCE.getModule(Timer.class).isEnabled()) {
+                speed = roundToPlace(((Math.abs(vec.length())) * 3.6) * ModuleManager.INSTANCE.getModule(Timer.class).speed.getValue(), 2);
+            } else {
+                speed = roundToPlace((Math.abs(vec.length())) * 3.6, 2);
+            }
             Text speedText = Text.literal(Double.toString(speed)).styled(style -> style.withColor(mainColor));
             Text speedName = Text.literal(" Km/h").styled(style -> style.withColor(accentColor));
 
