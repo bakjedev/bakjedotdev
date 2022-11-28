@@ -32,7 +32,7 @@ import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
 
-import static me.bakje.bakjedev.bakjedev.util.bakjeRandomUtil.IntegerToRomanNumeral;
+import static me.bakje.bakjedev.bakjedev.util.bakjeRandomUtil.*;
 
 public class Hud {
     private static MinecraftClient mc = MinecraftClient.getInstance();
@@ -236,8 +236,8 @@ public class Hud {
                 mc.textRenderer.drawWithShadow(matrices, welcomeText, welcomeX, 3, 0xFFFFFF);
 
             if (hudModule.effects.isEnabled()) {
-                int x = 2;
-                int y = 2;
+                int x = 4;
+                int y = 10;
 
                 for (StatusEffectInstance statusEffectInstance : mc.player.getStatusEffects()) {
                     StatusEffect statusEffect = statusEffectInstance.getEffectType();
@@ -333,24 +333,7 @@ public class Hud {
             matrices.pop();
         }
     }
-    public static int getRainbow(float sat, float bri, double speed, int offset) {
-        double rainbowState = Math.ceil((System.currentTimeMillis() + offset) / speed) % 360;
-        return 0xff000000 | MathHelper.hsvToRgb((float) (rainbowState / 360.0), sat, bri);
-    }
 
-    public static MutableText fancyRainbow(String text) {
-        String drawString = text;
-        MutableText drawText = Text.literal("");
-        int hue = MathHelper.floor((System.currentTimeMillis() % 5000L) / 5000.0F * 360.0F);
-
-        for (char c : drawString.toCharArray()) {
-            int finalHue = hue;
-            drawText.append(Text.literal(Character.toString(c)).styled(s -> s.withColor(MathHelper.hsvToRgb(finalHue / 360.0F, 1.0F, 1.0F))));
-            hue += 100 / drawString.length();
-            if (hue >= 360) hue %= 360;
-        }
-        return drawText;
-    }
 
 
     public static void notification(Text message) {

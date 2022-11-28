@@ -1,7 +1,10 @@
 package me.bakje.bakjedev.bakjedev.util;
 
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.StringHelper;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,5 +75,24 @@ public class bakjeRandomUtil {
 
     public static String getEffectNames(StatusEffect effect) {
         return statusEffectNames.computeIfAbsent(effect, effect1 -> StringHelper.stripTextFormat(effect1.getName().getString()));
+    }
+
+    public static int getRainbow(float sat, float bri, double speed, int offset) {
+        double rainbowState = Math.ceil((System.currentTimeMillis() + offset) / speed) % 360;
+        return 0xff000000 | MathHelper.hsvToRgb((float) (rainbowState / 360.0), sat, bri);
+    }
+
+    public static MutableText fancyRainbow(String text) {
+        String drawString = text;
+        MutableText drawText = Text.literal("");
+        int hue = MathHelper.floor((System.currentTimeMillis() % 5000L) / 5000.0F * 360.0F);
+
+        for (char c : drawString.toCharArray()) {
+            int finalHue = hue;
+            drawText.append(Text.literal(Character.toString(c)).styled(s -> s.withColor(MathHelper.hsvToRgb(finalHue / 360.0F, 1.0F, 1.0F))));
+            hue += 100 / drawString.length();
+            if (hue >= 360) hue %= 360;
+        }
+        return drawText;
     }
 }
