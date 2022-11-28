@@ -236,8 +236,8 @@ public class Hud {
                 mc.textRenderer.drawWithShadow(matrices, welcomeText, welcomeX, 3, 0xFFFFFF);
 
             if (hudModule.effects.isEnabled()) {
-                int x = 4;
-                int y = 10;
+                int x = 2;
+                int y = 2;
 
                 for (StatusEffectInstance statusEffectInstance : mc.player.getStatusEffects()) {
                     StatusEffect statusEffect = statusEffectInstance.getEffectType();
