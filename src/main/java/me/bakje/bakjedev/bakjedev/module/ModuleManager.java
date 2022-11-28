@@ -57,7 +57,6 @@ public class ModuleManager {
         modules.add(new FastAccel());
         modules.add(new Flight());
         modules.add(new Freecam());
-        modules.add(new GUIMove());
         modules.add(new Nofall());
         modules.add(new NoSlow());
         modules.add(new Speed());

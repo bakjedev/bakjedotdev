@@ -11,7 +11,7 @@ here some features i geuss (last updated 25-11-22)
 * Aura:         just simple kill aura, has range and rotation setting
 * Surround:     it works i guess
 * Velocity:     no knockback
-* AutoTotem:    i dont want to die
+* AutoTotem:    i don't want to die
 * Criticals:    stronk
 * PopIdentifier: identify player who pops a totem
 
@@ -45,7 +45,7 @@ here some features i geuss (last updated 25-11-22)
 
 ### World
 
-* Scaffold:     really shitty scaffold, dont use it
+* Scaffold:     really shitty scaffold, don't use it
 
 ### Misc
 
