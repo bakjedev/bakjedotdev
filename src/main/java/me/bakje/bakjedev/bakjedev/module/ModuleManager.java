@@ -50,8 +50,7 @@ public class ModuleManager {
     private void addModules() {
         modules.add(new AntiHunger());
         modules.add(new AutoWalk());
-        modules.add(new ElytraBoost());
-        modules.add(new ElytraControl());
+        modules.add(new ElytraFly());
         modules.add(new EntityControl());
         modules.add(new FakeSneak());
         modules.add(new FastAccel());

@@ -23,10 +23,9 @@ public class Config extends Mod {
         ModuleManager.INSTANCE.getModule(AutoTotem.class).toggle();
         ModuleManager.INSTANCE.getModule(Velocity.class).toggle();
         ModuleManager.INSTANCE.getModule(NoSlow.class).toggle();
-        ModuleManager.INSTANCE.getModule(GUIMove.class).toggle();
         ModuleManager.INSTANCE.getModule(AntiHunger.class).toggle();
         ModuleManager.INSTANCE.getModule(Nametags.class).toggle();
-        ModuleManager.INSTANCE.getModule(ElytraBoost.class).toggle();
+        ModuleManager.INSTANCE.getModule(ElytraFly.class).toggle();
         ModuleManager.INSTANCE.getModule(PopIdentifier.class).toggle();
         ModuleManager.INSTANCE.getModule(Peek.class).toggle();
 
@@ -44,6 +43,7 @@ public class Config extends Mod {
         ModuleManager.INSTANCE.getModule(Aura.class).attackEverything.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Flight.class).antiKick.setEnabled(true);
         ModuleManager.INSTANCE.getModule(Flight.class).flightMode.setIndex(1);
+        ModuleManager.INSTANCE.getModule(ElytraFly.class).eflyMode.setIndex(1);
         ModuleManager.INSTANCE.getModule(Peek.class).info.setIndex(1);
         ModuleManager.INSTANCE.getModule(Speed.class).strafeJumping.setEnabled(true);
         ModuleManager.INSTANCE.getModule(HudModule.class).arraylistRainbow.setIndex(0);
