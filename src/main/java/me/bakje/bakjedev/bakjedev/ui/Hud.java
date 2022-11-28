@@ -8,10 +8,14 @@ import me.bakje.bakjedev.bakjedev.module.ModuleManager;
 import me.bakje.bakjedev.bakjedev.module.movement.Timer;
 import me.bakje.bakjedev.bakjedev.module.render.HudModule;
 import me.bakje.bakjedev.bakjedev.util.TimeUtil;
+import me.bakje.bakjedev.bakjedev.util.bakjeRandomUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -21,11 +25,14 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
+import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
+
+import static me.bakje.bakjedev.bakjedev.util.bakjeRandomUtil.IntegerToRomanNumeral;
 
 public class Hud {
     private static MinecraftClient mc = MinecraftClient.getInstance();
@@ -168,7 +175,7 @@ public class Hud {
             Text speedText = Text.literal(Double.toString(speed)).styled(style -> style.withColor(mainColor));
             Text speedName = Text.literal(" Km/h").styled(style -> style.withColor(accentColor));
 
-            //NOTIFICATION
+            // NOTIFICATION
             if (notif) {
                 if (timer.passed(10)) {
                     counter++;
@@ -187,8 +194,21 @@ public class Hud {
                 }
             }
 
+            // WELCOME
+            Text welcomeText = Text.literal("Welcome " + mc.session.getUsername().toString());
+            int welcomeX = (mc.getWindow().getWidth()/4) - ((mc.textRenderer.getWidth(welcomeText) / 2));
 
-            if (ModuleManager.INSTANCE.getModule(HudModule.class).info.isEnabled()) {
+            // EFFECTS
+            double height = 0;
+
+            for (StatusEffectInstance statusEffectInstance : mc.player.getStatusEffects()) {
+                height += mc.textRenderer.fontHeight;
+            }
+
+
+
+            HudModule hudModule = ModuleManager.INSTANCE.getModule(HudModule.class);
+            if (hudModule.info.isEnabled()) {
                 mc.textRenderer.drawWithShadow(matrices, watermarkText, 1, screenMiddle + mc.textRenderer.fontHeight, -1);
                 mc.textRenderer.drawWithShadow(matrices, FPSText.copy().append(FPSName), 1, screenMiddle + mc.textRenderer.fontHeight * 2 + 2, -1);
                 mc.textRenderer.drawWithShadow(matrices, TPSText.copy().append(TPSName), 1, screenMiddle + mc.textRenderer.fontHeight * 3 + 4, -1);
@@ -197,17 +217,42 @@ public class Hud {
                 mc.textRenderer.drawWithShadow(matrices, playerText.copy().append(playerName), 1, screenMiddle + mc.textRenderer.fontHeight * 6 + 10, -1);
                 mc.textRenderer.drawWithShadow(matrices, speedText.copy().append(speedName), 1, screenMiddle + mc.textRenderer.fontHeight * 7 + 12, -1);
             }
-            if (ModuleManager.INSTANCE.getModule(HudModule.class).dir.isEnabled())
+            if (hudModule.dir.isEnabled())
                 mc.textRenderer.drawWithShadow(matrices, Dir.copy().append(" ").append(DirText), 1, (mc.getWindow().getHeight() / 2) - 1 - (mc.textRenderer.fontHeight * 2), -1);
-            if (ModuleManager.INSTANCE.getModule(HudModule.class).coords.isEnabled())
+
+            if (hudModule.coords.isEnabled())
                 mc.textRenderer.drawWithShadow(matrices, XYZ.copy().append(" ").append(coordsText), 1, (mc.getWindow().getHeight() / 2) - 1 - mc.textRenderer.fontHeight, -1);
-            if (ModuleManager.INSTANCE.getModule(HudModule.class).arraylist.isEnabled())
+
+            if (hudModule.arraylist.isEnabled())
                 renderArrayList(matrices);
-            if (ModuleManager.INSTANCE.getModule(HudModule.class).armor.isEnabled()) {
+
+            if (hudModule.armor.isEnabled())
                 drawArmor(matrices, 493, 485);
-            }
-            if (ModuleManager.INSTANCE.getModule(HudModule.class).notifications.isEnabled()) {
+
+            if (hudModule.notifications.isEnabled())
                 mc.textRenderer.drawWithShadow(matrices, notifText, notifX, 10, 0xFFFFFF);
+
+            if (hudModule.welcome.isEnabled())
+                mc.textRenderer.drawWithShadow(matrices, welcomeText, welcomeX, 3, 0xFFFFFF);
+
+            if (hudModule.effects.isEnabled()) {
+                int x = 2;
+                int y = 2;
+
+                for (StatusEffectInstance statusEffectInstance : mc.player.getStatusEffects()) {
+                    StatusEffect statusEffect = statusEffectInstance.getEffectType();
+
+                    int c = statusEffect.getColor();
+                    int red = new Color(c).getRed();
+                    int green = new Color(c).getGreen();
+                    int blue = new Color(c).getBlue();
+
+                    String text = getEffectString(statusEffectInstance);
+                    mc.textRenderer.drawWithShadow(matrices, text, x, y, c);
+
+                    red = green = blue = 255;
+                    y += mc.textRenderer.fontHeight;
+                }
             }
         }
     }
@@ -316,4 +361,10 @@ public class Hud {
             notifX= -message.getString().length();
         }
     }
+
+    public static String getEffectString(StatusEffectInstance statusEffectInstance) {
+        return String.format("%s %s (%s)", bakjeRandomUtil.getEffectNames(statusEffectInstance.getEffectType()), IntegerToRomanNumeral(statusEffectInstance.getAmplifier() + 1), StatusEffectUtil.durationToString(statusEffectInstance, 1));
+    }
+
+
 }

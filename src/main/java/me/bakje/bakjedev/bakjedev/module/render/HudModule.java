@@ -20,9 +20,11 @@ public class HudModule extends Mod {
     public BooleanSetting dir = new BooleanSetting("Direction", true);
     public BooleanSetting armor = new BooleanSetting("Armor", true);
     public BooleanSetting notifications = new BooleanSetting("Notifications", true);
+    public BooleanSetting welcome = new BooleanSetting("Welcome", true);
+    public BooleanSetting effects = new BooleanSetting("Effects", true);
     public HudModule() {
         super("Hud", "shows info", Category.RENDER, true);
-        addSettings(theme, info, arraylist,arraylistRainbow, coords, dir, armor, notifications);
+        addSettings(theme, info, arraylist,arraylistRainbow, coords, dir, effects, armor, welcome);
     }
 
     @BakjeSubscribe
