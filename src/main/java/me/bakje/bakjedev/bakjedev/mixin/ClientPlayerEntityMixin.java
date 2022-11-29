@@ -202,7 +202,6 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
         }
 
         if (message.equals("$peek")) {
-            System.out.println("worky in the first place");
             MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
             ItemStack item = mc.player.getInventory().getMainHandStack();
 

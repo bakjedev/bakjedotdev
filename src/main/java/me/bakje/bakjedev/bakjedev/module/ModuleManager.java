@@ -5,6 +5,7 @@ import me.bakje.bakjedev.bakjedev.module.misc.*;
 import me.bakje.bakjedev.bakjedev.module.movement.*;
 import me.bakje.bakjedev.bakjedev.module.render.*;
 import me.bakje.bakjedev.bakjedev.module.exploit.WGBypass;
+import me.bakje.bakjedev.bakjedev.module.world.BedrockBreaker;
 import me.bakje.bakjedev.bakjedev.module.world.Scaffold;
 
 
@@ -90,6 +91,7 @@ public class ModuleManager {
 
         modules.add(new WGBypass());
 
+        modules.add(new BedrockBreaker());
         modules.add(new Scaffold());
 
     }
