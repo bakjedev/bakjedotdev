@@ -29,7 +29,7 @@ public abstract class TextRendererMixin {
     @Inject(method = "drawWithShadow(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", at = @At("HEAD"), cancellable = true)
     public void drawWithShadow(MatrixStack matrices, Text text, float x, float y, int color, CallbackInfoReturnable<Integer> ci) {
         if (ModuleManager.INSTANCE.getModule(AllahHaram.class).isEnabled()) {
-            text = Text.literal(chingChong(text.toString()));
+            text = Text.literal(chingChong(text.getString()));
             ci.setReturnValue(draw(text.asOrderedText(), x, y, color, matrices.peek().getPositionMatrix(), true));
             ci.cancel();
         }
@@ -38,7 +38,7 @@ public abstract class TextRendererMixin {
     @Inject(method = "draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", at = @At("HEAD"), cancellable = true)
     public void draw(MatrixStack matrices, Text text, float x, float y, int color, CallbackInfoReturnable<Integer> ci) {
         if (ModuleManager.INSTANCE.getModule(AllahHaram.class).isEnabled()) {
-            text = Text.literal(chingChong(text.toString()));
+            text = Text.literal(chingChong(text.getString()));
             ci.setReturnValue(draw(text.asOrderedText(), x, y, color, matrices.peek().getPositionMatrix(), false));
             ci.cancel();
         }
@@ -64,7 +64,7 @@ public abstract class TextRendererMixin {
     @Inject(method = "getWidth(Lnet/minecraft/text/StringVisitable;)I", at = @At("HEAD"), cancellable = true)
     public void getWidth(StringVisitable text, CallbackInfoReturnable<Integer> ci) {
         if (ModuleManager.INSTANCE.getModule(AllahHaram.class).isEnabled() && text instanceof Text) {
-            ci.setReturnValue(MathHelper.ceil(this.handler.getWidth(chingChong(((Text)text).toString()))));
+            ci.setReturnValue(MathHelper.ceil(this.handler.getWidth(chingChong(((Text)text).getString()))));
             ci.cancel();
         }
     }

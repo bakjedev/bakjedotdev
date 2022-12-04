@@ -86,6 +86,7 @@ public class ModuleManager {
         modules.add(new SecretClose());
 
         modules.add(new Aura());
+        modules.add(new AutoCrystal());
         modules.add(new AutoTotem());
         modules.add(new Criticals());
         modules.add(new PopIdentifier());

@@ -152,7 +152,7 @@ public class Hud {
             Text netherZText = Text.literal(separateBigNumber(oppositePos.getZ())).formatted(Formatting.WHITE);
             Text netherCoordsText;
             if (theme == 5) {
-                netherCoordsText = netherXText.copy().append(" ").append(yText).append("").append(netherZText);
+                netherCoordsText = netherXText.copy().append(" ").append(yText).append(" ").append(netherZText);
             } else {
                 netherCoordsText = netherXText.copy().append(commaSeparator).append(netherZText);
             }
