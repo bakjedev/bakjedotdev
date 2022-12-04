@@ -38,6 +38,7 @@
     "ClientWorldMixin",
     "ScreenMixin",
     "ClientPlayerInteractionManagerMixin",
+    "TextRendererMixin"
   ],
   "mixinPriority" : 899,
   "injectors": {

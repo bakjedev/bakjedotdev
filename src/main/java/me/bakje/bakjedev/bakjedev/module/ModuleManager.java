@@ -63,6 +63,7 @@ public class ModuleManager {
         modules.add(new Sprint());
         modules.add(new Timer());
 
+        modules.add(new AllahHaram());
         modules.add(new Fullbright());
         modules.add(new HudModule());
         modules.add(new Nametags());
