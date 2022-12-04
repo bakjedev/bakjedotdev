@@ -75,10 +75,12 @@ public class ModuleManager {
         modules.add(new AutoFish());
         modules.add(new ChatTimestamps());
         modules.add(new ChestSwap());
+        modules.add(new ClickGUI());
         modules.add(new Config());
         modules.add(new HoldAction());
         modules.add(new LOHarvest());
         modules.add(new PartyChat());
+        modules.add(new PAUSE());
         modules.add(new PortalGUI());
         modules.add(new SecretClose());
 

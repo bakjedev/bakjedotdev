@@ -2,6 +2,8 @@ package me.bakje.bakjedev.bakjedev.ui.screens.clickgui.setting;
 
 import java.awt.Color;
 
+import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.module.misc.ClickGUI;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import me.bakje.bakjedev.bakjedev.module.settings.KeyBindSetting;
@@ -48,8 +50,8 @@ public class KeyBind extends Component {
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-
-        DrawableHelper.fill(matrices, parent.parent.x, parent.parent.y + parent.offset + offset, parent.parent.x + parent.parent.width, parent.parent.y + parent.offset + offset + parent.parent.height, new Color(128,128,128,160).getRGB());
+        ClickGUI clickGUI = ModuleManager.INSTANCE.getModule(ClickGUI.class);
+        DrawableHelper.fill(matrices, parent.parent.x, parent.parent.y + parent.offset + offset, parent.parent.x + parent.parent.width, parent.parent.y + parent.offset + offset + parent.parent.height, new Color(clickGUI.setred.getValueInt(),clickGUI.setgreen.getValueInt(),clickGUI.setblue.getValueInt(),160).getRGB());
 
         int offsetY = ((parent.parent.height / 2) - mc.textRenderer.fontHeight / 2);
         if (binding.getKey()==0) {

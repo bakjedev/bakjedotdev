@@ -37,7 +37,7 @@
     "LlamaPigStriderEntityMixin",
     "ClientWorldMixin",
     "ScreenMixin",
-    "ClientPlayerInteractionManagerMixin"
+    "ClientPlayerInteractionManagerMixin",
   ],
   "mixinPriority" : 899,
   "injectors": {

@@ -1,5 +1,7 @@
 package me.bakje.bakjedev.bakjedev.ui.screens.clickgui;
 
+import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.module.misc.ClickGUI;
 import me.bakje.bakjedev.bakjedev.ui.screens.clickgui.setting.KeyBind;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.ui.screens.clickgui.setting.Component;
@@ -42,16 +44,17 @@ public class ModuleButton{
 
     public void render(MatrixStack matrices, int mouseX, int mouseY,float delta){
         MinecraftClient mc = MinecraftClient.getInstance();
-        DrawableHelper.fill(matrices, parent.x, parent.y+ offset, parent.x + parent.width, parent.y+offset+parent.height, new Color(87,87,87,160).getRGB());
+        ClickGUI clickGUI = ModuleManager.INSTANCE.getModule(ClickGUI.class);
+        DrawableHelper.fill(matrices, parent.x, parent.y+ offset, parent.x + parent.width, parent.y+offset+parent.height, new Color(clickGUI.mred.getValueInt(), clickGUI.mgreen.getValueInt(), clickGUI.mblue.getValueInt(), 160).getRGB());
         if (isHovered(mouseX,mouseY)){
-            DrawableHelper.fill(matrices, mc.getWindow().getWidth()/2-mc.textRenderer.getWidth(module.getDescription())-15, 14, mc.getWindow().getWidth()/2, 25+mc.textRenderer.fontHeight,new Color(87,87,87,160).getRGB());
+            DrawableHelper.fill(matrices, mc.getWindow().getWidth()/2-mc.textRenderer.getWidth(module.getDescription())-15, 14, mc.getWindow().getWidth()/2, 25+mc.textRenderer.fontHeight,new Color(clickGUI.mred.getValueInt(), clickGUI.mgreen.getValueInt(), clickGUI.mblue.getValueInt(), 160).getRGB());
             mc.textRenderer.drawWithShadow(matrices, module.getDescription(), mc.getWindow().getWidth()/2-mc.textRenderer.getWidth(module.getDescription())-10, 20, Color.WHITE.getRGB());
-            DrawableHelper.fill(matrices, parent.x, parent.y+ offset, parent.x + parent.width, parent.y+offset+parent.height, new Color(87,87,87,160).getRGB());
+            DrawableHelper.fill(matrices, parent.x, parent.y+ offset, parent.x + parent.width, parent.y+offset+parent.height, new Color(clickGUI.mred.getValueInt(), clickGUI.mgreen.getValueInt(), clickGUI.mblue.getValueInt(), 160).getRGB());
         }
 
         int textOffset =((parent.height / 2) - parent.mc.textRenderer.fontHeight / 2);
 
-        parent.mc.textRenderer.drawWithShadow(matrices, module.getName(), parent.x+textOffset,parent.y+offset+textOffset, module.isEnabled() ? new Color(166, 160, 255).getRGB() : -1);
+        parent.mc.textRenderer.drawWithShadow(matrices, module.getName(), parent.x+textOffset,parent.y+offset+textOffset, module.isEnabled() ? new Color(60, 255, 255).getRGB() : -1);
         parent.mc.textRenderer.drawWithShadow(matrices, extended ? "-" : "+", parent.x + parent.width - 8 - parent.mc.textRenderer.getWidth("+"), parent.y + offset + 6, -1);
         if (extended) {
             for (Component component : components) {

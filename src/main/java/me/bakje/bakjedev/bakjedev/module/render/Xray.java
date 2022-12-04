@@ -2,10 +2,7 @@ package me.bakje.bakjedev.bakjedev.module.render;
 
 import me.bakje.bakjedev.bakjedev.module.settings.BooleanSetting;
 import me.bakje.bakjedev.bakjedev.module.Mod;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.OreBlock;
-import net.minecraft.block.RedstoneOreBlock;
+import net.minecraft.block.*;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -23,7 +20,7 @@ public class Xray extends Mod {
 
     boolean isGoodBlock(Block block) {
         boolean c1 = block == Blocks.LAVA || block == Blocks.CHEST || block == Blocks.FURNACE || block == Blocks.END_GATEWAY || block == Blocks.COMMAND_BLOCK || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_PORTAL ||block == Blocks.SPAWNER;
-        boolean c2 = block instanceof OreBlock || block instanceof RedstoneOreBlock;
+        boolean c2 = block instanceof OreBlock || block instanceof RedstoneOreBlock || block instanceof ShulkerBoxBlock;
         return c1 || c2;
     }
     @Override

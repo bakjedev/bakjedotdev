@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.Hand;
@@ -39,6 +40,7 @@ public class Aura extends Mod {
             if (entity instanceof ItemEntity
                     || entity instanceof ExperienceOrbEntity
                     || entity instanceof PersistentProjectileEntity
+                    || entity instanceof FireworkRocketEntity
                     || !entity.isAlive()) {
                 return;
             }
