@@ -43,7 +43,7 @@ public class Flight extends Mod {
 
             mc.player.setVelocity(antiKickVel);
 
-            Vec3d forward = new Vec3d(0, 0, 0);
+            Vec3d forward = new Vec3d(0, 0, this.speed.getValue()).rotateY(-(float) Math.toRadians(mc.player.getYaw()));
             Vec3d strafe = forward.rotateY((float) Math.toRadians(90));
 
             if (mc.options.jumpKey.isPressed())

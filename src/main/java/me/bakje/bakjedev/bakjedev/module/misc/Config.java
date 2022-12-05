@@ -29,6 +29,7 @@ public class Config extends Mod {
         ModuleManager.INSTANCE.getModule(Peek.class).toggle();
         ModuleManager.INSTANCE.getModule(HoleESP.class).toggle();
         ModuleManager.INSTANCE.getModule(MCF.class).toggle();
+        ModuleManager.INSTANCE.getModule(ElytraBoost.class).toggle();
 
         ModuleManager.INSTANCE.getModule(Aura.class).setKey(71);
         ModuleManager.INSTANCE.getModule(Surround.class).setKey(70);

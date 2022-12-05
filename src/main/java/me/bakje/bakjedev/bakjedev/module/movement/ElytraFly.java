@@ -12,14 +12,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 public class ElytraFly extends Mod {
-    public ModeSetting eflyMode = new ModeSetting("Mode","Control", "Control", "Boost");
+    public ModeSetting eflyMode = new ModeSetting("Mode","Control", "Control");
     public BooleanSetting autoOpen = new BooleanSetting("AutoOpen", true);
-    public NumberSetting boostSpeed = new NumberSetting("BoostSpeed", 0, 0.15, 0.05, 0.01);
-    public NumberSetting maxBoost = new NumberSetting("MaxBoost", 0, 5, 2.5, 0.1);
     public NumberSetting speed = new NumberSetting("Speed", 0.5, 3, 1.26, 0.01);
     public ElytraFly() {
         super("ElytraFly", "hacker flys with wing", Category.MOVEMENT, true);
-        addSettings(eflyMode, speed, boostSpeed, maxBoost, autoOpen);
+        addSettings(eflyMode, speed, autoOpen);
     }
 
     @BakjeSubscribe
