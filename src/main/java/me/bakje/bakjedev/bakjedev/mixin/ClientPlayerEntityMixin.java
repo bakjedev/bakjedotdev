@@ -124,7 +124,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
 
         if (message.equalsIgnoreCase("$help")) {
             MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
-            mc.player.sendMessage(prefixString.append(Text.literal("List of all commands:").formatted(Formatting.GRAY)), false);
+            mc.player.sendMessage(prefixString.append(Text.literal("List of all the zaza in this bitch:").formatted(Formatting.GRAY)), false);
             mc.player.sendMessage(Text.literal("    - help: gives list of commands").formatted(Formatting.GRAY), false);
             mc.player.sendMessage(Text.literal("    - vclip: teleports you up, pass in number with max 3 digits").formatted(Formatting.GRAY), false);
             mc.player.sendMessage(Text.literal("    - hclip: teleports you forward, pass in number with max 3 digits").formatted(Formatting.GRAY), false);
@@ -141,7 +141,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
                 if (arguments.length>0) value = Integer.parseInt(arguments[1]);
 
                 mc.player.updatePosition(mc.player.getX(), mc.player.getY()+value, mc.player.getZ());
-                mc.player.sendMessage(prefixString.append(Text.literal("Teleported").formatted(Formatting.GRAY)), false);
+                mc.player.sendMessage(prefixString.append(Text.literal("we tpin and shit on the vertical").formatted(Formatting.GRAY)), false);
             } catch (Exception e) {
                 mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
             }
@@ -164,7 +164,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
                 } else  if (mc.player.getMovementDirection() == Direction.EAST){
                     mc.player.updatePosition(mc.player.getX()+value, mc.player.getY(), mc.player.getZ());
                 }
-                mc.player.sendMessage(prefixString.append(Text.literal("Teleported").formatted(Formatting.GRAY)), false);
+                mc.player.sendMessage(prefixString.append(Text.literal("we tpin and shit on the horizontal").formatted(Formatting.GRAY)), false);
             } catch (Exception e) {
                 mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
             }
@@ -179,7 +179,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
                 if (arguments.length>0) value = Integer.parseInt(arguments[1]);
 
                 mc.player.setYaw((float) value);
-                mc.player.sendMessage(prefixString.append(Text.literal("Set yaw to " + value).formatted(Formatting.GRAY)), false);
+                mc.player.sendMessage(prefixString.append(Text.literal("you lookin at " + value + " for the yaw my silly gabagoose").formatted(Formatting.GRAY)), false);
             } catch (Exception e) {
                 mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
             }
@@ -194,7 +194,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
                 if (arguments.length>0) value = Integer.parseInt(arguments[1]);
 
                 mc.player.setPitch((float) value);
-                mc.player.sendMessage(prefixString.append(Text.literal("Set pitch to " + value).formatted(Formatting.GRAY)), false);
+                mc.player.sendMessage(prefixString.append(Text.literal("you lookin at " + value + " for the pitch my silly gabagoose").formatted(Formatting.GRAY)), false);
             } catch (Exception e) {
                 mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
             }
@@ -211,11 +211,13 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
                         || block instanceof ChestBlock
                         || block instanceof DispenserBlock
                         || block instanceof HopperBlock)) {
-                    mc.player.sendMessage(prefixString.append(Text.literal("Must be holding a container to peek").formatted(Formatting.GRAY)), false);
+                    mc.player.sendMessage(prefixString.append(Text.literal("Bruh yo bitch ass must be holding a containter to peek").formatted(Formatting.GRAY)), false);
+                    ci.cancel();
                     return;
                 }
             } else if (item.getItem() != Items.BUNDLE) {
-                mc.player.sendMessage(prefixString.append(Text.literal("Must be holding a container to peek").formatted(Formatting.GRAY)), false);
+                mc.player.sendMessage(prefixString.append(Text.literal("Bruh yo bitch ass must be holding a containter to peek").formatted(Formatting.GRAY)), false);
+                ci.cancel();
                 return;
             }
 
@@ -223,7 +225,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
 
             SimpleInventory inv = new SimpleInventory(items.toArray(new ItemStack[27]));
 
-            mc.player.sendMessage(prefixString.append(Text.literal("ok we bout to try open that shit for you").formatted(Formatting.GRAY)), false);
+            mc.player.sendMessage(prefixString.append(Text.literal("ok we bout to try to open that shit for you").formatted(Formatting.GRAY)), false);
             bakjeQueue.add(() ->
                     mc.setScreen(new PeekShulkerScreen(
                             new ShulkerBoxScreenHandler(420, mc.player.getInventory(), inv),

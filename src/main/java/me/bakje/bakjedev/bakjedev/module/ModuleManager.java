@@ -65,6 +65,7 @@ public class ModuleManager {
 
         modules.add(new AllahHaram());
         modules.add(new Fullbright());
+        modules.add(new HoleESP());
         modules.add(new HudModule());
         modules.add(new Nametags());
         modules.add(new NoRender());
@@ -80,6 +81,7 @@ public class ModuleManager {
         modules.add(new Config());
         modules.add(new HoldAction());
         modules.add(new LOHarvest());
+        modules.add(new MCF());
         modules.add(new PartyChat());
         modules.add(new PAUSE());
         modules.add(new PortalGUI());

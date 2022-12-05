@@ -2,6 +2,8 @@ package me.bakje.bakjedev.bakjedev.module.movement;
 
 import me.bakje.bakjedev.bakjedev.event.events.ClientMoveEvent;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
+import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.module.combat.Surround;
 import me.bakje.bakjedev.bakjedev.module.settings.NumberSetting;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.settings.BooleanSetting;
@@ -40,6 +42,7 @@ public class Speed extends Mod {
                 double vel = Math.abs(mc.player.getVelocity().getX()) + Math.abs(mc.player.getVelocity().getZ());
 
                 if (strafeJumping.isEnabled() && vel >= 0.12 && mc.player.isOnGround()) {
+                    if (ModuleManager.INSTANCE.getModule(Surround.class).isEnabled()) ModuleManager.INSTANCE.getModule(Surround.class).toggle();
                     mc.player.updateVelocity(vel >= 0.3 ? 0.0f : 0.15f, new Vec3d(mc.player.sidewaysSpeed, 0, mc.player.forwardSpeed));
                     mc.player.jump();
                 }

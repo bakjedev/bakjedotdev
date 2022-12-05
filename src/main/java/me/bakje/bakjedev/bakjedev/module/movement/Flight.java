@@ -14,7 +14,6 @@ public class Flight extends Mod {
     public NumberSetting speed = new NumberSetting("Speed", 0, 5, 1, 0.1);
     public BooleanSetting antiKick = new BooleanSetting("Anti kick", false);
     public static ClientPlayNetworkHandler networkHandler;
-    private boolean flyTick = false;
     int antiKickCounter = 0;
 
     public Flight() {
@@ -44,7 +43,7 @@ public class Flight extends Mod {
 
             mc.player.setVelocity(antiKickVel);
 
-            Vec3d forward = new Vec3d(0, 0, this.speed.getValue()).rotateY(-(float) Math.toRadians(mc.player.getYaw()));
+            Vec3d forward = new Vec3d(0, 0, 0);
             Vec3d strafe = forward.rotateY((float) Math.toRadians(90));
 
             if (mc.options.jumpKey.isPressed())

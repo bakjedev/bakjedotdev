@@ -6,6 +6,7 @@ import me.bakje.bakjedev.bakjedev.eventbus.BakjeEventBus;
 import me.bakje.bakjedev.bakjedev.eventbus.handler.InexactEventHandler;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.ModuleManager;
+import me.bakje.bakjedev.bakjedev.util.FriendManager;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundEvent;
@@ -24,11 +25,11 @@ public class Bakjedev implements ModInitializer {
     public BakjeEventBus eventBus = new BakjeEventBus(new InexactEventHandler("bakjedev"), Bakjedev.logger);
     public static final Identifier soundID = new Identifier("bakjedev:darkfantasy");
     public static SoundEvent soundEvent = new SoundEvent(soundID);
+    public static FriendManager friendMang;
     @Override
     public void onInitialize() {
         System.out.println("joe biden");
-
-
+        friendMang = new FriendManager();
 
         Registry.register(Registry.SOUND_EVENT, Bakjedev.soundID, soundEvent);
     }

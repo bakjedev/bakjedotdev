@@ -1,6 +1,7 @@
 package me.bakje.bakjedev.bakjedev.util.world;
 
 
+import me.bakje.bakjedev.bakjedev.Bakjedev;
 import me.bakje.bakjedev.bakjedev.util.PlayerCopyEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
@@ -43,6 +44,7 @@ public class EntityUtil {
                 && e.isAlive()
                 && e != MinecraftClient.getInstance().player
                 && !e.isConnectedThroughVehicle(MinecraftClient.getInstance().player)
-                && !(e instanceof PlayerCopyEntity);
+                && !(e instanceof PlayerCopyEntity)
+                && (!ignoreFriends || !Bakjedev.friendMang.has(e));
     }
 }

@@ -1,5 +1,6 @@
 package me.bakje.bakjedev.bakjedev.module.render;
 
+import me.bakje.bakjedev.bakjedev.Bakjedev;
 import me.bakje.bakjedev.bakjedev.event.events.WorldRenderEvent;
 import me.bakje.bakjedev.bakjedev.eventbus.BakjeSubscribe;
 import me.bakje.bakjedev.bakjedev.module.Mod;
@@ -73,6 +74,8 @@ public class Tracers extends Mod {
     }
 
     private Color getColorFromDistance(Entity entity) {
+        if (Bakjedev.friendMang.has(entity)) return new Color(85, 85, 255);
+
         // Credit to meteor client credit to Icy from Stackoverflow
         double distance = mc.player.distanceTo(entity);
         double percent = distance / 60;

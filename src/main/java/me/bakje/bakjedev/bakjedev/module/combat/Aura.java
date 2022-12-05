@@ -1,29 +1,49 @@
 package me.bakje.bakjedev.bakjedev.module.combat;
 
+import com.google.common.collect.Streams;
 import me.bakje.bakjedev.bakjedev.module.settings.NumberSetting;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import me.bakje.bakjedev.bakjedev.module.settings.BooleanSetting;
+import me.bakje.bakjedev.bakjedev.util.world.EntityUtil;
+import me.bakje.bakjedev.bakjedev.util.world.WorldUtil;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.debug.DebugRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractFireballEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ShulkerBulletEntity;
+import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 public class Aura extends Mod {
+    private int delay = 0;
     public NumberSetting range = new NumberSetting("Range", 1, 10, 5.5, 0.1);
+    public NumberSetting cps = new NumberSetting("CPS", 0, 20, 8, 1);
     public BooleanSetting rotate = new BooleanSetting("Rotate", false);
-    public BooleanSetting attackEverything = new BooleanSetting("atackAll", false);
-    boolean rotateCondition;
-    boolean attackCondition;
+    public BooleanSetting raycast = new BooleanSetting("Raycast", false);
+    public BooleanSetting onePointNineDelay = new BooleanSetting("1.9 delay", true);
+    public BooleanSetting players = new BooleanSetting("Players", true);
+    public BooleanSetting mobs = new BooleanSetting("Mobs", false);
+    public BooleanSetting animals = new BooleanSetting("Animals", false);
+    public BooleanSetting armorStands = new BooleanSetting("ArmorStands", false);
+    public BooleanSetting projectiles = new BooleanSetting("Projectiles", true);
     public Aura() {
         super("Aura", "kill", Category.COMBAT, true);
-        addSettings(rotate, range, attackEverything);
+        addSettings(players, mobs, animals, armorStands, projectiles, onePointNineDelay, cps, range, raycast, rotate);
     }
 
     @Override
@@ -31,55 +51,60 @@ public class Aura extends Mod {
         if (!mc.player.isAlive()) {
             return;
         }
-            ClientPlayerEntity player = mc.player;
-        Vec3d playerPos = player.getPos();
-        double closestDistance = Double.POSITIVE_INFINITY;
-        Entity closestEntity = null;
-        for (Entity entity : mc.world.getEntities()) {
-            Vec3d entityPos = entity.getPos();
-            if (entity instanceof ItemEntity
-                    || entity instanceof ExperienceOrbEntity
-                    || entity instanceof PersistentProjectileEntity
-                    || entity instanceof FireworkRocketEntity
-                    || !entity.isAlive()) {
-                return;
-            }
-            if (attackEverything.isEnabled()) {
-                rotateCondition = entityPos.distanceTo(mc.player.getPos())<range.getValue() && entity!=mc.player;
-                attackCondition = entityPos.distanceTo(mc.player.getPos())<closestDistance && entityPos.distanceTo(playerPos)<range.getValue() && entity!=mc.player;
-            } else {
-                rotateCondition = entityPos.distanceTo(mc.player.getPos())<range.getValue() && entity instanceof PlayerEntity && entity!=mc.player;
-                attackCondition = entity instanceof PlayerEntity && entityPos.distanceTo(mc.player.getPos())<closestDistance && entityPos.distanceTo(playerPos)<range.getValue() && entity!=mc.player;
-            }
-            if (rotateCondition) {
-                if (rotate.isEnabled()) {
-                    double dX = mc.player.getX() - entity.getX();
-                    double dY = mc.player.getY() - entity.getY();
-                    double dZ = mc.player.getZ() - entity.getZ();
+        delay++;
+        int reqDelay = (int) Math.rint(20/this.cps.getValue());
+        boolean cooldownDone = this.onePointNineDelay.isEnabled()
+                ? mc.player.getAttackCooldownProgress(mc.getTickDelta()) == 1.0f
+                : (delay > reqDelay || reqDelay==0);
 
-                    double DistanceXZ = Math.sqrt(dX * dX + dZ * dZ);
-                    double DistanceY = Math.sqrt(DistanceXZ * DistanceXZ + dY * dY);
+        if (cooldownDone) {
+            for (Entity e: getEntities()) {
+                boolean shouldRotate = this.rotate.isEnabled() && DebugRenderer.getTargetedEntity(mc.player, 7).orElse(null) != e;
 
-                    double newYaw = Math.acos(dX / DistanceXZ) * 180 / Math.PI;
-                    double newPitch = Math.acos(dY / -DistanceY) * 180 / Math.PI - 90;
-
-                    if (dZ < 0.0)
-                        newYaw = newYaw + Math.abs(180 - newYaw) * 2;
-                    newYaw = (newYaw + 90);
-                    mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.Full(mc.player.getX(), mc.player.getY(), mc.player.getZ(), (float) newYaw, (float) newPitch, mc.player.isOnGround()));
+                if (shouldRotate) {
+                    WorldUtil.facePosAuto(e.getX(), e.getY() + e.getHeight() / 2, e.getZ());
                 }
-            }
-            if (attackCondition) {
-                closestDistance=entityPos.distanceTo(playerPos);
-                closestEntity=entity;
-                float cooldown = mc.player.getAttackCooldownProgress(mc.getTickDelta());
-                if (cooldown==1) {
-                    mc.interactionManager.attackEntity(mc.player, closestEntity);
-                    mc.player.swingHand(Hand.MAIN_HAND);
-                }
+
+                boolean wasSprinting = mc.player.isSprinting();
+
+                if (wasSprinting)
+                    mc.player.networkHandler.sendPacket(new ClientCommandC2SPacket(mc.player, ClientCommandC2SPacket.Mode.STOP_SPRINTING));
+
+                mc.interactionManager.attackEntity(mc.player, e);
+                mc.player.swingHand(Hand.MAIN_HAND);
+
+                if (wasSprinting)
+                    mc.player.networkHandler.sendPacket(new ClientCommandC2SPacket(mc.player, ClientCommandC2SPacket.Mode.START_SPRINTING));
+
+                delay = 0;
             }
         }
+    }
 
-        super.onTick();
+    private List<Entity> getEntities() {
+        Stream<Entity> targets;
+
+
+        targets = Streams.stream(mc.world.getEntities());
+
+
+        Comparator<Entity> comparator;
+
+
+        comparator = Comparator.comparing(mc.player::distanceTo);
+
+
+        return targets
+                .filter(e -> EntityUtil.isAttackable(e, true)
+                        && mc.player.distanceTo(e) <= this.range.getValue()
+                        && (mc.player.canSee(e) || !this.raycast.isEnabled()))
+                .filter(e -> (EntityUtil.isPlayer(e) && this.players.isEnabled())
+                        || (EntityUtil.isMob(e) && this.mobs.isEnabled())
+                        || (EntityUtil.isAnimal(e) && this.animals.isEnabled())
+                        || (e instanceof ArmorStandEntity && this.armorStands.isEnabled())
+                        || ((e instanceof ShulkerBulletEntity || e instanceof AbstractFireballEntity) && this.projectiles.isEnabled()))
+                .sorted(comparator)
+                .limit( 1L)
+                .collect(Collectors.toList());
     }
 }
