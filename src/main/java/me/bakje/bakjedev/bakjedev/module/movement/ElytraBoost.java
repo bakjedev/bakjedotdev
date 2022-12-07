@@ -17,11 +17,11 @@ public class ElytraBoost extends Mod {
         double currentVel = Math.abs(mc.player.getVelocity().x) + Math.abs(mc.player.getVelocity().y) + Math.abs(mc.player.getVelocity().z);
         float radianYaw = (float) Math.toRadians(mc.player.getYaw());
         float boost = this.boostSpeed.getValueFloat();
-        if (mc.player.isFallFlying() && currentVel <= this.maxBoost.getValue()) {
-            if (mc.options.forwardKey.isPressed()) {
-                mc.player.addVelocity(MathHelper.sin(radianYaw) * -boost, 0, MathHelper.cos(radianYaw) * boost);
-            } else if (mc.options.backKey.isPressed()) {
+        if (mc.player.isFallFlying() && currentVel <= maxBoost.getValue()) {
+            if (mc.options.backKey.isPressed()) {
                 mc.player.addVelocity(MathHelper.sin(radianYaw) * boost, 0, MathHelper.cos(radianYaw) * -boost);
+            } else if (mc.player.getPitch() > 0) {
+                mc.player.addVelocity(MathHelper.sin(radianYaw) * -boost, 0, MathHelper.cos(radianYaw) * boost);
             }
         }
     }
