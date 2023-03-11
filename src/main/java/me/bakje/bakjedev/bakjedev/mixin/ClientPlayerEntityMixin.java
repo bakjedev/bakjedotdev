@@ -52,7 +52,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
     Screen tempCurrentScreen;
 
     public ClientPlayerEntityMixin(ClientWorld world, GameProfile profile, @Nullable PlayerPublicKey publicKey) {
-        super(world, profile, publicKey);
+        super(world, profile);
     }
 
 
@@ -106,135 +106,6 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
             return false;
         }
         return player.isUsingItem();
-    }
-
-    @Inject(at = @At("HEAD"), method = "sendChatMessage", cancellable = true)
-    public void onChatMessage(String message, Text preview, CallbackInfo ci) {
-        if (message.startsWith("$")
-        && !message.startsWith("$help")
-        && !message.startsWith("$vclip")
-        && !message.startsWith("$hclip")
-        && !message.startsWith("$setyaw")
-        && !message.startsWith("$peek")
-        && !message.startsWith("$setpitch")) {
-            MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
-            mc.player.sendMessage(prefixString.append(Text.literal("Unknown or incomplete command, try $help for the list of commands.").formatted(Formatting.GRAY)), false);
-            ci.cancel();
-        }
-
-        if (message.equalsIgnoreCase("$help")) {
-            MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
-            mc.player.sendMessage(prefixString.append(Text.literal("List of all the zaza in this bitch:").formatted(Formatting.GRAY)), false);
-            mc.player.sendMessage(Text.literal("    - help: gives list of commands").formatted(Formatting.GRAY), false);
-            mc.player.sendMessage(Text.literal("    - vclip: teleports you up, pass in number with max 3 digits").formatted(Formatting.GRAY), false);
-            mc.player.sendMessage(Text.literal("    - hclip: teleports you forward, pass in number with max 3 digits").formatted(Formatting.GRAY), false);
-            mc.player.sendMessage(Text.literal("    - setyaw: sets your yaw").formatted(Formatting.GRAY), false);
-            mc.player.sendMessage(Text.literal("    - setpitch: sets your pitch").formatted(Formatting.GRAY), false);
-            ci.cancel();
-        }
-
-        if (message.startsWith("$vclip")) {
-            int value=0;
-            MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
-            try {
-                String[] arguments = message.split(" ");
-                if (arguments.length>0) value = Integer.parseInt(arguments[1]);
-
-                mc.player.updatePosition(mc.player.getX(), mc.player.getY()+value, mc.player.getZ());
-                mc.player.sendMessage(prefixString.append(Text.literal("we tpin and shit on the vertical").formatted(Formatting.GRAY)), false);
-            } catch (Exception e) {
-                mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
-            }
-            ci.cancel();
-        }
-
-        if (message.startsWith("$hclip")) {
-            int value=0;
-            MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
-            try {
-                String[] arguments = message.split(" ");
-                if (arguments.length>0) value = Integer.parseInt(arguments[1]);
-
-                if (mc.player.getMovementDirection() == Direction.SOUTH){
-                    mc.player.updatePosition(mc.player.getX(), mc.player.getY(), mc.player.getZ()+value);
-                } else if (mc.player.getMovementDirection() == Direction.WEST) {
-                    mc.player.updatePosition(mc.player.getX()-value, mc.player.getY(), mc.player.getZ());
-                } else if (mc.player.getMovementDirection() == Direction.NORTH) {
-                    mc.player.updatePosition(mc.player.getX(), mc.player.getY(), mc.player.getZ()-value);
-                } else  if (mc.player.getMovementDirection() == Direction.EAST){
-                    mc.player.updatePosition(mc.player.getX()+value, mc.player.getY(), mc.player.getZ());
-                }
-                mc.player.sendMessage(prefixString.append(Text.literal("we tpin and shit on the horizontal").formatted(Formatting.GRAY)), false);
-            } catch (Exception e) {
-                mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
-            }
-            ci.cancel();
-        }
-
-        if (message.startsWith("$setyaw")) {
-            double value=0;
-            MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
-            try {
-                String[] arguments = message.split(" ");
-                if (arguments.length>0) value = Integer.parseInt(arguments[1]);
-
-                mc.player.setYaw((float) value);
-                mc.player.sendMessage(prefixString.append(Text.literal("you lookin at " + value + " for the yaw my silly gabagoose").formatted(Formatting.GRAY)), false);
-            } catch (Exception e) {
-                mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
-            }
-            ci.cancel();
-        }
-
-        if (message.startsWith("$setpitch")) {
-            double value=0;
-            MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
-            try {
-                String[] arguments = message.split(" ");
-                if (arguments.length>0) value = Integer.parseInt(arguments[1]);
-
-                mc.player.setPitch((float) value);
-                mc.player.sendMessage(prefixString.append(Text.literal("you lookin at " + value + " for the pitch my silly gabagoose").formatted(Formatting.GRAY)), false);
-            } catch (Exception e) {
-                mc.player.sendMessage(prefixString.append(Text.literal("Invalid argument").formatted(Formatting.GRAY)), false);
-            }
-            ci.cancel();
-        }
-
-        if (message.equals("$peek")) {
-            MutableText prefixString = Text.literal("$ ").formatted(Formatting.YELLOW);
-            ItemStack item = mc.player.getInventory().getMainHandStack();
-
-            if (item.getItem() instanceof BlockItem) {
-                Block block = ((BlockItem) item.getItem()).getBlock();
-                if (!(block instanceof ShulkerBoxBlock
-                        || block instanceof ChestBlock
-                        || block instanceof DispenserBlock
-                        || block instanceof HopperBlock)) {
-                    mc.player.sendMessage(prefixString.append(Text.literal("Bruh yo bitch ass must be holding a containter to peek").formatted(Formatting.GRAY)), false);
-                    ci.cancel();
-                    return;
-                }
-            } else if (item.getItem() != Items.BUNDLE) {
-                mc.player.sendMessage(prefixString.append(Text.literal("Bruh yo bitch ass must be holding a containter to peek").formatted(Formatting.GRAY)), false);
-                ci.cancel();
-                return;
-            }
-
-            List<ItemStack> items = ItemContentUtil.getItemsInContainer(item);
-
-            SimpleInventory inv = new SimpleInventory(items.toArray(new ItemStack[27]));
-
-            mc.player.sendMessage(prefixString.append(Text.literal("ok we bout to try to open that shit for you").formatted(Formatting.GRAY)), false);
-            bakjeQueue.add(() ->
-                    mc.setScreen(new PeekShulkerScreen(
-                            new ShulkerBoxScreenHandler(420, mc.player.getInventory(), inv),
-                            mc.player.getInventory(),
-                            item.getName())));
-
-
-            ci.cancel();
-        }
     }
 }
 

@@ -9,6 +9,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.RotationAxis;
 
 public class Renderer {
     // -------------------- Fill + Outline Boxes --------------------
@@ -52,7 +53,7 @@ public class Renderer {
         BufferBuilder buffer = tessellator.getBuffer();
 
         // Fill
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        RenderSystem.setShader(GameRenderer::getPositionColorProgram);
 
         buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
         Vertexer.vertexBoxQuads(matrices, buffer, Boxes.moveToZero(box), color, excludeDirs);
@@ -81,7 +82,7 @@ public class Renderer {
 
         // Outline
         RenderSystem.disableCull();
-        RenderSystem.setShader(GameRenderer::getRenderTypeLinesShader);
+        RenderSystem.setShader(GameRenderer::getRenderTypeLinesProgram);
         RenderSystem.lineWidth(lineWidth);
 
         buffer.begin(VertexFormat.DrawMode.LINES, VertexFormats.LINES);
@@ -109,7 +110,7 @@ public class Renderer {
         BufferBuilder buffer = tessellator.getBuffer();
 
         // Fill
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        RenderSystem.setShader(GameRenderer::getPositionColorProgram);
 
         buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
         Vertexer.vertexQuad(matrices, buffer,
@@ -140,7 +141,7 @@ public class Renderer {
 
         // Outline
         RenderSystem.disableCull();
-        RenderSystem.setShader(GameRenderer::getRenderTypeLinesShader);
+        RenderSystem.setShader(GameRenderer::getRenderTypeLinesProgram);
         RenderSystem.lineWidth(lineWidth);
 
         buffer.begin(VertexFormat.DrawMode.LINES, VertexFormats.LINES);
@@ -171,7 +172,7 @@ public class Renderer {
         // Line
         RenderSystem.disableDepthTest();
         RenderSystem.disableCull();
-        RenderSystem.setShader(GameRenderer::getRenderTypeLinesShader);
+        RenderSystem.setShader(GameRenderer::getRenderTypeLinesProgram);
         RenderSystem.lineWidth(width);
 
         buffer.begin(VertexFormat.DrawMode.LINES, VertexFormats.LINES);
@@ -189,8 +190,8 @@ public class Renderer {
         MatrixStack matrices = new MatrixStack();
 
         Camera camera = MinecraftClient.getInstance().gameRenderer.getCamera();
-        matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(camera.getPitch()));
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(camera.getYaw() + 180.0F));
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(camera.getPitch()));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(camera.getYaw() + 180.0F));
 
         matrices.translate(x - camera.getPos().x, y - camera.getPos().y, z - camera.getPos().z);
 

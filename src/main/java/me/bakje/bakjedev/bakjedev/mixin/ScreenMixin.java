@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.minecraft.client.gui.tooltip.TooltipPositioner;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.TooltipComponent;
@@ -22,8 +23,7 @@ public class ScreenMixin {
 
     @Unique private boolean skipTooltip;
 
-    @Shadow private void renderTooltipFromComponents(MatrixStack matrices, List<TooltipComponent> components, int x, int y) {}
-
+    @Shadow private void renderTooltipFromComponents(MatrixStack matrices, List<TooltipComponent> components, int x, int y, TooltipPositioner positioner) {}
     @Inject(method = "render", at = @At("HEAD"))
     private void render(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo callback) {
         lastMX = mouseX;
@@ -31,7 +31,7 @@ public class ScreenMixin {
     }
 
     @Inject(method = "renderTooltipFromComponents", at = @At("HEAD"), cancellable = true)
-    private void renderTooltipFromComponents(MatrixStack matrices, List<TooltipComponent> components, int x, int y, CallbackInfo callback) {
+    private void renderTooltipFromComponents(MatrixStack matrices, List<TooltipComponent> components, int x, int y, TooltipPositioner positioner, CallbackInfo callback) {
         if (skipTooltip) {
             skipTooltip = false;
             return;
@@ -46,6 +46,6 @@ public class ScreenMixin {
         }
 
         skipTooltip = true;
-        renderTooltipFromComponents(event.getMatrix(), event.getComponents(), event.getX(), event.getY());
+        renderTooltipFromComponents(event.getMatrix(), event.getComponents(), event.getX(), event.getY(), positioner);
     }
 }

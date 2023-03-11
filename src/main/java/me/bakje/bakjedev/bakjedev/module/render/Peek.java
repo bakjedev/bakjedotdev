@@ -37,7 +37,7 @@ import net.minecraft.item.map.MapState;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Matrix4f;
+import org.joml.Matrix4f;
 
 import java.util.Arrays;
 import java.util.List;
@@ -174,7 +174,7 @@ public class Peek extends Mod {
             shown = false;
         }
 
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, BookScreen.BOOK_TEXTURE);
         DrawableHelper.drawTexture(
@@ -275,8 +275,8 @@ public class Peek extends Mod {
         RenderSystem.disableTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
-        BufferRenderer.drawWithShader(bufferBuilder.end());
+        RenderSystem.setShader(GameRenderer::getPositionColorProgram);
+        BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
         RenderSystem.disableBlend();
         RenderSystem.enableTexture();
     }

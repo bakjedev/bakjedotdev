@@ -3,7 +3,7 @@ package me.bakje.bakjedev.bakjedev.module.render;
 import me.bakje.bakjedev.bakjedev.module.settings.BooleanSetting;
 import me.bakje.bakjedev.bakjedev.module.Mod;
 import net.minecraft.block.*;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
 
 import java.util.ArrayList;
 
@@ -13,14 +13,14 @@ public class Xray extends Mod {
     public Xray() {
         super("Xray", "look through the world... and beyond", Category.RENDER, true);
         addSetting(bedrock);
-        Registry.BLOCK.forEach(block -> {
+        Registries.BLOCK.forEach(block -> {
             if (isGoodBlock(block)) blocks.add(block);
         });
     }
 
     boolean isGoodBlock(Block block) {
         boolean c1 = block == Blocks.LAVA || block == Blocks.CHEST || block == Blocks.FURNACE || block == Blocks.END_GATEWAY || block == Blocks.COMMAND_BLOCK || block == Blocks.ANCIENT_DEBRIS || block == Blocks.NETHER_PORTAL ||block == Blocks.SPAWNER;
-        boolean c2 = block instanceof OreBlock || block instanceof RedstoneOreBlock || block instanceof ShulkerBoxBlock;
+        boolean c2 = block instanceof ExperienceDroppingBlock || block instanceof RedstoneOreBlock || block instanceof ShulkerBoxBlock;
         return c1 || c2;
     }
     @Override

@@ -14,13 +14,13 @@ public class PAUSE extends Mod {
 
     @Override
     public void onEnable() {
-        mc.player.sendChatMessage("#pause", Text.empty());
+        mc.player.networkHandler.sendChatMessage("#pause");
         super.onEnable();
     }
 
     @Override
     public void onDisable() {
-        mc.player.sendChatMessage("#resume", Text.empty());
+        mc.player.networkHandler.sendChatMessage("#resume");
         super.onDisable();
     }
 }

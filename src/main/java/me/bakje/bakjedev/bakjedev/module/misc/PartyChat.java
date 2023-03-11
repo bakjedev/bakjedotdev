@@ -9,13 +9,13 @@ public class PartyChat extends Mod {
     }
     @Override
     public void onEnable() {
-        mc.player.sendCommand("party chat on");
+        mc.player.networkHandler.sendCommand("party chat on");
         super.onEnable();
     }
 
     @Override
     public void onDisable() {
-        mc.player.sendCommand("party chat off");
+        mc.player.networkHandler.sendCommand("party chat off");
         super.onDisable();
     }
 

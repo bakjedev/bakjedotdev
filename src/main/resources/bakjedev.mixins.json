@@ -38,7 +38,7 @@
     "ClientWorldMixin",
     "ScreenMixin",
     "ClientPlayerInteractionManagerMixin",
-    "TextRendererMixin"
+    "CientPlayNetworkHandlerMixin"
   ],
   "mixinPriority" : 899,
   "injectors": {

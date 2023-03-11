@@ -52,7 +52,7 @@ public class NoSlow extends Mod {
             float yaw = 0f;
             float pitch = 0f;
 
-            mc.keyboard.setRepeatEvents(true);
+//            mc.keyboard.setRepeatEvents(true);
 
             float amount = (System.currentTimeMillis() - lastTime) / 10f;
             lastTime = System.currentTimeMillis();
@@ -87,8 +87,7 @@ public class NoSlow extends Mod {
                 || screen instanceof JigsawBlockScreen
                 || screen instanceof StructureBlockScreen
                 || screen instanceof AnvilScreen
-                || (screen instanceof CreativeInventoryScreen
-                && ((CreativeInventoryScreen) screen).getSelectedTab() == ItemGroup.SEARCH.getIndex()));
+                || (screen instanceof CreativeInventoryScreen));
     }
 
 
